@@ -10,4 +10,10 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\Directory.Packages.Props">
+        <Link>Directory.Packages.Props</Link>
+      </Content>
+    </ItemGroup>
+
 </Project>

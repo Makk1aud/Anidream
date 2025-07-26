@@ -3,24 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace Anidream.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/test")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    private readonly ILogger<WeatherForecastController> _logger;
-
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
-        _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet]
+    [Route("ping")]
     public IActionResult Get()
     {
-        return Ok();
+        return Ok("pong");
     }
 }

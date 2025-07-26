@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Anidream.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb0f3a49eff91f3905d6d5a50197988b2d5cde6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac9118527e9f43659872888bfb2b2b539baaa073")]
 [assembly: System.Reflection.AssemblyProductAttribute("Anidream.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Anidream.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

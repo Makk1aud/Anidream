@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anidream.API", "Anidream.API\Anidream.API.csproj", "{C9918ACC-27BD-4D3C-8A8B-6104E024DAC0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{2D0FB144-332B-4639-99CE-34864A758D7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Interfaces", "DataAccess.Interfaces\DataAccess.Interfaces.csproj", "{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0910C6A5-25F2-4E3C-9516-DFA976DFC7ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,22 @@ Global
 		{C9918ACC-27BD-4D3C-8A8B-6104E024DAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9918ACC-27BD-4D3C-8A8B-6104E024DAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9918ACC-27BD-4D3C-8A8B-6104E024DAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA} = {2D0FB144-332B-4639-99CE-34864A758D7D}
+		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716} = {2D0FB144-332B-4639-99CE-34864A758D7D}
+		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6} = {0910C6A5-25F2-4E3C-9516-DFA976DFC7ED}
 	EndGlobalSection
 EndGlobal
