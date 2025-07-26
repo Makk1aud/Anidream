@@ -1,0 +1,54 @@
+.card {
+    position: relative;
+
+    width: 350px;
+    height: 300px;
+
+    margin-inline: 10px;
+    margin-bottom: 20px;
+
+    background-size: cover;
+    background-position: center;
+    background-position: 0 -10px;
+
+    border-radius: 10px;
+    
+}
+
+
+.grade {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.grade p{
+    color: white;
+}
+
+.grade img {
+    width: 30px;
+    height: 30px;
+
+    margin-left: 7px;
+}
+
+.grade__container {
+    display: flex;
+    align-items: center;
+}
+
+.titles__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+
+}
+
