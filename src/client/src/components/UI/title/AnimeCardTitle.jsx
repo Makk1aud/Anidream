@@ -1,5 +1,5 @@
 import React from 'react'
-import cl from './AnimeCardTitle.module.css'
+import cl from './AnimeCardTitles.module.css'
 
 export default function AnimeCardTitle(props) {
   return (

@@ -5,5 +5,17 @@
     background-size: cover;
     background-position: center;
     background-position: 0 -10px;
+
+    border-radius: 10px;
     
+}
+
+.titles__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+
 }

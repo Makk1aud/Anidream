@@ -1,0 +1,13 @@
+.card__title, .card__subtitle{
+    color: white;
+}
+
+.card__title {
+    margin-bottom: 7px;
+    font-size: 2em;
+}
+
+.card__subtitle {
+    font-size: 1.2;
+}
+

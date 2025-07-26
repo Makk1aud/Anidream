@@ -1,0 +1,12 @@
+.conatainer {
+    display: flex;
+    justify-content: center;
+}
+
+.catalog {
+    display: grid;
+    
+    width: 1400px;
+
+    background-color: aqua;
+}
