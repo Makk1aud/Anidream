@@ -1,11 +1,18 @@
+.header__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .header {
     display: flex;
     align-items: center;
     
-    width: 100%;
+    width: 1440px;
     height: 130px;
 
-    padding-inline: 20px;
+    padding-inline: 35px;
+
+    border-radius: 10px;
 
     background-color: rgb(48, 48, 48);
     color: white;

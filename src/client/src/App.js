@@ -1,6 +1,6 @@
 import './App.css';
 import Catalog from './components/Catalog';
-import Header from './components/Header';
+import Header from './components/UI/navbar/Header';
 import SectionTitle from './components/UI/title/SectionTitle'
 
 function App() {

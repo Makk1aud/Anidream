@@ -8,7 +8,7 @@ export default function AnimeCard(props) {
     <div
       className={cl.card}
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${props.card.imagePath})`
+        "--bg-image": `url(${props.card.imagePath})`
       }}
     >
       <div className={cl.grade}>
