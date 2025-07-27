@@ -1,3 +1,5 @@
+using DataAccess.Interfaces;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anidream.API.Controllers;
@@ -6,14 +8,21 @@ namespace Anidream.API.Controllers;
 [Route("api/test")]
 public class WeatherForecastController : ControllerBase
 {
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    private readonly IDbContext _context;
+
+    public WeatherForecastController(IDbContext context)
     {
+        _context = context;
     }
 
     [HttpGet]
     [Route("ping")]
-    public IActionResult Get()
+    public async Task<IActionResult> Get()
     {
+        _context.Media.Add(new Media() { Title = "NewTest" });
+        await _context.SaveChangesAsync();
+
+        Console.WriteLine(_context.Media.First().Title);
         return Ok("pong");
     }
 }
