@@ -1,16 +1,17 @@
-import './App.css';
-import Catalog from './components/Catalog';
-import Header from './components/UI/navbar/Header';
-import SectionTitle from './components/UI/title/SectionTitle'
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import AnimeIdPage from "./pages/AnimeIdPage";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <SectionTitle title='Каталог'/>
-      <Catalog />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/anime/:id" element={<AnimeIdPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+export default App; 
