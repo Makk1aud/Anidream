@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className={cl.header__wrapper}>
       <header className={cl.header}>
-        <Link className={cl.link} to='/home'><h1>ANIDREAM</h1></Link>
+        <Link className={cl.link} to='/home'><img className={cl.logo} src="logo/AnidreamLogo(red).svg"/></Link>
         <HeaderButton text="Каталог" href='/home' />
       </header>
     </div>

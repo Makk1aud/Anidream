@@ -1,28 +1,30 @@
 .header__wrapper {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    
-    width: 1440px;
-    height: 130px;
+  display: flex;
+  align-items: center;
 
-    padding-inline: 35px;
+  width: 1440px;
+  height: 140px;
 
-    border-radius: 10px;
+  padding-inline: 35px;
 
-    background-color: rgb(48, 48, 48);
-    color: white;
-}
+  border-radius: 10px;
 
-.header h1 {
-    margin-right: 60px;
+  background-color: rgb(48, 48, 48);
+  color: white;
 }
 
 .link {
-    text-decoration: none;
-    color: inherit;
+  display: inline-flex;
+  border-radius: 50%;
+  overflow: hidden; 
+  cursor: pointer;
+}
+
+.logo {
+  width: 80px;
 }
