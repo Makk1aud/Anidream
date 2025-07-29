@@ -19,7 +19,7 @@ export default function AnimeCard(props) {
       <div className={cl.grade}>
         <div className={cl.grade__container}>
           <p>{props.card.grade}</p>
-          <img src="assets/moon-star.png" />
+          <img src="assets/grade.svg" />
         </div>
       </div>
 
