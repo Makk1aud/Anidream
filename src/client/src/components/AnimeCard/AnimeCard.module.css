@@ -13,6 +13,7 @@
   background-position: center;
   background-position: 0 -10px;
 
+  border: 1px solid rgba(99, 99, 99, 0.9);
   border-radius: 10px;
 }
 

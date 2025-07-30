@@ -8,13 +8,14 @@
   align-items: center;
 
   width: 1440px;
-  height: 140px;
+  height: 130px;
 
   padding-inline: 35px;
 
-  border-radius: 10px;
+  border: 1px solid rgb(61, 61, 61);
+  border-radius: 50px;
 
-  background-color: rgb(48, 48, 48);
+  background-color: #303030;
   color: white;
 }
 
@@ -26,5 +27,5 @@
 }
 
 .logo {
-  width: 80px;
+  width: 70px;
 }

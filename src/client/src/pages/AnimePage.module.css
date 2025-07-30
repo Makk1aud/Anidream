@@ -1,0 +1,59 @@
+.anime__page__container {
+  display: flex;
+  justify-content: center;
+}
+
+.anime__page {
+  position: relative;
+  display: flex;
+  width: 1390px;
+
+  margin-top: 50px;
+  padding: 60px;
+
+  color: white;
+
+  border-radius: 10px;
+  border: 1px solid rgb(76, 76, 76);
+
+  overflow: hidden;
+}
+
+.anime__page:before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: var(--bg-image);
+  background-size: cover;
+  filter: blur(9px) brightness(0.7) contrast(1.2);
+
+  z-index: -1;
+}
+
+.anime__page::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(66, 66, 66, 0.3);
+
+  z-index: -1;
+}
+
+.anime__img {
+  width: 350px;
+
+  border: 1px solid rgb(129, 129, 129);
+  border-radius: 10px;
+}

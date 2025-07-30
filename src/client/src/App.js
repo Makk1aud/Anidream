@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import AnimeIdPage from "./pages/AnimeIdPage";
+import AnimePage from "./pages/AnimePage";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to='/home' replace /> } />
         <Route path="/home" element={<Home />} />
-        <Route path="/anime/:id" element={<AnimeIdPage />} />
+        <Route path="/anime/:id" element={<AnimePage />} />
       </Routes>
     </BrowserRouter>
   );
