@@ -1,4 +1,4 @@
-using DataAccess.Interfaces;
+using Application.Interfaces.Data;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

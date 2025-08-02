@@ -2,11 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anidream.API", "Anidream.API\Anidream.API.csproj", "{C9918ACC-27BD-4D3C-8A8B-6104E024DAC0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{2D0FB144-332B-4639-99CE-34864A758D7D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2D0FB144-332B-4639-99CE-34864A758D7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Interfaces", "DataAccess.Interfaces\DataAccess.Interfaces.csproj", "{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0910C6A5-25F2-4E3C-9516-DFA976DFC7ED}"
 EndProject
@@ -16,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{ED1310E2-D4AA-416D-8366-C91184F33EC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{0ADC169E-804B-405C-A78C-0C0055E370DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Utils", "Infrastructure.Utils\Infrastructure.Utils.csproj", "{9ADDE786-D52E-4822-8D90-AABB40EE5798}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,18 +35,23 @@ Global
 		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716}.Release|Any CPU.Build.0 = Release|Any CPU
 		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ADC169E-804B-405C-A78C-0C0055E370DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ADC169E-804B-405C-A78C-0C0055E370DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ADC169E-804B-405C-A78C-0C0055E370DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ADC169E-804B-405C-A78C-0C0055E370DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ADDE786-D52E-4822-8D90-AABB40EE5798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADDE786-D52E-4822-8D90-AABB40EE5798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADDE786-D52E-4822-8D90-AABB40EE5798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADDE786-D52E-4822-8D90-AABB40EE5798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B42BA90F-ED7E-4AA3-8120-4C577E6815EA} = {2D0FB144-332B-4639-99CE-34864A758D7D}
-		{8AA0CC64-ECE1-4868-AC15-6A1D7456E716} = {2D0FB144-332B-4639-99CE-34864A758D7D}
 		{506BAECD-BABB-428B-8C52-4F9AA05EE8B6} = {0910C6A5-25F2-4E3C-9516-DFA976DFC7ED}
+		{0ADC169E-804B-405C-A78C-0C0055E370DE} = {ED1310E2-D4AA-416D-8366-C91184F33EC4}
+		{9ADDE786-D52E-4822-8D90-AABB40EE5798} = {2D0FB144-332B-4639-99CE-34864A758D7D}
 	EndGlobalSection
 EndGlobal
