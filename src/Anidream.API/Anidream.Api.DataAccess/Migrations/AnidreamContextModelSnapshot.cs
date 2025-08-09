@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace DataAccess.Migrations
+namespace Anidream.Api.DataAccess.Migrations
 {
     [DbContext(typeof(AnidreamContext))]
     partial class AnidreamContextModelSnapshot : ModelSnapshot

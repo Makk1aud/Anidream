@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Anidream.Api.DataAccess.Migrations
 {
     [DbContext(typeof(AnidreamContext))]
-    [Migration("20250809082126_Add entities (Director, Studio); Update entity (Media)")]
-    partial class AddentitiesDirectorStudioUpdateentityMedia
+    [Migration("20250809084225_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,14 +29,17 @@ namespace Anidream.Api.DataAccess.Migrations
                 {
                     b.Property<Guid>("DirectorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("director_id");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("full_name");
 
-                    b.HasKey("DirectorId");
+                    b.HasKey("DirectorId")
+                        .HasName("pk_directors");
 
                     b.ToTable("Directors", (string)null);
                 });
@@ -45,45 +48,58 @@ namespace Anidream.Api.DataAccess.Migrations
                 {
                     b.Property<Guid>("MediaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("media_id");
 
                     b.Property<string>("Alias")
                         .IsRequired()
                         .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("alias");
 
                     b.Property<int>("CurrentEpisodes")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("current_episodes");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<Guid>("DirectorId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("director_id");
 
                     b.Property<double>("Rating")
-                        .HasColumnType("double precision");
+                        .HasColumnType("double precision")
+                        .HasColumnName("rating");
 
                     b.Property<DateOnly>("ReleaseDate")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("release_date");
 
                     b.Property<Guid>("StudioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("studio_id");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasColumnType("character varying(250)")
+                        .HasColumnName("title");
 
                     b.Property<int>("TotalEpisodes")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("total_episodes");
 
-                    b.HasKey("MediaId");
+                    b.HasKey("MediaId")
+                        .HasName("pk_medias");
 
-                    b.HasIndex("DirectorId");
+                    b.HasIndex("DirectorId")
+                        .HasDatabaseName("ix_medias_director_id");
 
-                    b.HasIndex("StudioId");
+                    b.HasIndex("StudioId")
+                        .HasDatabaseName("ix_medias_studio_id");
 
                     b.ToTable("Medias", (string)null);
                 });
@@ -92,14 +108,17 @@ namespace Anidream.Api.DataAccess.Migrations
                 {
                     b.Property<Guid>("StudioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("studio_id");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("title");
 
-                    b.HasKey("StudioId");
+                    b.HasKey("StudioId")
+                        .HasName("pk_studios");
 
                     b.ToTable("Studios", (string)null);
                 });
@@ -110,13 +129,15 @@ namespace Anidream.Api.DataAccess.Migrations
                         .WithMany("Medias")
                         .HasForeignKey("DirectorId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_medias_director_director_id");
 
                     b.HasOne("Anidream.Api.Domain.Entities.Studio", "Studio")
                         .WithMany("Medias")
                         .HasForeignKey("StudioId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_medias_studio_studio_id");
 
                     b.Navigation("Director");
 

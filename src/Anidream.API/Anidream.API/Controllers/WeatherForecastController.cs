@@ -19,10 +19,10 @@ public class WeatherForecastController : ControllerBase
     [Route("ping")]
     public async Task<IActionResult> Get()
     {
-        _context.Medias.Add(new Media() { Title = "NewTest" });
-        await _context.SaveChangesAsync();
-
-        Console.WriteLine(_context.Medias.First().Title);
+        // _context.Medias.Add(new Media() { Title = "NewTest" });
+        // await _context.SaveChangesAsync();
+        //
+        // Console.WriteLine(_context.Medias.First().Title);
         return Ok("pong");
     }
 }
