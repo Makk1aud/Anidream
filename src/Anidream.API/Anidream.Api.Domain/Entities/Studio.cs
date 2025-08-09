@@ -10,4 +10,6 @@ public class Studio
     [Required]
     [MaxLength(100)]
     public string Title { get; set; }
+    
+    public virtual ICollection<Media> Medias { get; set; } = new List<Media>();
 }

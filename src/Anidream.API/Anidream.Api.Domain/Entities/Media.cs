@@ -24,10 +24,19 @@ public class Media
     
     public DateOnly ReleaseDate { get; set; }
     
-    [Required] //max 10 min 10 default 0
+    [Required]
+    [Range(0.0, 10.0)] //max 10 min 10 default 0
     public double Rating { get; set; }
     
     public int TotalEpisodes { get; set; }
     
     public int CurrentEpisodes { get; set; }
+    
+    public virtual Studio Studio { get; set; }
+    public virtual Director Director { get; set; }
+
+    public Media()
+    {
+        Rating = 0;
+    }
 }

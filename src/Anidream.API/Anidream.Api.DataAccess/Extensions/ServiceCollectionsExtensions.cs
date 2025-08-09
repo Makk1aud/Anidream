@@ -1,23 +1,17 @@
-using Anidream.Api.Application.Utils.Interfaces.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Anidream.Api.Application.Utils.Interfaces.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace Anidream.Api.DataAccess.Extensions;
 
 public static class ServiceCollectionsExtensions
 {
-    public static IServiceCollection AddAnidreamDbContext(
-        this IServiceCollection services,
-        ConfigurationManager configurationManager)
+    public static IServiceCollection AddAnidreamDbContext(this IServiceCollection services, string connectionString)
     {
-#if DEBUG
-        return services.AddDbContext<IDbContext, AnidreamContext>(
-            opt => opt.UseNpgsql(configurationManager.GetSection("DefaultConnection").Value));
-#else
-        return services.AddDbContext<IDbContext, AnidreamContext>(
-            opt => opt.UseNpgsql(configurationManager.GetConnectionString("DefaultConnection")));
-#endif
+        return services.AddDbContext<IDbContext, AnidreamContext>(opt => opt
+                .UseNpgsql(connectionString)
+                .UseSnakeCaseNamingConvention());
     }
 
     public static void EnsureDbCreated(this IServiceScope scope)
