@@ -25,8 +25,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
-      <ProjectReference Include="..\Infrastructure.Utils\Infrastructure.Utils.csproj" />
+      <ProjectReference Include="..\Anidream.Api.DataAccess\Anidream.Api.DataAccess.csproj" />
+      <ProjectReference Include="..\Anidream.Api.Infrastructure.Utils\Anidream.Api.Infrastructure.Utils.csproj" />
     </ItemGroup>
 
 </Project>

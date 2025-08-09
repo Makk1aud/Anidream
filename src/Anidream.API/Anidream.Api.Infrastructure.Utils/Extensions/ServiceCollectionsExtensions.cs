@@ -1,8 +1,8 @@
-using Anidream.API.Extensions;
+using Anidream.Api.DataAccess.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Utils.Extensions;
+namespace Anidream.Api.Infrastructure.Utils.Extensions;
 
 public static class ServiceCollectionsExtensions
 {

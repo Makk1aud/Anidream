@@ -4,16 +4,16 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Anidream.Api.Application.Utils</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" />
-      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\Anidream.Api.Application.UseCases\Anidream.Api.Application.UseCases.csproj" />
+      <ProjectReference Include="..\Anidream.Api.Domain\Anidream.Api.Domain.csproj" />
     </ItemGroup>
 
 </Project>

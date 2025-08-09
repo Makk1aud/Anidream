@@ -1,5 +1,6 @@
-using Application.Extensions;
-using Infrastructure.Utils.Extensions;
+using Anidream.Api.Application.Utils.Extensions;
+using Anidream.Api.DataAccess.Extensions;
+using Anidream.Api.Infrastructure.Utils.Extensions;
 
 namespace Anidream.API.Extensions;
 

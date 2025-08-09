@@ -1,5 +1,5 @@
-using Application.Interfaces.Data;
-using Domain.Entities;
+using Anidream.Api.Application.Utils.Interfaces.Data;
+using Anidream.Api.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anidream.API.Controllers;

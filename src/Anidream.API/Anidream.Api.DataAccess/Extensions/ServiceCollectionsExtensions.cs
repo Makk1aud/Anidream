@@ -1,10 +1,9 @@
-using Application.Interfaces.Data;
-using DataAccess;
+using Anidream.Api.Application.Utils.Interfaces.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Anidream.API.Extensions;
+namespace Anidream.Api.DataAccess.Extensions;
 
 public static class ServiceCollectionsExtensions
 {

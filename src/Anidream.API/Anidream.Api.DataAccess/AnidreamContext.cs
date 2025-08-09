@@ -1,8 +1,8 @@
-using Application.Interfaces.Data;
-using Domain.Entities;
+using Anidream.Api.Application.Utils.Interfaces.Data;
+using Anidream.Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess;
+namespace Anidream.Api.DataAccess;
 
 public class AnidreamContext : DbContext, IDbContext
 {

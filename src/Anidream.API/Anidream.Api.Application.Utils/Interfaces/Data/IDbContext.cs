@@ -1,7 +1,7 @@
-using Domain.Entities;
+using Anidream.Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Interfaces.Data;
+namespace Anidream.Api.Application.Utils.Interfaces.Data;
 
 public interface IDbContext
 {
