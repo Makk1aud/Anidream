@@ -6,6 +6,8 @@
 .anime__page {
   position: relative;
   display: flex;
+  flex-direction: column;
+
   width: 1390px;
 
   margin-top: 50px;
@@ -51,9 +53,21 @@
   z-index: -1;
 }
 
+.main__info {
+  display: flex;
+}
+
+.anime__info{
+  width: 920px;
+}
+
 .anime__img {
   width: 350px;
+
+  margin-right: 50px;
+  margin-bottom: 50px;
 
   border: 1px solid rgb(129, 129, 129);
   border-radius: 10px;
 }
+

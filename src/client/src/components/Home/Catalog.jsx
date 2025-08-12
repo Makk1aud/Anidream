@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import SectionTitle from "./UI/title/SectionTitle";
+import SectionTitle from "../UI/title/SectionTitle";
 import AnimeCard from "./AnimeCard/AnimeCard";
 import cl from "./Catalog.module.css";
 

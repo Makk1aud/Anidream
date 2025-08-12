@@ -1,0 +1,49 @@
+.anime__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 20px;
+  max-width: 920px;
+
+}
+
+.genres {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding-block: 8px;
+
+  width: 100%;
+  border: 1px solid rgba(222, 222, 222, 0.3);
+  border-radius: 15px;
+
+  background: rgba(177, 177, 177, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.genres p {
+  padding-left: 20px;
+}
+
+.anime__details {
+  list-style-type: none;
+
+  width: 100%;
+
+  padding-bottom: 12px;
+
+  border: 1px solid rgba(222, 222, 222, 0.3);
+  border-radius: 15px;
+
+  background: rgba(177, 177, 177, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.anime__details li {
+  padding-left: 20px;
+  margin-top: 12px;
+}
