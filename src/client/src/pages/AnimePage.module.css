@@ -57,17 +57,81 @@
   display: flex;
 }
 
-.anime__info{
+.anime__info {
   width: 920px;
 }
 
-.anime__img {
-  width: 350px;
+.anime__img__container {
+  position: relative;
 
   margin-right: 50px;
   margin-bottom: 50px;
 
   border: 1px solid rgb(129, 129, 129);
   border-radius: 10px;
+  overflow: hidden;
+  background-color: aqua;
 }
 
+.anime__img__container:hover {
+  cursor: pointer;
+}
+
+.anime__img__container:hover .anime__img {
+  filter: brightness(70%);
+}
+
+.anime__img__container:hover .go__to__view {
+  filter: brightness(130%);
+  background: rgba(177, 177, 177, 0.2);
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.anime__img__container:hover .go__to__view__img {
+  filter: brightness(80%);
+}
+
+.anime__img {
+  display: block;
+  width: 350px;
+}
+
+.go__to__view {
+  position: absolute;
+
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50%;
+
+  padding-inline: 20px;
+  padding-block: 7px;
+  padding-left: 12px;
+
+  background: rgba(177, 177, 177, 0.2);
+  border: 1px solid rgba(222, 222, 222, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+
+  filter: brightness(100%);
+  transition: filter 0.3s ease;
+}
+
+.go__to__view__img {
+  width: 35px;
+
+  margin-right: 15px;
+
+  filter: brightness(100%);
+  transition: filter 0.7s ease !important;
+}
+
+.go__to__view__text {
+  font-size: larger;
+}
