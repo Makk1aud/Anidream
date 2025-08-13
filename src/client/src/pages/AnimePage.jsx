@@ -6,10 +6,17 @@ import Header from "../components/UI/navbar/Header.jsx";
 import AnimeInfo from "../components/AnimePage/AnimeInfo.jsx";
 import AnimeDescription from "../components/AnimePage/AnimeDescription.jsx";
 import Player from "../components/AnimePage/Player.jsx";
+import { useRef } from "react";
 
 export default function AnimePage(props) {
   const params = useParams();
   const anime = animeList.find((item) => item.id === Number(params.id));
+
+  const playerRef = useRef(null);
+
+  const handleScroll = () => {
+    playerRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' });
+  };
 
   return (
     <div>
@@ -22,10 +29,14 @@ export default function AnimePage(props) {
       >
         <div className={cl.anime__page}>
           <div className={cl.main__info}>
-            <div className={cl.anime__img__container}>
+            <div className={cl.anime__img__container} onClick={handleScroll}>
               <img className={cl.anime__img} src={anime.imagePath} />
               <div className={cl.go__to__view}>
-                <img className={cl.go__to__view__img} src="/assets/play.svg" alt="play" />
+                <img
+                  className={cl.go__to__view__img}
+                  src="/assets/play.svg"
+                  alt="play"
+                />
                 <h2 className={cl.go__to__view__text}>Смотреть</h2>
               </div>
             </div>
@@ -35,7 +46,9 @@ export default function AnimePage(props) {
             </div>
           </div>
           <AnimeDescription />
-          <Player url={anime.url} title={anime.subtitle} />
+          <div className={cl.player__container} ref={playerRef}>
+            <Player url={anime.url} title={anime.subtitle} />
+          </div>
         </div>
       </div>
     </div>

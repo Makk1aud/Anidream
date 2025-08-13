@@ -18,7 +18,7 @@
   border-radius: 10px;
   border: 1px solid rgb(76, 76, 76);
 
-  overflow: hidden;
+  overflow: visible;
 }
 
 .anime__page:before {
@@ -89,12 +89,14 @@
 }
 
 .anime__img__container:hover .go__to__view__img {
-  filter: brightness(80%);
+  filter: brightness(70%);
 }
 
 .anime__img {
   display: block;
   width: 350px;
+
+  transition: filter 0.15s ease;
 }
 
 .go__to__view {
@@ -135,3 +137,4 @@
 .go__to__view__text {
   font-size: larger;
 }
+
