@@ -7,16 +7,14 @@ import AnimeInfo from "../components/AnimePage/AnimeInfo.jsx";
 import AnimeDescription from "../components/AnimePage/AnimeDescription.jsx";
 import Player from "../components/AnimePage/Player.jsx";
 import { useRef } from "react";
+import Footer from "../components/UI/footer/Footer.jsx";
+import { useScroll } from "../hooks/useScroll.js";
 
 export default function AnimePage(props) {
   const params = useParams();
   const anime = animeList.find((item) => item.id === Number(params.id));
 
-  const playerRef = useRef(null);
-
-  const handleScroll = () => {
-    playerRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' });
-  };
+  const [playerRef, scrollToPlayer] = useScroll();
 
   return (
     <div>
@@ -29,7 +27,7 @@ export default function AnimePage(props) {
       >
         <div className={cl.anime__page}>
           <div className={cl.main__info}>
-            <div className={cl.anime__img__container} onClick={handleScroll}>
+            <div className={cl.anime__img__container} onClick={scrollToPlayer}>
               <img className={cl.anime__img} src={anime.imagePath} />
               <div className={cl.go__to__view}>
                 <img
@@ -51,6 +49,7 @@ export default function AnimePage(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
