@@ -1,4 +1,4 @@
-using Anidream.Api.Application.Utils.Interfaces.Data;
+using Anidream.Api.Application.Core;
 using Anidream.Api.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,6 +1,6 @@
+using Anidream.Api.Application.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Anidream.Api.Application.Utils.Interfaces.Data;
 using Microsoft.Extensions.Configuration;
 
 namespace Anidream.Api.DataAccess.Extensions;

@@ -5,14 +5,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="MediatR" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" />
     </ItemGroup>
-    
+
     <ItemGroup>
-      <ProjectReference Include="..\Anidream.Api.Application.Core\Anidream.Api.Application.Core.csproj" />
       <ProjectReference Include="..\Anidream.Api.Domain\Anidream.Api.Domain.csproj" />
     </ItemGroup>
+
 </Project>

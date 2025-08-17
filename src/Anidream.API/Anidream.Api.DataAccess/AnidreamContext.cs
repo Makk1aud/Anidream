@@ -1,5 +1,5 @@
+using Anidream.Api.Application.Core;
 using Microsoft.EntityFrameworkCore;
-using Anidream.Api.Application.Utils.Interfaces.Data;
 using Anidream.Api.DataAccess.Configurations;
 using Anidream.Api.Domain.Entities;
 
