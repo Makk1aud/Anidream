@@ -1,0 +1,30 @@
+.anime__description__container {
+  position: relative;
+}
+
+.anime__description {
+  padding: 20px;
+  padding-right: 80px;
+  padding-bottom: 80px;
+
+  background: rgba(177, 177, 177, 0.3);
+  border: 1px solid rgba(222, 222, 222, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+
+  text-align: justify
+}
+
+.logo {
+  position: absolute;
+
+  width: 60px;
+
+  right: 15px;
+  bottom: 15px;
+
+  shape-outside: margin-box;
+
+}
+

@@ -1,0 +1,72 @@
+.card {
+  position: relative;
+
+  width: 350px;
+  height: 400px;
+
+  margin-inline: 10px;
+  margin-bottom: 20px;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-position: 0 -10px;
+
+  border: 1px solid rgba(99, 99, 99, 0.9);
+  border-radius: 10px;
+}
+
+.card:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--bg-image);
+  background-size: cover;
+  background-position: 0 -10px;
+
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.grade {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.grade p {
+  color: white;
+}
+
+.grade img {
+  width: 30px;
+  height: 30px;
+
+  margin-left: 7px;
+}
+
+.grade__container {
+  display: flex;
+  align-items: center;
+
+  padding: 5px;
+
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.titles__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+}

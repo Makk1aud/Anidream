@@ -1,0 +1,18 @@
+.footer__button {
+  margin-left: 70px;
+  padding: 15px;
+
+  border: 2px solid rgb(44, 44, 44);
+  border-radius: 15px;
+
+  font-size: larger;
+  background-color: rgb(44, 44, 44);
+}
+
+.footer__button:hover {
+  cursor: pointer;
+
+  border: 2px solid rgb(146, 145, 145);
+
+  background-color: rgb(63, 63, 63);
+}

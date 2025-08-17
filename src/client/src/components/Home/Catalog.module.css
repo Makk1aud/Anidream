@@ -1,0 +1,16 @@
+.conatainer {
+    display: flex;
+    justify-content: center;
+
+}
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    padding-inline: 10px;
+    padding-top: 30px;
+
+    border-radius: 10px;
+    background-color: rgb(46, 46, 46);
+}

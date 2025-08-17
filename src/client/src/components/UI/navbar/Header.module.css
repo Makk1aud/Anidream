@@ -1,0 +1,31 @@
+.header__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  width: 1440px;
+  height: 130px;
+
+  padding-inline: 35px;
+
+  border: 1px solid rgb(61, 61, 61);
+  border-radius: 50px;
+
+  background-color: #303030;
+  color: white;
+}
+
+.link {
+  display: inline-flex;
+  border-radius: 50%;
+  overflow: hidden; 
+  cursor: pointer;
+}
+
+.logo {
+  width: 70px;
+}

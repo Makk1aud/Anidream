@@ -1,0 +1,36 @@
+.player__container {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+
+  margin-top: 100px;
+}
+
+.player__name {
+  display: inline;
+  margin-inline: auto;
+
+  margin-bottom: 50px;
+}
+
+.player__container h2 {
+  display: inline;
+
+  padding: 10px;
+  padding-inline: 100px;
+
+  background: rgba(222, 222, 222, 0.2);
+  border: 1px solid rgba(222, 222, 222, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.player {
+  aspect-ratio: 16/9;
+
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+}
