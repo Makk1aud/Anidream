@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SectionTitle from "../../UI/title/SectionTitle";
 import AnimeCard from "./AnimeCard/AnimeCard";
 import cl from "./Catalog.module.css";
+import FilterBar from "./FilterBar/FilterBar";
 
 export default function Catalog({ ref }) {
   const [cards, setCards] = useState([
@@ -44,6 +45,7 @@ export default function Catalog({ ref }) {
 
   return (
     <div className={cl.conatainer} ref={ref}>
+      <FilterBar />
       <div className={cl.catalog}>
         {cards.map((card) => {
           return <AnimeCard card={card} key={card.id} />;
