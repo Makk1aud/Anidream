@@ -1,8 +1,12 @@
 using Anidream.Api.Application.Core;
+using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
+using Anidream.Api.Application.UseCases.Options;
 using Anidream.Api.Application.Utils.Dtos;
 using Anidream.Api.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Anidream.API.Controllers;
 
@@ -11,16 +15,24 @@ namespace Anidream.API.Controllers;
 public class MediaController : ControllerBase
 {
     private readonly IDbContext _context;
+    private readonly ISender _sender;
 
-    public MediaController(IDbContext context)
+    public MediaController(IDbContext context, ISender sender)
     {
         _context = context;
+        _sender = sender;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetMedias()
+    public async Task<IActionResult> GetMedias(
+        [FromQuery] PaginationOptions paginationOptions,
+        CancellationToken cancellationToken)
     {
-        return Ok(await _context.Medias.ToListAsync());
+        var medias = await _sender.Send(
+            new GetListOfMediaCommand { PaginationOptions = paginationOptions }, cancellationToken);
+        Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(medias.GetMetadata()));
+        
+        return Ok(medias);
     }
 
     [HttpGet("{mediaId}")]

@@ -32,8 +32,8 @@ public class Media
     
     public int CurrentEpisodes { get; set; }
     
-    public virtual Studio Studio { get; set; }
-    public virtual Director Director { get; set; }
+    public virtual Studio Studio { get; set; } = null!;
+    public virtual Director Director { get; set; } = null!;
 
     public Media()
     {
