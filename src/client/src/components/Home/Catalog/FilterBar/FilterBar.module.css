@@ -4,3 +4,15 @@
 
     background-color: rgb(20, 20, 20);
 }
+
+.filter__bar {
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+    padding-inline: 20px;
+
+    color: white;
+
+}

@@ -5,7 +5,7 @@ export default function FilterBar() {
   return (
     <div className={cl.wrapper}>
       <div className={cl.filter__bar}>
-        
+
       </div>
     </div>
   )
