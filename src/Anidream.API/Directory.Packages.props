@@ -4,6 +4,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="AutoMapper" Version="15.0.1" />
     <PackageVersion Include="EFCore.NamingConventions" Version="8.0.0" />
     <PackageVersion Include="MediatR" Version="13.0.0" />
     <PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />

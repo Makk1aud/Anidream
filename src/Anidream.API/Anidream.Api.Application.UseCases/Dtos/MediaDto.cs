@@ -20,6 +20,6 @@ public record MediaDto
     
     public int CurrentEpisodes { get; init; }
     
-    public virtual Studio Studio { get; init; }
-    public virtual Director Director { get; init; }
+    public StudioDto Studio { get; init; }
+    public DirectorDto Director { get; init; }
 }

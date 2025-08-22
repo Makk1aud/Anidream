@@ -1,5 +1,5 @@
 using Anidream.Api.Application.Core;
-using Anidream.Api.Application.UseCases.Options;
+using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia.Entities;
 using Anidream.Api.Application.UseCases.Services;
 using Anidream.Api.Application.Utils.Dtos;
 using MediatR;

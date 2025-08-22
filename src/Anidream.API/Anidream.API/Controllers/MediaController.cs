@@ -1,6 +1,6 @@
 using Anidream.Api.Application.Core;
 using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
-using Anidream.Api.Application.UseCases.Options;
+using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia.Entities;
 using Anidream.Api.Application.Utils.Dtos;
 using Anidream.Api.Domain.Entities;
 using MediatR;
@@ -21,6 +21,12 @@ public class MediaController : ControllerBase
     {
         _context = context;
         _sender = sender;
+    }
+
+    [HttpGet("ping")]
+    public IActionResult Ping()
+    {
+        return Ok("Pong");
     }
 
     [HttpGet]

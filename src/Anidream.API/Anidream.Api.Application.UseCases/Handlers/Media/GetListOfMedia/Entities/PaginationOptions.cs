@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Anidream.Api.Application.UseCases.Options;
+namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia.Entities;
 
 public class PaginationOptions
 {
