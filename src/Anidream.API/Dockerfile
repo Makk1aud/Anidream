@@ -9,9 +9,12 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Directory.Packages.props", ""]
 COPY ["Anidream.API/Anidream.API.csproj", "Anidream.API/"]
-COPY ["Domain/Domain.csproj", "Domain/"]
-COPY ["DataAccess.Interfaces/DataAccess.Interfaces.csproj", "DataAccess.Interfaces/"]
-COPY ["DataAccess/DataAccess.csproj", "DataAccess/"]
+COPY ["Anidream.Api.Application.Core/Anidream.Api.Application.Core.csproj", "Anidream.Api.Application.Core/"]
+COPY ["Anidream.Api.Application.UseCases/Anidream.Api.Application.UseCases.csproj", "Anidream.Api.Application.UseCases/"]
+COPY ["Anidream.Api.Application.Utils/Anidream.Api.Application.Utils.csproj", "Anidream.Api.Application.Utils/"]
+COPY ["Anidream.Api.Domain/Anidream.Api.Domain.csproj", "Anidream.Api.Domain/"]
+COPY ["Anidream.Api.DataAccess/Anidream.Api.DataAccess.csproj", "Anidream.Api.DataAccess/"]
+COPY ["Anidream.Api.Infrastructure.Utils/Anidream.Api.Infrastructure.Utils.csproj", "Anidream.Api.Infrastructure.Utils/"]
 RUN dotnet restore "Anidream.API/Anidream.API.csproj"
 COPY . .
 WORKDIR "/src/Anidream.API"

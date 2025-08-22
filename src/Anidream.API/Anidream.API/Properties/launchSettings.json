@@ -4,7 +4,7 @@
     "Default": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:8080",
+      "applicationUrl": "http://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DefaultConnection" : "Host=localhost;Port=5432;Database=Anidream;Username=postgres;Password=UAZ9233;"
