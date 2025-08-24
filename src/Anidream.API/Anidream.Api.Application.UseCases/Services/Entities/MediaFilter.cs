@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia.Entities;
+namespace Anidream.Api.Application.UseCases.Services.Entities;
 
-public class MediaFilters
+public class MediaFilter
 {
     [MaxLength(250)]
     public string Title {get; set;} = string.Empty; 
@@ -10,9 +10,9 @@ public class MediaFilters
     [MaxLength(250)]
     public string Alias {get; set;} = string.Empty; 
     
-    public DateOnly MinReleaseDate {get; set;}
+    public DateOnly? MinReleaseDate {get; set;} = null;
     
-    public DateOnly MaxReleaseDate {get; set;}
+    public DateOnly? MaxReleaseDate {get; set;} = null;
 
     [Range(0.0, 10.0)]
     public double MinRating { get; set; } = 0;
