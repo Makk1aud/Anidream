@@ -43,7 +43,7 @@ public class MediaController : ControllerBase
     }
 
     [HttpGet("{mediaId}")]
-    public async Task<IActionResult> GetMedia([FromRoute] Guid mediaId)
+    public async Task<IActionResult> GetMediaById([FromRoute] Guid mediaId)
     {
         var media = await _context.Medias.FirstOrDefaultAsync(x => x.MediaId == mediaId);
         if(media is null)
@@ -55,28 +55,6 @@ public class MediaController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto)
     {
-        try
-        {
-            var media = new Media
-            {
-                Title = mediaDto.Title,
-                Description = mediaDto.Description,
-                Rating = mediaDto.Rating,
-                Alias = mediaDto.Alias,
-                StudioId = mediaDto.StudioId,
-                DirectorId = mediaDto.DirectorId,
-                ReleaseDate = mediaDto.ReleaseDate,
-                TotalEpisodes = mediaDto.TotalEpisodes,
-                CurrentEpisodes = mediaDto.CurrentEpisodes,
-            };
-            
-            await _context.Medias.AddAsync(media);
-            await _context.SaveChangesAsync();
-            return Ok(media);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        throw new NotImplementedException();
     }
 }
