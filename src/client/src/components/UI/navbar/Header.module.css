@@ -1,13 +1,14 @@
 .header__wrapper {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .header {
   display: flex;
   align-items: center;
 
-  width: 1440px;
+  width: 1490px;
   height: 130px;
 
   padding-inline: 35px;
@@ -15,7 +16,7 @@
   border: 1px solid rgb(61, 61, 61);
   border-radius: 50px;
 
-  background-color: #303030;
+  background-color: rgb(31, 31, 31);
   color: white;
 }
 

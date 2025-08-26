@@ -14,7 +14,9 @@ export default function Home() {
       <Header onCatalogClick={scrollToCatalog}/>
       <SectionTitle title="Каталог" />
       <Catalog ref={catalogRef}/>
-      <Footer onCatalogClick={scrollToCatalog}/>
+      <Footer onCatalogClick={() => scrollToCatalog({
+        block: 'start'
+      })}/>
     </div>
   );
 }

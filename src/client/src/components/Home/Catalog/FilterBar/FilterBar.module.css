@@ -5,14 +5,43 @@
     background-color: rgb(20, 20, 20);
 }
 
+.filters {
+    display: flex;
+    align-items: center;
+
+    margin-left: 50px;
+    gap: 20px;
+}
+
 .filter__bar {
     display: flex;
     align-items: center;
 
+    width: 1430px;
     height: 100%;
 
     padding-inline: 20px;
+    margin: 0 auto;
 
     color: white;
-
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgba(131, 131, 131, 0.25);
+    border-radius: 25px;
 }
+
+.filter__bar h3 {
+    margin-left: 15px;
+}
+
+.genre__select, .type__select, .status__select {
+    padding: 10px;
+
+    border-radius: 15px;
+
+    color: white;
+    background-color: rgb(22, 22, 22);
+}
+
+
+
+

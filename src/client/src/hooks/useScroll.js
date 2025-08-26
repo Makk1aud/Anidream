@@ -7,7 +7,7 @@ export const useScroll = () => {
         console.log('Scrolling to:', ref.current);
         ref.current?.scrollIntoView({
             behavior: 'smooth',
-            block: 'end'
+            ...options
         });
     };
 

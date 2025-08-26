@@ -12,7 +12,10 @@ export default function Footer({onCatalogClick}) {
 
     navigate('/home');
 
-    window.scrollTo(0,0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   return (
