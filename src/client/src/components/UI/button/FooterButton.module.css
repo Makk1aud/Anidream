@@ -1,11 +1,11 @@
 .footer__button {
   padding: 15px;
 
-  border: 2px solid rgb(44, 44, 44);
+  border: 2px solid rgb(31, 31, 31);;
   border-radius: 15px;
 
   font-size: larger;
-  background-color: rgb(44, 44, 44);
+  background-color: rgb(31, 31, 31);
 }
 
 .footer__button:hover {

@@ -1,9 +1,8 @@
-import React from 'react'
+import Select from 'react-select'
 
-export default function FilterSelect() {
+export default function FilterSelect({options, isMulti}) {
+
   return (
-    <select>
-        <option></option>
-    </select>
+    <Select options={options} isMulti={isMulti}/>
   )
 }
