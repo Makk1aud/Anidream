@@ -17,7 +17,7 @@ export default function FilterBar() {
     { value: "ova", label: "OVA" },
     { value: "ona", label: "ONA" },
     { value: "movie", label: "Фильм" },
-    { value: "special", label: "Смешл" },
+    { value: "special", label: "Спешл" },
   ];
 
   const statusOptions = [
