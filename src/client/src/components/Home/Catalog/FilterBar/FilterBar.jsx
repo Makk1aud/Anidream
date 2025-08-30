@@ -40,16 +40,18 @@ export default function FilterBar() {
         <div className={cl.filters}>
           <div className={cl.genre__select__wrapper}>
             <FilterSelect
+              className={cl.genre__select}
               value={() => getValue(currentGenre, genreOptions)}
               options={genreOptions}
               isMulti={true}
+              placeholder="Жанр"
             />
           </div>
           <div className={cl.type__select__wrapper}>
-            <FilterSelect options={typeOptions} />
+            <FilterSelect options={typeOptions} placeholder="Тип" />
           </div>
           <div className={cl.status__select__wrapper}>
-            <FilterSelect options={statusOptions} />
+            <FilterSelect options={statusOptions} placeholder="Статус" />
           </div>
         </div>
       </div>

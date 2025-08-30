@@ -1,8 +1,14 @@
-import Select from 'react-select'
+import Select from "react-select";
+import cl from "./FilterSelect.module.css";
 
-export default function FilterSelect({options, isMulti}) {
-
+export default function FilterSelect({ options, placeholder, isMulti }) {
   return (
-    <Select options={options} isMulti={isMulti}/>
-  )
+      <Select
+        className={cl.select}
+        classNamePrefix="filter-select"
+        options={options}
+        isMulti={isMulti}
+        placeholder={placeholder}
+      />
+  );
 }
