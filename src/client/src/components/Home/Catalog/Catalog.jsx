@@ -4,7 +4,7 @@ import AnimeCard from "./AnimeCard/AnimeCard";
 import cl from "./Catalog.module.css";
 import FilterBar from "./FilterBar/FilterBar";
 
-export default function Catalog({ ref }) {
+export default function Catalog({ ref, id }) {
   const [cards, setCards] = useState([
     {
       id: 1,
@@ -44,7 +44,7 @@ export default function Catalog({ ref }) {
   ]);
 
   return (
-    <div className={cl.conatainer} ref={ref}>
+    <div className={cl.conatainer} ref={ref} id={id}>
       <FilterBar />
       <div className={cl.catalog}>
         {cards.map((card) => {

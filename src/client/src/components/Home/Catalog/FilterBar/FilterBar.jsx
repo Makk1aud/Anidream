@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import cl from "./FilterBar.module.css";
 import FilterSelect from "../../../UI/select/FilterSelect";
+import FilterSlider from "../../../UI/slider/FilterSlider";
 
 export default function FilterBar() {
   const genreOptions = [
@@ -52,6 +53,9 @@ export default function FilterBar() {
           </div>
           <div className={cl.status__select__wrapper}>
             <FilterSelect options={statusOptions} placeholder="Статус" />
+          </div>
+          <div className="year__slider">
+            <FilterSlider />
           </div>
         </div>
       </div>
