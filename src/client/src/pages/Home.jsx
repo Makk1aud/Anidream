@@ -1,9 +1,9 @@
 import React from "react";
-import Header from '../components/UI/navbar/Header'
-import SectionTitle from '../components/UI/title/SectionTitle'
-import Catalog from '../components/Home/Catalog'
+import Header from "../components/UI/navbar/Header";
+import SectionTitle from "../components/UI/title/SectionTitle";
+import Catalog from "../components/Home/Catalog/Catalog";
 import Footer from "../components/UI/footer/Footer";
-import cl from './Home.module.css'
+import cl from "./Home.module.css";
 import { useScroll } from "../hooks/useScroll";
 
 export default function Home() {
@@ -11,10 +11,16 @@ export default function Home() {
 
   return (
     <div className={cl.home}>
-      <Header />
-      <SectionTitle title="Каталог" />
-      <Catalog ref={catalogRef}/>
-      <Footer onCatalogClick={scrollToCatalog}/>
+      <Header onCatalogClick={scrollToCatalog} />
+      <SectionTitle title="Каталог" id='catalog-title'/>
+      <Catalog ref={catalogRef} id='catalog'/>
+      <Footer
+        onCatalogClick={() =>
+          scrollToCatalog({
+            block: "start",
+          })
+        }
+      />
     </div>
   );
 }

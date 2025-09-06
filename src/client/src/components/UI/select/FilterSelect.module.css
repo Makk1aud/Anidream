@@ -1,0 +1,120 @@
+.select :global(.filter-select__control) {
+  min-width: 150px;
+
+  padding-block: 2px;
+
+  background-color: rgb(45, 45, 45);
+  border: 0.5px solid rgba(246, 246, 246, 0.6);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.select :global(.filter-select__control):hover {
+    border: 1.5px solid rgb(202, 202, 202);
+}
+
+.select :global(.filter-select__control--menu-is-open) {
+  border: 1.5px solid rgba(129, 7, 7, 0.699);
+  box-shadow: 0 0 10px rgba(218, 30, 30, 0.5);
+}
+
+.select :global(.filter-select__control--menu-is-open):hover {
+  border: 1.5px solid rgb(175, 15, 15);
+  box-shadow: 0 0 15px rgba(218, 30, 30, 0.7);
+}
+
+.select :global(.filter-select__placeholder) {
+  font-style:italic;
+  color: rgb(223, 223, 223);
+  padding-left: 5px;
+}
+
+.select :global(.filter-select__input) {
+  color: #c41919 !important; 
+  font-weight: 700 !important;
+}
+
+.select :global(.filter-select__menu-list) {
+  padding: 0 !important;
+}
+
+.select :global(.filter-select__menu) {
+  min-width: 150px;
+
+  color: white;
+  background-color: rgb(45, 45, 45);
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.select :global(.filter-select__option) {
+  padding-left: 15px;
+}
+
+.select :global(.filter-select__option:hover) {
+  background-color: #a82323 !important;
+  color: #000000 !important;
+
+  border-radius: 10px;
+}
+
+.select :global(.filter-select__option--is-focused) {
+  background-color: #cc0f0f49 !important;
+  color: #ffffff !important;
+
+  border-radius: 10px;
+}
+
+.select :global(.filter-select__option--is-selected) {
+  background-color: rgb(45, 45, 45);
+}
+
+.select :global(.filter-select__multi-value) {
+  background-color: #290b0b;
+}
+
+.select :global(.filter-select__multi-value__label) {
+  color: rgb(231, 77, 77);
+  padding-right: 15px;
+}
+
+.select :global(.filter-select__multi-value__remove) {
+  color: rgb(143, 96, 96);
+}
+
+.select :global(.filter-select__multi-value__remove):hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(172, 2, 2);
+}
+
+.select :global(.filter-select__single-value) {
+  color: rgb(231, 231, 231);
+}
+
+.select :global(.filter-select__input) {
+  color: rgb(255, 255, 255);
+}
+
+.select
+  :global(.filter-select__control--menu-is-open)
+  :global(.filter-select__dropdown-indicator) {
+  transform: rotate(180deg);
+  color: rgb(102, 12, 12);
+}
+
+.select :global(.filter-select__dropdown-indicator) {
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.select :global(.filter-select__dropdown-indicator):hover {
+    color: rgb(155, 28, 28);
+}
+
+.select :global(.filter-select__clear-indicator) {
+      color: rgb(185, 185, 185);
+}
+
+.select :global(.filter-select__clear-indicator):hover {
+      color: rgb(184, 21, 21);
+}

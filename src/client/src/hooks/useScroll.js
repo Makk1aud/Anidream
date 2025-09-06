@@ -4,9 +4,10 @@ export const useScroll = () => {
     const ref = useRef(null);
 
     const scrollTo = (options) => {
+        console.log('Scrolling to:', ref.current);
         ref.current?.scrollIntoView({
-            behaivor: 'smooth',
-            block: 'end'
+            behavior: 'smooth',
+            ...options
         });
     };
 
