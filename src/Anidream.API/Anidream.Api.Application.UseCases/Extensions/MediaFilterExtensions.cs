@@ -11,6 +11,13 @@ public static class MediaFilterExtensions
         return items.Where(item => item.Title.Contains(alias, StringComparison.InvariantCultureIgnoreCase));
     }
     
+    public static IEnumerable<Media> FilterByIsDeleted(this IEnumerable<Media> items, bool? isDeleted)
+    {
+        return isDeleted is null 
+            ? items
+            : items.Where(item => item.IsDeleted == isDeleted);
+    }
+    
     public static IEnumerable<Media> FilterByAlias(this IEnumerable<Media> items, string? alias)
     {
         if(string.IsNullOrEmpty(alias))

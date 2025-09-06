@@ -13,4 +13,11 @@ public interface IMediaService
         bool tracking = false,
         MediaFilter? filter = null,
         CancellationToken cancellationToken = default);
+    
+    public Task<Media?> GetMediaAsync(Guid id, CancellationToken cancellationToken = default);
+    
+    public Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default);
+    
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    // public Task<Media> UpdateMediaAsync(Media media, CancellationToken cancellationToken = default);
 }

@@ -20,6 +20,10 @@ public record MediaDto
     
     public int CurrentEpisodes { get; init; }
     
+    public int IsDeleted { get; init; }
+    
+    public int HasImage { get; init; }
+    
     public StudioDto Studio { get; init; }
     public DirectorDto Director { get; init; }
 }

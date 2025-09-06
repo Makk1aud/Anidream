@@ -9,6 +9,7 @@ public class ProfilesBase : Profile
     public ProfilesBase()
     {
         CreateMap<Media, MediaDto>().ReverseMap();
+        CreateMap<Media, MediaForCreationDto>().ReverseMap();
         CreateMap<Studio, StudioDto>().ReverseMap();
         CreateMap<Director, DirectorDto>().ReverseMap();
     }

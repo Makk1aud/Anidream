@@ -28,4 +28,8 @@ public record MediaForCreationDto
     public int TotalEpisodes { get; init; }
     
     public int CurrentEpisodes { get; init; }
+    
+    public int IsDeleted { get; init; }
+    
+    public int HasImage { get; init; }
 }

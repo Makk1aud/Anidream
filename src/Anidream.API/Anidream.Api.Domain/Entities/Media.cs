@@ -18,9 +18,9 @@ public class Media
     [Required]
     public string Description { get; set; }
     
-    public Guid StudioId { get; set; }
+    public Guid? StudioId { get; set; }
     
-    public Guid DirectorId { get; set; }
+    public Guid? DirectorId { get; set; }
     
     public DateOnly ReleaseDate { get; set; }
     
@@ -31,6 +31,10 @@ public class Media
     public int TotalEpisodes { get; set; }
     
     public int CurrentEpisodes { get; set; }
+
+    public bool IsDeleted { get; set; } = false;
+    
+    public bool HasImage { get; set; } =  false;
     
     public virtual Studio Studio { get; set; } = null!;
     public virtual Director Director { get; set; } = null!;

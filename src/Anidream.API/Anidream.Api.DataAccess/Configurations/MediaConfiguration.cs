@@ -16,15 +16,16 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
         builder.HasOne(x => x.Studio)
             .WithMany(x => x.Medias)
             .HasForeignKey(x => x.StudioId);
-        
+
         builder.HasOne(x => x.Director)
             .WithMany(x => x.Medias)
-            .HasForeignKey(x => x.DirectorId)
-            .IsRequired();
+            .HasForeignKey(x => x.DirectorId);
         
         builder.Property(x => x.ReleaseDate);
         builder.Property(x => x.Rating);
         builder.Property(x => x.TotalEpisodes);
         builder.Property(x => x.CurrentEpisodes);
+        builder.Property(x => x.IsDeleted);
+        builder.Property(x => x.HasImage);
     }
 }

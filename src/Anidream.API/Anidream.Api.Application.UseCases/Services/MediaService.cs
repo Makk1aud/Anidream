@@ -35,11 +35,22 @@ public class MediaService : IMediaService
         MediaFilter? filter = null,
         CancellationToken cancellationToken = default) =>
             FilterMedia(await GetMediasAsync(tracking, cancellationToken), filter);
-    
+
+    public async Task<Media?> GetMediaAsync(Guid id, CancellationToken cancellationToken = default) =>
+        (await GetMediasAsync(false, new MediaFilter {IsDeleted = false} ,cancellationToken))
+        .FirstOrDefault(x => x.MediaId == id);
+
+    public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
+        (await _dbContext.Medias.AddAsync(media, cancellationToken)).Entity;
+
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+        _dbContext.SaveChangesAsync(cancellationToken);
+
     private static IEnumerable<Media> FilterMedia(IEnumerable<Media> items, MediaFilter? filter) =>
         filter is null 
             ? items
             : items
+                .FilterByIsDeleted(filter.IsDeleted)
                 .FilterByTitle(filter.Title)
                 .FilterByAlias(filter.Alias)
                 .FilterByReleaseDate(filter.MinReleaseDate, filter.MaxReleaseDate)

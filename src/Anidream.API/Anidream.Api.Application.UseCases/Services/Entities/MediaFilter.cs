@@ -19,4 +19,6 @@ public class MediaFilter
     
     [Range(0.0, 10.0)]
     public double MaxRating { get; set; } = 10;
+    
+    public bool IsDeleted { get; set; } = false;
 }

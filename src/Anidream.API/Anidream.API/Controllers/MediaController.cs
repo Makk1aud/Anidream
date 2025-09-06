@@ -1,7 +1,10 @@
 using Anidream.Api.Application.Core;
+using Anidream.Api.Application.UseCases.Handlers.Media.AddMedia;
 using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 using Anidream.Api.Application.UseCases.Services.Entities;
 using Anidream.Api.Application.Utils.Dtos;
+using Anidream.Api.Application.Utils.Exceptions;
+using Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;
 using Anidream.Api.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +17,10 @@ namespace Anidream.API.Controllers;
 [ApiController]
 public class MediaController : ControllerBase
 {
-    private readonly IDbContext _context;
     private readonly ISender _sender;
 
     public MediaController(IDbContext context, ISender sender)
     {
-        _context = context;
         _sender = sender;
     }
 
@@ -45,16 +46,26 @@ public class MediaController : ControllerBase
     [HttpGet("{mediaId}")]
     public async Task<IActionResult> GetMediaById([FromRoute] Guid mediaId)
     {
-        var media = await _context.Medias.FirstOrDefaultAsync(x => x.MediaId == mediaId);
-        if(media is null)
-            return NotFound();
-        
-        return Ok(media);
+        try
+        {
+            return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }));
+        }
+        catch (MediaNotFoundException exception)
+        {
+            return NotFound(exception.Message);
+        }
     }
 
     [HttpPost]
     public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}));
+        }
+        catch (MediaNotFoundException exception)
+        {
+            return BadRequest(exception.Message);
+        }
     }
 }
