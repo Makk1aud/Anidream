@@ -14,6 +14,8 @@
         restart: true
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+    volumes:
+      - ./AnidreamStorage:/app/AnidreamStorage
         
   postgres-db:
     image: postgres
@@ -28,4 +30,3 @@
       timeout: 3s
       retries: 3
       start_period: 5s
-

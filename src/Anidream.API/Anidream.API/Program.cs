@@ -22,11 +22,11 @@ var app = builder.Build();
 app.EnsureDbCreated();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+// if (app.Environment.IsDevelopment())
+// {
+// }
 
 app.UseHttpsRedirection();
 
