@@ -42,7 +42,5 @@ public class Media
     public Media()
     {
         Rating = 0;
-        // StudioId = StudioId == Guid.Empty ? null : StudioId;
-        // DirectorId = DirectorId == Guid.Empty ? null : DirectorId;
     }
 }
