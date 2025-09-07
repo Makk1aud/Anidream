@@ -27,13 +27,14 @@ public class MediaController : ControllerBase
     [HttpGet("ping")]
     public IActionResult Ping()
     {
-        return Ok("Pong");
+        Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
+        return Ok(AppDomain.CurrentDomain.BaseDirectory);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetMedias(
         [FromQuery] PaginationOptions paginationOptions,
-        [FromBody] MediaFilter? filter = null,
+        [FromBody] MediaFilter? filter = null, //Todo: надо посмотреть на то надо ли использовать в GET body, скорее всего надо будет перенести в url параметры
         CancellationToken cancellationToken = default)
     {
         var medias = await _sender.Send(
@@ -56,7 +57,7 @@ public class MediaController : ControllerBase
         }
     }
 
-    [HttpPost]
+    [HttpPost]//Todo: нельзя дублировать alias при добавлении записей
     public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto, CancellationToken cancellationToken)
     {
         try
