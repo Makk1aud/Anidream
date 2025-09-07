@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Anidream.Api.DataAccess.Migrations
 {
     [DbContext(typeof(AnidreamContext))]
-    [Migration("20250809084225_Initial")]
+    [Migration("20250907035235_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -57,7 +57,7 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("character varying(250)")
                         .HasColumnName("alias");
 
-                    b.Property<int>("CurrentEpisodes")
+                    b.Property<int?>("CurrentEpisodes")
                         .HasColumnType("integer")
                         .HasColumnName("current_episodes");
 
@@ -66,19 +66,27 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<Guid>("DirectorId")
+                    b.Property<Guid?>("DirectorId")
                         .HasColumnType("uuid")
                         .HasColumnName("director_id");
+
+                    b.Property<bool>("HasImage")
+                        .HasColumnType("boolean")
+                        .HasColumnName("has_image");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
 
                     b.Property<double>("Rating")
                         .HasColumnType("double precision")
                         .HasColumnName("rating");
 
-                    b.Property<DateOnly>("ReleaseDate")
+                    b.Property<DateOnly?>("ReleaseDate")
                         .HasColumnType("date")
                         .HasColumnName("release_date");
 
-                    b.Property<Guid>("StudioId")
+                    b.Property<Guid?>("StudioId")
                         .HasColumnType("uuid")
                         .HasColumnName("studio_id");
 
@@ -88,7 +96,7 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("character varying(250)")
                         .HasColumnName("title");
 
-                    b.Property<int>("TotalEpisodes")
+                    b.Property<int?>("TotalEpisodes")
                         .HasColumnType("integer")
                         .HasColumnName("total_episodes");
 
@@ -128,15 +136,11 @@ namespace Anidream.Api.DataAccess.Migrations
                     b.HasOne("Anidream.Api.Domain.Entities.Director", "Director")
                         .WithMany("Medias")
                         .HasForeignKey("DirectorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("fk_medias_director_director_id");
 
                     b.HasOne("Anidream.Api.Domain.Entities.Studio", "Studio")
                         .WithMany("Medias")
                         .HasForeignKey("StudioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("fk_medias_studio_studio_id");
 
                     b.Navigation("Director");

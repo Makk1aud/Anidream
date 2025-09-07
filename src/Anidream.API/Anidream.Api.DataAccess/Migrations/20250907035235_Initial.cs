@@ -43,12 +43,14 @@ namespace Anidream.Api.DataAccess.Migrations
                     title = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     alias = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     description = table.Column<string>(type: "text", nullable: false),
-                    studio_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    director_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    release_date = table.Column<DateOnly>(type: "date", nullable: false),
+                    studio_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    director_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    release_date = table.Column<DateOnly>(type: "date", nullable: true),
                     rating = table.Column<double>(type: "double precision", nullable: false),
-                    total_episodes = table.Column<int>(type: "integer", nullable: false),
-                    current_episodes = table.Column<int>(type: "integer", nullable: false)
+                    total_episodes = table.Column<int>(type: "integer", nullable: true),
+                    current_episodes = table.Column<int>(type: "integer", nullable: true),
+                    is_deleted = table.Column<bool>(type: "boolean", nullable: false),
+                    has_image = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,14 +59,12 @@ namespace Anidream.Api.DataAccess.Migrations
                         name: "fk_medias_director_director_id",
                         column: x => x.director_id,
                         principalTable: "Directors",
-                        principalColumn: "director_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "director_id");
                     table.ForeignKey(
                         name: "fk_medias_studio_studio_id",
                         column: x => x.studio_id,
                         principalTable: "Studios",
-                        principalColumn: "studio_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "studio_id");
                 });
 
             migrationBuilder.CreateIndex(

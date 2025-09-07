@@ -7,7 +7,7 @@
       "applicationUrl": "http://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DefaultConnection" : "Host=localhost;Port=5432;Database=Anidream;Username=postgres;Password=UAZ9233;"
+        "DefaultConnection" : "Host=localhost;Port=5432;Database=Anidream;Username=postgres;Password=UAZ9233;Include Error Detail=True;"
       }
     }
   }

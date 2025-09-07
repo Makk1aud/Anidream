@@ -13,13 +13,17 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
         builder.Property(x => x.Alias).IsRequired().HasMaxLength(250);
         builder.Property(x => x.Description).IsRequired();
 
-        builder.HasOne(x => x.Studio)
+        builder
+            .HasOne(x => x.Studio)
             .WithMany(x => x.Medias)
-            .HasForeignKey(x => x.StudioId);
+            .HasForeignKey(x => x.StudioId)
+            .IsRequired(false);
 
-        builder.HasOne(x => x.Director)
+        builder
+            .HasOne(x => x.Director)
             .WithMany(x => x.Medias)
-            .HasForeignKey(x => x.DirectorId);
+            .HasForeignKey(x => x.DirectorId)
+            .IsRequired(false);
         
         builder.Property(x => x.ReleaseDate);
         builder.Property(x => x.Rating);

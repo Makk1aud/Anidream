@@ -54,7 +54,7 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("character varying(250)")
                         .HasColumnName("alias");
 
-                    b.Property<int>("CurrentEpisodes")
+                    b.Property<int?>("CurrentEpisodes")
                         .HasColumnType("integer")
                         .HasColumnName("current_episodes");
 
@@ -79,7 +79,7 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("rating");
 
-                    b.Property<DateOnly>("ReleaseDate")
+                    b.Property<DateOnly?>("ReleaseDate")
                         .HasColumnType("date")
                         .HasColumnName("release_date");
 
@@ -93,7 +93,7 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("character varying(250)")
                         .HasColumnName("title");
 
-                    b.Property<int>("TotalEpisodes")
+                    b.Property<int?>("TotalEpisodes")
                         .HasColumnType("integer")
                         .HasColumnName("total_episodes");
 
