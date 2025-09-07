@@ -2,12 +2,13 @@ using Anidream.Api.Application.Core;
 using Anidream.Api.Application.UseCases.Extensions;
 using Anidream.Api.Application.UseCases.Services.Entities;
 using Anidream.Api.Application.UseCases.Services.Interfaces;
+using Anidream.Api.Application.Utils.Exceptions;
 using Anidream.Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Anidream.Api.Application.UseCases.Services;
 
-public class MediaService : IMediaService
+internal class MediaService : IMediaService
 {
     private readonly IDbContext _dbContext;
 
@@ -36,8 +37,8 @@ public class MediaService : IMediaService
         CancellationToken cancellationToken = default) =>
             FilterMedia(await GetMediasAsync(tracking, cancellationToken), filter);
 
-    public async Task<Media?> GetMediaAsync(Guid id, CancellationToken cancellationToken = default) =>
-        (await GetMediasAsync(false, new MediaFilter {IsDeleted = false} ,cancellationToken))
+    public async Task<Media?> GetMediaAsync(Guid id, bool isDeleted = false, CancellationToken cancellationToken = default) =>
+        (await GetMediasAsync(true, new MediaFilter {IsDeleted = isDeleted} ,cancellationToken))
         .FirstOrDefault(x => x.MediaId == id);
 
     public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
@@ -45,6 +46,15 @@ public class MediaService : IMediaService
 
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
         _dbContext.SaveChangesAsync(cancellationToken);
+
+    public async Task DeleteMediaAsync(Guid mediaId, CancellationToken cancellationToken = default)
+    {
+        var media = await GetMediaAsync(mediaId, false, cancellationToken);
+        if(media == null)
+            throw new MediaNotFoundException(mediaId.ToString());
+        
+        media.IsDeleted = true;
+    }
 
     private static IEnumerable<Media> FilterMedia(IEnumerable<Media> items, MediaFilter? filter) =>
         filter is null 

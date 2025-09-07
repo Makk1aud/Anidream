@@ -32,7 +32,9 @@ public static class MediaFilterExtensions
     {
         minReleaseDate ??= DateOnly.MinValue;
         maxReleaseDate ??= DateOnly.MaxValue;
-        return items.Where(item => item.ReleaseDate >= minReleaseDate && item.ReleaseDate <= maxReleaseDate);
+        return items.Where(item => 
+            item.ReleaseDate >= minReleaseDate 
+            && item.ReleaseDate <= maxReleaseDate);
     }
 
     public static IEnumerable<Media> FilterByRating(

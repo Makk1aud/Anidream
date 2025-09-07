@@ -20,8 +20,8 @@ public class GetMediaByIdCommandHandler : IRequestHandler<GetMediaByIdCommand, M
     public async Task<MediaDto> Handle(GetMediaByIdCommand request, CancellationToken cancellationToken)
     {
         var media = 
-            await _mediaService.GetMediaAsync(request.MediaId, cancellationToken)
-            ?? throw new MediaNotFoundException($"Media с id: {request.MediaId} не найдено");
+            await _mediaService.GetMediaAsync(request.MediaId, cancellationToken:  cancellationToken)
+            ?? throw new MediaNotFoundException(request.MediaId.ToString());
         var mediaDto = _mapper.Map<MediaDto>(media);
         return mediaDto;
     }

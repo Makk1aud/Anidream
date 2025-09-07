@@ -25,7 +25,7 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
             .HasForeignKey(x => x.DirectorId)
             .IsRequired(false);
         
-        builder.Property(x => x.ReleaseDate);
+        builder.Property(x => x.ReleaseDate).IsRequired();
         builder.Property(x => x.Rating);
         builder.Property(x => x.TotalEpisodes);
         builder.Property(x => x.CurrentEpisodes);

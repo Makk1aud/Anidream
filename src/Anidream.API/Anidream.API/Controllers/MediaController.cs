@@ -4,11 +4,11 @@ using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 using Anidream.Api.Application.UseCases.Services.Entities;
 using Anidream.Api.Application.Utils.Dtos;
 using Anidream.Api.Application.Utils.Exceptions;
+using Anidream.Api.Application.Utils.Handlers.Media.DeleteMedia;
 using Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;
-using Anidream.Api.Domain.Entities;
+using Anidream.Api.Application.Utils.Handlers.Media.UpdateMedia;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace Anidream.API.Controllers;
@@ -44,11 +44,11 @@ public class MediaController : ControllerBase
     }
 
     [HttpGet("{mediaId}")]
-    public async Task<IActionResult> GetMediaById([FromRoute] Guid mediaId)
+    public async Task<IActionResult> GetMediaById([FromRoute] Guid mediaId, CancellationToken cancellationToken)
     {
         try
         {
-            return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }));
+            return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }, cancellationToken));
         }
         catch (MediaNotFoundException exception)
         {
@@ -57,11 +57,38 @@ public class MediaController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto)
+    public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto, CancellationToken cancellationToken)
     {
         try
         {
-            return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}));
+            return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}, cancellationToken));
+        }
+        catch (MediaNotFoundException exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
+    
+    [HttpPut("{mediaId}")]
+    public async Task<IActionResult> UpdateMedia([FromRoute]Guid mediaId, [FromBody] MediaForUpdateDto mediaDto)
+    {
+        try
+        {
+            return Ok(await _sender.Send(new UpdateMediaCommand() {MediaId = mediaId, Dto = mediaDto}));
+        }
+        catch (MediaNotFoundException exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
+    
+    [HttpDelete("{mediaId}")]
+    public async Task<IActionResult> DeleteMedia([FromRoute]Guid mediaId)
+    {
+        try
+        {
+            await _sender.Send(new DeleteMediaCommand() { MediaId = mediaId });
+            return Ok();
         }
         catch (MediaNotFoundException exception)
         {

@@ -22,7 +22,8 @@ public class Media
     
     public Guid? DirectorId { get; set; }
     
-    public DateOnly? ReleaseDate { get; set; }
+    [Required]
+    public DateOnly ReleaseDate { get; set; }
     
     [Required]
     [Range(0.0, 10.0)] //max 10 min 10 default 0
