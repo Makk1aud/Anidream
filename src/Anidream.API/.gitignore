@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 bin
 obj
 packages
+
+pgdata
+AnidreamStorage

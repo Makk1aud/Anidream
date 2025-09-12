@@ -1,4 +1,5 @@
 using Anidream.API.Extensions;
+using Anidream.API.Extensions.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,7 @@ app.UseSwaggerUI();
 // if (app.Environment.IsDevelopment())
 // {
 // }
-
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

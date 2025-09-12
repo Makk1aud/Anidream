@@ -1,6 +1,7 @@
 using Anidream.Api.Application.Core;
 using Anidream.Api.Application.UseCases.Handlers.Media.AddMedia;
 using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
+using Anidream.Api.Application.UseCases.Handlers.Media.UploadMediaPicture;
 using Anidream.Api.Application.UseCases.Services.Entities;
 using Anidream.Api.Application.Utils.Dtos;
 using Anidream.Api.Application.Utils.Exceptions;
@@ -47,53 +48,38 @@ public class MediaController : ControllerBase
     [HttpGet("{mediaId}")]
     public async Task<IActionResult> GetMediaById([FromRoute] Guid mediaId, CancellationToken cancellationToken)
     {
-        try
-        {
-            return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }, cancellationToken));
-        }
-        catch (MediaNotFoundException exception)
-        {
-            return NotFound(exception.Message);
-        }
+        return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }, cancellationToken));
     }
 
     [HttpPost]//Todo: нельзя дублировать alias при добавлении записей
     public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto, CancellationToken cancellationToken)
     {
-        try
-        {
-            return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}, cancellationToken));
-        }
-        catch (MediaNotFoundException exception)
-        {
-            return BadRequest(exception.Message);
-        }
+        return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}, cancellationToken));
+    }
+    
+    [HttpPost("image/{mediaId}")]
+    public async Task<IActionResult> UploadImage([FromRoute] Guid mediaId, IFormFile file, CancellationToken cancellationToken)
+    {
+        if(!ValidateFile(file))
+            return BadRequest("File is null or invalid file format");
+        
+        await _sender.Send(new UploadMediaPictureCommand() { MediaId = mediaId, FileStream = file.OpenReadStream() }, cancellationToken);
+        return Ok();
     }
     
     [HttpPut("{mediaId}")]
     public async Task<IActionResult> UpdateMedia([FromRoute]Guid mediaId, [FromBody] MediaForUpdateDto mediaDto)
     {
-        try
-        {
-            return Ok(await _sender.Send(new UpdateMediaCommand() {MediaId = mediaId, Dto = mediaDto}));
-        }
-        catch (MediaNotFoundException exception)
-        {
-            return BadRequest(exception.Message);
-        }
+        return Ok(await _sender.Send(new UpdateMediaCommand() {MediaId = mediaId, Dto = mediaDto}));
     }
     
     [HttpDelete("{mediaId}")]
     public async Task<IActionResult> DeleteMedia([FromRoute]Guid mediaId)
     {
-        try
-        {
-            await _sender.Send(new DeleteMediaCommand() { MediaId = mediaId });
-            return Ok();
-        }
-        catch (MediaNotFoundException exception)
-        {
-            return BadRequest(exception.Message);
-        }
+        await _sender.Send(new DeleteMediaCommand() { MediaId = mediaId });
+        return Ok();
     }
+
+    private bool ValidateFile(IFormFile file) =>
+        file.Length > 0 && file.ContentType.StartsWith("image/");
 }
