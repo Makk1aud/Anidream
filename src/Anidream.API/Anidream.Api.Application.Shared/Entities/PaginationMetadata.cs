@@ -1,4 +1,4 @@
-namespace Anidream.Api.Application.UseCases.Services.Entities;
+namespace Anidream.Api.Application.Shared.Entities;
 
 public record PaginationMetadata(
     int Page,

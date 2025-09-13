@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Anidream.Api.Application.UseCases.Services.Entities;
+namespace Anidream.Api.Application.Shared.Entities;
 
 public class PaginationOptions
 {

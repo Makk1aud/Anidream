@@ -1,12 +1,11 @@
 using Anidream.Api.Application.Core;
-using Anidream.Api.Application.UseCases.Extensions;
-using Anidream.Api.Application.UseCases.Services.Entities;
-using Anidream.Api.Application.UseCases.Services.Interfaces;
-using Anidream.Api.Application.Utils.Exceptions;
+using Anidream.Api.Application.Extensions;
+using Anidream.Api.Application.Shared.Entities;
+using Anidream.Api.Application.Shared.Exceptions;
 using Anidream.Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Anidream.Api.Application.UseCases.Services;
+namespace Anidream.Api.Application.Services;
 
 internal class MediaService : IMediaService
 {

@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Anidream.Api.Application.Shared\Anidream.Api.Application.Shared.csproj" />
       <ProjectReference Include="..\Anidream.Api.Domain\Anidream.Api.Domain.csproj" />
     </ItemGroup>
 

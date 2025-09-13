@@ -1,4 +1,5 @@
-using Anidream.Api.Application.Utils.Extensions;
+using Anidream.Api.Application.Extensions;
+using Anidream.Api.Application.UseCases.Extensions;
 using Anidream.Api.DataAccess.Extensions;
 using Anidream.Api.Infrastructure.Utils.Extensions;
 
@@ -10,7 +11,8 @@ public static class ServiceCollectionsExtensions
     {
         return services
             .AddInfrastructure(GetConnectionString(configurationManager))
-            .AddApplication();
+            .AddApplication()
+            .AddApplicationUseCases();
     }
     
     public static void EnsureDbCreated(this IApplicationBuilder app)

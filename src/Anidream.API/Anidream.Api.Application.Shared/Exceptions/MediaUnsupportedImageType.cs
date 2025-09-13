@@ -1,4 +1,4 @@
-namespace Anidream.Api.Application.Utils.Exceptions;
+namespace Anidream.Api.Application.Shared.Exceptions;
 
 public class MediaUnsupportedImageType : BaseException
 {

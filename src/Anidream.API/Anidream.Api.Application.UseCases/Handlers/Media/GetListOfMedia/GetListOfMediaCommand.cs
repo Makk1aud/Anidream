@@ -1,6 +1,6 @@
 using Anidream.Api.Application.Core;
-using Anidream.Api.Application.UseCases.Services;
-using Anidream.Api.Application.UseCases.Services.Entities;
+using Anidream.Api.Application.Shared;
+using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.Utils.Dtos;
 using MediatR;
 

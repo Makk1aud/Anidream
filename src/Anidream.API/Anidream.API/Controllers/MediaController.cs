@@ -1,10 +1,9 @@
 using Anidream.Api.Application.Core;
+using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.UseCases.Handlers.Media.AddMedia;
 using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 using Anidream.Api.Application.UseCases.Handlers.Media.UploadMediaPicture;
-using Anidream.Api.Application.UseCases.Services.Entities;
 using Anidream.Api.Application.Utils.Dtos;
-using Anidream.Api.Application.Utils.Exceptions;
 using Anidream.Api.Application.Utils.Handlers.Media.DeleteMedia;
 using Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;
 using Anidream.Api.Application.Utils.Handlers.Media.UpdateMedia;
@@ -20,7 +19,7 @@ public class MediaController : ControllerBase
 {
     private readonly ISender _sender;
 
-    public MediaController(IDbContext context, ISender sender)
+    public MediaController(ISender sender)
     {
         _sender = sender;
     }
@@ -57,16 +56,6 @@ public class MediaController : ControllerBase
         return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}, cancellationToken));
     }
     
-    [HttpPost("image/{mediaId}")]
-    public async Task<IActionResult> UploadImage([FromRoute] Guid mediaId, IFormFile file, CancellationToken cancellationToken)
-    {
-        if(!ValidateFile(file))
-            return BadRequest("File is null or invalid file format");
-        
-        await _sender.Send(new UploadMediaPictureCommand() { MediaId = mediaId, FileStream = file.OpenReadStream() }, cancellationToken);
-        return Ok();
-    }
-    
     [HttpPut("{mediaId}")]
     public async Task<IActionResult> UpdateMedia([FromRoute]Guid mediaId, [FromBody] MediaForUpdateDto mediaDto)
     {
@@ -79,7 +68,4 @@ public class MediaController : ControllerBase
         await _sender.Send(new DeleteMediaCommand() { MediaId = mediaId });
         return Ok();
     }
-
-    private bool ValidateFile(IFormFile file) =>
-        file.Length > 0 && file.ContentType.StartsWith("image/");
 }

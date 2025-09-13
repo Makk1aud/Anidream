@@ -5,20 +5,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="AutoMapper" />
-        <PackageReference Include="MediatR" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
-    </ItemGroup>
-    
+
     <ItemGroup>
       <ProjectReference Include="..\Anidream.Api.Application.Core\Anidream.Api.Application.Core.csproj" />
       <ProjectReference Include="..\Anidream.Api.Application.Shared\Anidream.Api.Application.Shared.csproj" />
-      <ProjectReference Include="..\Anidream.Api.Domain\Anidream.Api.Domain.csproj" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Handlers\Media\GetListOfMedia\Entities\" />
-    </ItemGroup>
+
 </Project>

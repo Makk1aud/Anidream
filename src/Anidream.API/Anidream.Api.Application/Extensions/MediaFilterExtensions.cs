@@ -1,6 +1,6 @@
 using Anidream.Api.Domain.Entities;
 
-namespace Anidream.Api.Application.UseCases.Extensions;
+namespace Anidream.Api.Application.Extensions;
 
 public static class MediaFilterExtensions
 {

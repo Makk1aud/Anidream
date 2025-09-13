@@ -1,4 +1,4 @@
-using Anidream.Api.Application.Utils.Exceptions;
+using Anidream.Api.Application.Shared.Exceptions;
 
 namespace Anidream.API.Extensions.Middleware;
 
@@ -23,22 +23,20 @@ public class ExceptionMiddleware
         }
     }
 
-    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private Task HandleExceptionAsync(HttpContext context, Exception exception) =>
+        exception is BaseException baseException 
+            ? HandleExceptionAsync(context, baseException.Message, baseException.StatusCode, baseException.InnerMessage) 
+            : HandleExceptionAsync(context, exception.Message, StatusCodes.Status500InternalServerError, exception.InnerException?.Message);
+
+    private async Task HandleExceptionAsync(HttpContext context, string exceptionMessage, int statusCode, string? innerMessage)
     {
         context.Response.ContentType = "application/json";
-        context.Response.StatusCode = exception switch
-        {
-            MediaBadRequestException => StatusCodes.Status400BadRequest,
-            MediaNotFoundException => StatusCodes.Status404NotFound,
-            _ => StatusCodes.Status500InternalServerError
-        };
-        
-        var message = exception.Message;
+        context.Response.StatusCode = statusCode;
         await context.Response.WriteAsync(new ErrorDetails
         {
-            Message = message,
+            Message = exceptionMessage,
             StatusCode = context.Response.StatusCode,
-            InnerMessage = exception.InnerException?.Message
+            InnerMessage = innerMessage
         }.ToString());
     }
 }

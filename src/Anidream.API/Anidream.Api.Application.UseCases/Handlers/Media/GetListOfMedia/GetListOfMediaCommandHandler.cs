@@ -1,6 +1,5 @@
 using Anidream.Api.Application.Core;
-using Anidream.Api.Application.UseCases.Services;
-using Anidream.Api.Application.UseCases.Services.Interfaces;
+using Anidream.Api.Application.Shared;
 using Anidream.Api.Application.Utils.Dtos;
 using AutoMapper;
 using MediatR;

@@ -1,5 +1,5 @@
-using Anidream.Api.Application.UseCases.Services.Interfaces;
-using Anidream.Api.Application.Utils.Exceptions;
+using Anidream.Api.Application.Core;
+using Anidream.Api.Application.Shared.Exceptions;
 using MediatR;
 
 namespace Anidream.Api.Application.Utils.Handlers.Media.DeleteMedia;

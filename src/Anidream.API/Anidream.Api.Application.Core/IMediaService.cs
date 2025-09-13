@@ -1,7 +1,7 @@
-using Anidream.Api.Application.UseCases.Services.Entities;
+using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Domain.Entities;
 
-namespace Anidream.Api.Application.UseCases.Services.Interfaces;
+namespace Anidream.Api.Application.Core;
 
 public interface IMediaService
 {

@@ -24,7 +24,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Anidream.Api.Application.Utils\Anidream.Api.Application.Utils.csproj" />
+      <ProjectReference Include="..\Anidream.Api.Application.Core\Anidream.Api.Application.Core.csproj" />
+      <ProjectReference Include="..\Anidream.Api.Domain\Anidream.Api.Domain.csproj" />
     </ItemGroup>
 
 </Project>
