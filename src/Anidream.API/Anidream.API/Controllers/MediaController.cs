@@ -2,7 +2,6 @@ using Anidream.Api.Application.Core;
 using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.UseCases.Handlers.Media.AddMedia;
 using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
-using Anidream.Api.Application.UseCases.Handlers.Media.UploadMediaPicture;
 using Anidream.Api.Application.Utils.Dtos;
 using Anidream.Api.Application.Utils.Handlers.Media.DeleteMedia;
 using Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 
-public class GetListOfMediaCommandHandler : IRequestHandler<GetListOfMediaCommand, PaginationList<MediaDto>>
+internal sealed class GetListOfMediaCommandHandler : IRequestHandler<GetListOfMediaCommand, PaginationList<MediaDto>>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;

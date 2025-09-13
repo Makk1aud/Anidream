@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Media.AddMedia;
 
-public class AddMediaCommandHandler : IRequestHandler<AddMediaCommand, MediaDto>
+internal sealed class AddMediaCommandHandler : IRequestHandler<AddMediaCommand, MediaDto>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;

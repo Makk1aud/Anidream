@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;
 
-public class GetMediaByIdCommandHandler : IRequestHandler<GetMediaByIdCommand, MediaDto>
+internal sealed class GetMediaByIdCommandHandler : IRequestHandler<GetMediaByIdCommand, MediaDto>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Anidream.Api.Application.Utils.Handlers.Media.DeleteMedia;
 
-public class DeleteMediaCommandHandler : IRequestHandler<DeleteMediaCommand>
+internal sealed class DeleteMediaCommandHandler : IRequestHandler<DeleteMediaCommand>
 {
     private readonly IMediaService _mediaService;
 

@@ -1,8 +1,8 @@
 using MediatR;
 
-namespace Anidream.Api.Application.UseCases.Handlers.Media.UploadMediaPicture;
+namespace Anidream.Api.Application.UseCases.Handlers.Media.UploadMediaImage;
 
-public class UploadMediaPictureCommand : IRequest
+public class UploadMediaImageCommand : IRequest
 {
     public Guid MediaId { get; set; }
     public Stream FileStream { get; set; }

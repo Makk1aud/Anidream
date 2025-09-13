@@ -23,6 +23,7 @@ var app = builder.Build();
 app.EnsureDbCreated();
 
 // Configure the HTTP request pipeline.
+//Todo: Убрать свагер с автозагрузки
 app.UseSwagger();
 app.UseSwaggerUI();
 // if (app.Environment.IsDevelopment())

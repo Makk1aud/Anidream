@@ -1,12 +1,12 @@
-using Anidream.Api.Application.UseCases.Services.Interfaces;
+using Anidream.Api.Application.Core;
+using Anidream.Api.Application.Shared.Exceptions;
 using Anidream.Api.Application.Utils.Dtos;
-using Anidream.Api.Application.Utils.Exceptions;
 using AutoMapper;
 using MediatR;
 
 namespace Anidream.Api.Application.Utils.Handlers.Media.UpdateMedia;
 
-public class UpdateMediaCommandHandler : IRequestHandler<UpdateMediaCommand, MediaDto>
+internal sealed class UpdateMediaCommandHandler : IRequestHandler<UpdateMediaCommand, MediaDto>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;

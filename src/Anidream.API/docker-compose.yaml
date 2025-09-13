@@ -14,6 +14,9 @@
         restart: true
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - Storage__StorageBasePath=AnidreamStorage
+      - Storage__ImageFolder=Images
+      - Storage__VideoFolder=Video
     volumes:
       - ./AnidreamStorage:/app/AnidreamStorage
         
