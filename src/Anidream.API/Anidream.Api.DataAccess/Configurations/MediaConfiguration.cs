@@ -9,8 +9,13 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
     public void Configure(EntityTypeBuilder<Media> builder)
     {
         builder.HasKey(x => x.MediaId);
+        
+        builder.HasIndex(x => x.Title).IsUnique();
         builder.Property(x => x.Title).IsRequired().HasMaxLength(250);
+        
+        builder.HasIndex(x => x.Alias).IsUnique();
         builder.Property(x => x.Alias).IsRequired().HasMaxLength(250);
+        
         builder.Property(x => x.Description).IsRequired();
 
         builder

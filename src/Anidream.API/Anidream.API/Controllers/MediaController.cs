@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace Anidream.API.Controllers;
 
+//Todo: добавить логер
 [Route("api/[controller]")]
 [ApiController]
 public class MediaController : ControllerBase
@@ -29,11 +30,11 @@ public class MediaController : ControllerBase
         Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
         return Ok(AppDomain.CurrentDomain.BaseDirectory);
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> GetMedias(
         [FromQuery] PaginationOptions paginationOptions,
-        [FromBody] MediaFilter? filter = null, //Todo: надо посмотреть на то надо ли использовать в GET body, скорее всего надо будет перенести в url параметры
+        [FromQuery] MediaFilter? filter = null,
         CancellationToken cancellationToken = default)
     {
         var medias = await _sender.Send(
@@ -49,7 +50,7 @@ public class MediaController : ControllerBase
         return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }, cancellationToken));
     }
 
-    [HttpPost]//Todo: нельзя дублировать alias при добавлении записей
+    [HttpPost]
     public async Task<IActionResult> PostMedia([FromBody] MediaForCreationDto mediaDto, CancellationToken cancellationToken)
     {
         return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationDto = mediaDto}, cancellationToken));
