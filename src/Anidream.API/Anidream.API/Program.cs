@@ -10,7 +10,7 @@ builder.Services.AddServices(builder.Configuration);
 builder.Services.AddCors(options => 
     options.AddPolicy(
         "AllowAll",
-        p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()));
+        p => p.WithOrigins("*").AllowAnyOrigin().AllowAnyMethod()));
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 {
