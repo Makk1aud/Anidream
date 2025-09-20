@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anidream.Api.Application.Services;
 
+//Todo: можно вынести в абстрактный класс метод SaveChanges, если будут добавлены еще репозитории для работы с БД
 internal class MediaService : IMediaService
 {
     private readonly IDbContext _dbContext;

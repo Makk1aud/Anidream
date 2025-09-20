@@ -15,28 +15,37 @@ public class StorageService : IStorageService
         _options = options.Value;
     }
 
-    public async Task UploadImageAsync(Stream stream, string fileName, CancellationToken cancellationToken = default)
-    {
-        var basePath = GetBasePath(_options.ImageFolder);
-        var filePath = Path.Combine(basePath, fileName);
-        Console.WriteLine(basePath);
-        Directory.CreateDirectory(basePath);
-        await using var fileStream = new FileStream(filePath, FileMode.Create);
-        await stream.CopyToAsync(fileStream, cancellationToken);
-    }
-    
-    //Todo: Возможно переделать под общий метод получения потока 
-    public async Task<Stream> DownloadFileAsync(string fileName, CancellationToken cancellationToken = default)
+    public async Task UploadImageAsync(Stream stream, string fileName, string mediaId, CancellationToken cancellationToken = default)
     {
         try
         {
-            var basePath = GetBasePath(_options.VideoFolder);
-            var filePath = Path.Combine(GetBasePath(_options.ImageFolder), fileName);
+            var newFileName = Path.ChangeExtension(mediaId, Path.GetExtension(fileName));
+            var basePath = GetBasePathAndCreateDirectory(_options.ImageFolder);
+            var filePath = Path.Combine(basePath, newFileName);
             
-            Directory.CreateDirectory(basePath);
+            await using var fileStream = new FileStream(filePath, FileMode.Create);
+            await stream.CopyToAsync(fileStream, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            throw new StorageException("Error while saving file", e);
+        }
+    }
+    
+    //Todo: Возможно переделать под общий метод получения потока 
+    public async Task<MemoryStream> DownloadImageAsync(string mediaId, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var basePath = GetBasePathAndCreateDirectory(_options.ImageFolder);
+            var filePath = Directory.GetFiles(basePath, $"{mediaId}.*").SingleOrDefault();
+            if(string.IsNullOrEmpty(filePath))
+                throw new StorageException($"File {mediaId} not found");
+            
             await using var fileStream = new FileStream(filePath, FileMode.Open);
             var memoryStream = new MemoryStream();
             await fileStream.CopyToAsync(memoryStream, cancellationToken);
+            memoryStream.Position = 0;
             return memoryStream;
         }
         catch (Exception e)
@@ -44,7 +53,11 @@ public class StorageService : IStorageService
             throw new StorageException("Error downloading file", e);
         }
     }
-    
-    private string GetBasePath(string relativeFolder) =>
-        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _options.StorageBasePath, relativeFolder);
+
+    private string GetBasePathAndCreateDirectory(string folder)
+    {
+        var basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _options.StorageBasePath, folder);
+        Directory.CreateDirectory(basePath);
+        return basePath;
+    }
 }
