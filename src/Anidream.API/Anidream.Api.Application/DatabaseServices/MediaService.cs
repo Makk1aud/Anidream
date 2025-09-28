@@ -5,9 +5,11 @@ using Anidream.Api.Application.Shared.Exceptions;
 using Anidream.Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Anidream.Api.Application.Services;
+namespace Anidream.Api.Application.DatabaseServices;
 
 //Todo: можно вынести в абстрактный класс метод SaveChanges, если будут добавлены еще репозитории для работы с БД
+//Todo: Для работы с отслеживанием объектов БД, можно выделить базовый класс, который через Set<T> будет обеспечиваться возможность отслеживания 
+//Todo: в базовый класс добавить метод для работы с условиями в запросе, как в первой реализации, которую я делал
 internal class MediaService : IMediaService
 {
     private readonly IDbContext _dbContext;
@@ -41,6 +43,10 @@ internal class MediaService : IMediaService
         (await GetMediasAsync(true, new MediaFilter {IsDeleted = isDeleted} ,cancellationToken))
         .FirstOrDefault(x => x.MediaId == id);
 
+    public async Task<Media?> GetMediaByAliasAsync(string alias, bool isDeleted = false, CancellationToken cancellationToken = default) =>
+        (await GetMediasAsync(true, new MediaFilter {IsDeleted = isDeleted} ,cancellationToken))
+        .FirstOrDefault(x => x.Alias == alias);
+
     public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
         (await _dbContext.Medias.AddAsync(media, cancellationToken)).Entity;
 
@@ -51,7 +57,7 @@ internal class MediaService : IMediaService
     {
         var media = await GetMediaAsync(mediaId, false, cancellationToken);
         if(media == null)
-            throw new MediaNotFoundException(mediaId.ToString());
+            throw new MediaNotFoundException(mediaId);
         
         media.IsDeleted = true;
     }

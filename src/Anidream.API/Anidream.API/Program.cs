@@ -1,5 +1,6 @@
 using Anidream.API.Extensions;
 using Anidream.API.Extensions.Middleware;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(
         "AllowAll",
         p => p.WithOrigins("*").AllowAnyOrigin().AllowAnyMethod()));
+
+//builder.Host.UseSerilog();
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 {

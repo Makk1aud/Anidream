@@ -10,6 +10,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
         <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="Serilog.AspNetCore" />
         <PackageReference Include="Swashbuckle.AspNetCore"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design"/>
     </ItemGroup>

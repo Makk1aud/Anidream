@@ -21,7 +21,7 @@ internal sealed class GetMediaByIdCommandHandler : IRequestHandler<GetMediaByIdC
     {
         var media = 
             await _mediaService.GetMediaAsync(request.MediaId, cancellationToken:  cancellationToken)
-            ?? throw new MediaNotFoundException(request.MediaId.ToString());
+            ?? throw new MediaNotFoundException(request.MediaId);
         var mediaDto = _mapper.Map<MediaDto>(media);
         return mediaDto;
     }

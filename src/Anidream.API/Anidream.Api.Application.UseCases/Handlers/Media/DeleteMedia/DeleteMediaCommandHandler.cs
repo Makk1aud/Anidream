@@ -17,7 +17,7 @@ internal sealed class DeleteMediaCommandHandler : IRequestHandler<DeleteMediaCom
     {
         var media = await _mediaService.GetMediaAsync(request.MediaId, false, cancellationToken);
         if(media == null)
-            throw new MediaNotFoundException(request.MediaId.ToString());
+            throw new MediaNotFoundException(request.MediaId);
         
         media.IsDeleted = true;
         await _mediaService.SaveChangesAsync(cancellationToken);

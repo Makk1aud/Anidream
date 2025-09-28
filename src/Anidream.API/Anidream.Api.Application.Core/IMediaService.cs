@@ -15,6 +15,7 @@ public interface IMediaService
         CancellationToken cancellationToken = default);
     
     public Task<Media?> GetMediaAsync(Guid id, bool isDeleted = false, CancellationToken cancellationToken = default);
+    public Task<Media?> GetMediaByAliasAsync(string alias, bool isDeleted = false, CancellationToken cancellationToken = default);
     
     public Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default);
     
