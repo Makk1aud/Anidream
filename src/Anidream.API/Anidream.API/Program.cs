@@ -13,6 +13,7 @@ builder.Services.AddCors(options =>
         "AllowAll",
         p => p.WithOrigins("*").AllowAnyOrigin().AllowAnyMethod()));
 
+//Todo: не работает логирование
 //builder.Host.UseSerilog();
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>

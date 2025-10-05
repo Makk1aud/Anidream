@@ -30,7 +30,7 @@ public class MediaStorageService : IMediaStorageService
         var basePath = _storageConnectionProvider.GetStorageImageFolderPath();
         var filePath = Directory.GetFiles(basePath, $"{alias}.*").SingleOrDefault();
         if(string.IsNullOrEmpty(filePath))
-            throw new StorageException($"File {Path.GetFileName(filePath)} not found");
+            throw new StorageException($"File {Path.GetFileName(filePath)} was not found");
         
         return await _fileStorageClient.GetFileStreamAsync(filePath, cancellationToken);
     }
@@ -54,6 +54,8 @@ public class MediaStorageService : IMediaStorageService
     {
         var newFileName = Path.ChangeExtension(episodeNumber, fileExtension);
         var basePath = Path.Combine(_storageConnectionProvider.GetStorageVideoFolderPath(), alias);
+        Directory.CreateDirectory(basePath);
+        
         var filePath = Path.Combine(basePath, newFileName);
         await _fileStorageClient.SaveFileAsync(stream, filePath, cancellationToken);
     }
