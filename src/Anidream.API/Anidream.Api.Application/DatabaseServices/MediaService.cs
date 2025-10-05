@@ -21,15 +21,9 @@ internal class MediaService : IMediaService
 
     public async Task<IEnumerable<Media>> GetMediasAsync(bool tracking = false, CancellationToken cancellationToken = default) =>
         tracking
-            ? await _dbContext
-                .Medias
-                .Include(x => x.Studio)
-                .Include(x => x.Director)
+            ? await GetMedias()
                 .ToListAsync(cancellationToken: cancellationToken)
-            : await _dbContext
-                .Medias
-                .Include(x => x.Studio)
-                .Include(x => x.Director)
+            : await GetMedias()
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
@@ -70,6 +64,13 @@ internal class MediaService : IMediaService
                 .FilterByTitle(filter.Title)
                 .FilterByAlias(filter.Alias)
                 .FilterByReleaseDate(filter.MinReleaseDate, filter.MaxReleaseDate)
-                .FilterByRating(filter.MinRating, filter.MaxRating);
-    
+                .FilterByRating(filter.MinRating, filter.MaxRating)
+                .FilterByGenreAlias(filter.GenresAliases);
+
+    private IQueryable<Media> GetMedias() => _dbContext
+        .Medias
+        .Include(x => x.Studio)
+        .Include(x => x.Director)
+        //.Include(x => x.MediaGenres)
+        .Include(x => x.Genres);
 }

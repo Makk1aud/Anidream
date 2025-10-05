@@ -3,6 +3,7 @@ using System;
 using Anidream.Api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Anidream.Api.DataAccess.Migrations
 {
     [DbContext(typeof(AnidreamContext))]
-    partial class AnidreamContextModelSnapshot : ModelSnapshot
+    [Migration("20251005103322_Add genres to media")]
+    partial class Addgenrestomedia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,12 +51,6 @@ namespace Anidream.Api.DataAccess.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("genre_id");
 
-                    b.Property<string>("Alias")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("alias");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -62,10 +59,6 @@ namespace Anidream.Api.DataAccess.Migrations
 
                     b.HasKey("GenreId")
                         .HasName("pk_genres");
-
-                    b.HasIndex("Alias")
-                        .IsUnique()
-                        .HasDatabaseName("ix_genres_alias");
 
                     b.HasIndex("Title")
                         .IsUnique()
@@ -212,14 +205,14 @@ namespace Anidream.Api.DataAccess.Migrations
             modelBuilder.Entity("Anidream.Api.Domain.Entities.MediaGenre", b =>
                 {
                     b.HasOne("Anidream.Api.Domain.Entities.Genre", "Genre")
-                        .WithMany()
+                        .WithMany("MediaGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_media_genres_genres_genre_id");
 
                     b.HasOne("Anidream.Api.Domain.Entities.Media", "Media")
-                        .WithMany()
+                        .WithMany("MediaGenres")
                         .HasForeignKey("MediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -233,6 +226,16 @@ namespace Anidream.Api.DataAccess.Migrations
             modelBuilder.Entity("Anidream.Api.Domain.Entities.Director", b =>
                 {
                     b.Navigation("Medias");
+                });
+
+            modelBuilder.Entity("Anidream.Api.Domain.Entities.Genre", b =>
+                {
+                    b.Navigation("MediaGenres");
+                });
+
+            modelBuilder.Entity("Anidream.Api.Domain.Entities.Media", b =>
+                {
+                    b.Navigation("MediaGenres");
                 });
 
             modelBuilder.Entity("Anidream.Api.Domain.Entities.Studio", b =>

@@ -24,6 +24,13 @@ public static class MediaFilterExtensions
             return items;
         return items.Where(item => item.Alias.Contains(alias, StringComparison.InvariantCultureIgnoreCase));
     }
+    
+    public static IEnumerable<Media> FilterByGenreAlias(this IEnumerable<Media> items, IReadOnlyCollection<string> genreAliases)
+    {
+        if(!genreAliases.Any())
+            return items;
+        return items.Where(item => item.Genres.Select(x => x.Alias).Count(genreAliases.Contains) == genreAliases.Count);
+    }
 
     public static IEnumerable<Media> FilterByReleaseDate(
         this IEnumerable<Media> items,

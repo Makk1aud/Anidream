@@ -40,6 +40,7 @@ public class Media
     
     public virtual Studio Studio { get; set; } 
     public virtual Director Director { get; set; }
+    public virtual ICollection<Genre> Genres { get; set; } = new List<Genre>();
 
     public Media()
     {

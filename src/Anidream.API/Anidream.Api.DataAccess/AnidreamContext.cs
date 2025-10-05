@@ -10,6 +10,8 @@ public sealed class AnidreamContext : DbContext, IDbContext
     public DbSet<Media> Medias { get; set; }
     public DbSet<Director> Directors { get; set; }
     public DbSet<Studio> Studios { get; set; }
+    public DbSet<Genre> Genres { get; set; }
+    public DbSet<MediaGenre> MediaGenres { get; set; }
 
     public AnidreamContext(DbContextOptions<AnidreamContext> options)
         : base(options)
@@ -19,12 +21,10 @@ public sealed class AnidreamContext : DbContext, IDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Media>().ToTable(Constants.Database.MediaTableName);
-        modelBuilder.Entity<Director>().ToTable(Constants.Database.DirectorTableName);
-        modelBuilder.Entity<Studio>().ToTable(Constants.Database.StudioTableName);
-           
         modelBuilder.ApplyConfiguration(new MediaConfiguration());
         modelBuilder.ApplyConfiguration(new DirectorConfiguration());
         modelBuilder.ApplyConfiguration(new StudioConfiguration());
+        modelBuilder.ApplyConfiguration(new GenreConfiguration());
+        modelBuilder.ApplyConfiguration(new MediaGenreConfiguration());
     }
 }

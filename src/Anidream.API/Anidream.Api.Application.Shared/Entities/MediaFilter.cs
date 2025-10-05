@@ -21,4 +21,6 @@ public class MediaFilter
     public double MaxRating { get; set; } = 10;
     
     public bool IsDeleted { get; set; } = false;
+    
+    public List<string> GenresAliases { get; set; } = new List<string>();
 }

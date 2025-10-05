@@ -8,6 +8,7 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
 {
     public void Configure(EntityTypeBuilder<Media> builder)
     {
+        builder.ToTable(Constants.TableNames.Medias);
         builder.HasKey(x => x.MediaId);
         
         builder.HasIndex(x => x.Title).IsUnique();
@@ -29,6 +30,8 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
             .WithMany(x => x.Medias)
             .HasForeignKey(x => x.DirectorId)
             .IsRequired(false);
+
+        builder.HasMany(x => x.Genres).WithMany(x => x.Medias).UsingEntity<MediaGenre>();
         
         builder.Property(x => x.ReleaseDate).IsRequired();
         builder.Property(x => x.Rating);
