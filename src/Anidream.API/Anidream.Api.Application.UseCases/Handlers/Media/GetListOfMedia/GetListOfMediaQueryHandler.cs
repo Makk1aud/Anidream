@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 
-internal sealed class GetListOfMediaCommandHandler : IRequestHandler<GetListOfMediaCommand, PaginationList<MediaDto>>
+internal sealed class GetListOfMediaQueryHandler : IRequestHandler<GetListOfMediaQuery, PaginationList<MediaDto>>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;
 
-    public GetListOfMediaCommandHandler(IMediaService mediaService, IMapper mapper)
+    public GetListOfMediaQueryHandler(IMediaService mediaService, IMapper mapper)
     {
         _mediaService = mediaService;
         _mapper = mapper;
     }
 
-    public async Task<PaginationList<MediaDto>> Handle(GetListOfMediaCommand request, CancellationToken cancellationToken)
+    public async Task<PaginationList<MediaDto>> Handle(GetListOfMediaQuery request, CancellationToken cancellationToken)
     {
         var medias = await _mediaService.GetMediasAsync(false, request.Filter, cancellationToken);
         var mediasDto = _mapper.Map<IReadOnlyCollection<MediaDto>>(medias); 

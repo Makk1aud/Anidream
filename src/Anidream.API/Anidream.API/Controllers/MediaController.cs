@@ -39,7 +39,7 @@ public class MediaController : ControllerBase
         CancellationToken cancellationToken = default)
     {
         var medias = await _sender.Send(
-            new GetListOfMediaCommand { PaginationOptions = paginationOptions, Filter = filter}, cancellationToken);
+            new GetListOfMediaQuery { PaginationOptions = paginationOptions, Filter = filter}, cancellationToken);
         Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(medias.GetMetadata()));
         
         return Ok(medias);
@@ -48,7 +48,7 @@ public class MediaController : ControllerBase
     [HttpGet("{mediaId}")]
     public async Task<IActionResult> GetMediaById([FromRoute] Guid mediaId, CancellationToken cancellationToken)
     {
-        return Ok(await _sender.Send(new GetMediaByIdCommand { MediaId = mediaId }, cancellationToken));
+        return Ok(await _sender.Send(new GetMediaByIdQuery { MediaId = mediaId }, cancellationToken));
     }
 
     [HttpPost]

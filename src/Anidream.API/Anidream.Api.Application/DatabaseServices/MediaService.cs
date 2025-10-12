@@ -71,6 +71,5 @@ internal class MediaService : IMediaService
         .Medias
         .Include(x => x.Studio)
         .Include(x => x.Director)
-        //.Include(x => x.MediaGenres)
         .Include(x => x.Genres);
 }

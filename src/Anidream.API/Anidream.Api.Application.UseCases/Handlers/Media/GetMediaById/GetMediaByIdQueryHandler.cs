@@ -6,18 +6,18 @@ using MediatR;
 
 namespace Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;
 
-internal sealed class GetMediaByIdCommandHandler : IRequestHandler<GetMediaByIdCommand, MediaDto>
+internal sealed class GetMediaByIdQueryHandler : IRequestHandler<GetMediaByIdQuery, MediaDto>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;
 
-    public GetMediaByIdCommandHandler(IMediaService mediaService, IMapper mapper)
+    public GetMediaByIdQueryHandler(IMediaService mediaService, IMapper mapper)
     {
         _mediaService = mediaService;
         _mapper = mapper;
     }
     
-    public async Task<MediaDto> Handle(GetMediaByIdCommand request, CancellationToken cancellationToken)
+    public async Task<MediaDto> Handle(GetMediaByIdQuery request, CancellationToken cancellationToken)
     {
         var media = 
             await _mediaService.GetMediaAsync(request.MediaId, cancellationToken:  cancellationToken)

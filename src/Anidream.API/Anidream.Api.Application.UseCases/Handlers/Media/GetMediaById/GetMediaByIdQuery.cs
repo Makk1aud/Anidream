@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Anidream.Api.Application.Utils.Handlers.Media.GetMediaById;
 
-public class GetMediaByIdCommand : IRequest<MediaDto>
+public class GetMediaByIdQuery : IRequest<MediaDto>
 {
     public Guid MediaId { get; init; }
 }

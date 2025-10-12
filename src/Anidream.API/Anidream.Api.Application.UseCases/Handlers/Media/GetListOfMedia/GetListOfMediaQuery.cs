@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 
-public class GetListOfMediaCommand : IRequest<PaginationList<MediaDto>>
+public class GetListOfMediaQuery : IRequest<PaginationList<MediaDto>>
 {
     public PaginationOptions PaginationOptions {get; set;}   
     public MediaFilter? Filter {get; set;}

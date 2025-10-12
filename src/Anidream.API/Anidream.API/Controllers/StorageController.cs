@@ -40,7 +40,7 @@ public class StorageController : ControllerBase
     [HttpGet("media/image/{alias}")]
     public async Task<IActionResult> DownloadImage([FromRoute] string alias, CancellationToken cancellationToken)
     {
-        var fileStream = await _sender.Send(new DownloadMediaImageCommand(alias), cancellationToken);
+        var fileStream = await _sender.Send(new DownloadMediaQueryCommand(alias), cancellationToken);
         
         return File(fileStream, Constants.FileStorage.ImageContentType);
     }
@@ -52,7 +52,7 @@ public class StorageController : ControllerBase
         [FromRoute] string episodeNumber,
         CancellationToken cancellationToken)
     {
-        var stream = await _sender.Send(new DownloadMediaVideoCommand(alias, episodeNumber), cancellationToken);
+        var stream = await _sender.Send(new DownloadMediaVideoQuery(alias, episodeNumber), cancellationToken);
         return new FileStreamResult(stream, Constants.FileStorage.VideoContentType) {EnableRangeProcessing = true};
     }
     

@@ -5,16 +5,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Storage.DownloadMediaVideo;
 
-internal sealed class DownloadMediaVideoCommandHandler : IRequestHandler<DownloadMediaVideoCommand, Stream>
+internal sealed class DownloadMediaVideoQueryHandler : IRequestHandler<DownloadMediaVideoQuery, Stream>
 {
     private readonly IMediaService _mediaService;
     private readonly IMediaStorageService _mediaStorageService;
-    private readonly ILogger<DownloadMediaVideoCommandHandler> _logger;
+    private readonly ILogger<DownloadMediaVideoQueryHandler> _logger;
 
-    public DownloadMediaVideoCommandHandler(
+    public DownloadMediaVideoQueryHandler(
         IMediaService mediaService,
         IMediaStorageService mediaStorageService,
-        ILogger<DownloadMediaVideoCommandHandler> logger)
+        ILogger<DownloadMediaVideoQueryHandler> logger)
     {
         _mediaService = mediaService;
         _mediaStorageService = mediaStorageService;
@@ -22,7 +22,7 @@ internal sealed class DownloadMediaVideoCommandHandler : IRequestHandler<Downloa
     }
     
     //Todo: сделать обертку которая будет иметь методы для выкидывания Exception на null результат, типо GetMediaByAliasAsyncAndThrowExceptionsIfNotExist
-    public async Task<Stream> Handle(DownloadMediaVideoCommand request, CancellationToken cancellationToken)
+    public async Task<Stream> Handle(DownloadMediaVideoQuery request, CancellationToken cancellationToken)
     {
         var media = await _mediaService.GetMediaByAliasAsync(request.Alias, cancellationToken: cancellationToken);
         if(media == null)
