@@ -5,15 +5,16 @@ namespace Anidream.Api.Application.Services;
 
 public class PhysicalFileStorageClient : IFileStorageClient, IDisposable
 {
-    public async Task<Stream> GetFileStreamAsync(string filePath, CancellationToken cancellationToken = default)
+    public Task<Stream> GetFileStreamAsync(string filePath, CancellationToken cancellationToken = default)
     {
         try
         {
-            await using var fileStream = File.OpenRead(filePath);
-            var memoryStream = new MemoryStream();
-            await fileStream.CopyToAsync(memoryStream, cancellationToken);
-            memoryStream.Position = 0;
-            return memoryStream;
+            var fileStream = File.OpenRead(filePath);
+            // var memoryStream = new MemoryStream();
+            // await fileStream.CopyToAsync(memoryStream, cancellationToken);
+            // memoryStream.Position = 0;
+            // return memoryStream;
+            return Task.FromResult<Stream>(fileStream);
         }
         catch (FileNotFoundException)
         {

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Storage.DownloadMediaImage;
 
-internal sealed class DownloadMediaImageCommandHandler : IRequestHandler<DownloadMediaQueryCommand, Stream>
+internal sealed class DownloadMediaImageCommandHandler : IRequestHandler<DownloadMediaImageQuery, Stream>
 {
     private readonly IMediaStorageService _mediaStorageService;
     private readonly IMediaService _mediaService;
@@ -15,7 +15,7 @@ internal sealed class DownloadMediaImageCommandHandler : IRequestHandler<Downloa
         _mediaService = mediaService;
     }
     
-    public async Task<Stream> Handle(DownloadMediaQueryCommand request, CancellationToken cancellationToken)
+    public async Task<Stream> Handle(DownloadMediaImageQuery request, CancellationToken cancellationToken)
     {
         var media = await _mediaService.GetMediaByAliasAsync(request.Alias, cancellationToken: cancellationToken);
         

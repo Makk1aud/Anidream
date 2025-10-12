@@ -1,8 +1,8 @@
-using System.Net.Mime;
 using Anidream.Api.Application.Shared;
 using Anidream.Api.Application.Shared.Exceptions;
 using Anidream.Api.Application.UseCases.Handlers.Storage.DownloadMediaImage;
 using Anidream.Api.Application.UseCases.Handlers.Storage.DownloadMediaVideo;
+using Anidream.Api.Application.UseCases.Handlers.Storage.GetMediaEpisodesInfo;
 using Anidream.Api.Application.UseCases.Handlers.Storage.UploadMediaImage;
 using Anidream.Api.Application.UseCases.Handlers.Storage.UploadMediaVideo;
 using MediatR;
@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Anidream.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/media")]
 public class StorageController : ControllerBase
 {
     private readonly ISender _sender;
@@ -21,7 +21,7 @@ public class StorageController : ControllerBase
         _sender = sender;
     }
     
-    [HttpPost("media/image/{alias}")]
+    [HttpPost("image/{alias}")]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UploadImage(
         [FromRoute] string alias,
@@ -37,16 +37,14 @@ public class StorageController : ControllerBase
         return Ok();
     }
     
-    [HttpGet("media/image/{alias}")]
+    [HttpGet("image/{alias}")]
     public async Task<IActionResult> DownloadImage([FromRoute] string alias, CancellationToken cancellationToken)
     {
-        var fileStream = await _sender.Send(new DownloadMediaQueryCommand(alias), cancellationToken);
-        
+        var fileStream = await _sender.Send(new DownloadMediaImageQuery(alias), cancellationToken);
         return File(fileStream, Constants.FileStorage.ImageContentType);
     }
     
-    //Todo: получение информации об имеющихся в хранилище сериях для воспроизведения
-    [HttpGet("media/video/{alias}/episode/{episodeNumber}")]
+    [HttpGet("video/{alias}/episode/{episodeNumber}")]
     public async Task<IActionResult> DownloadVideo(
         [FromRoute] string alias,
         [FromRoute] string episodeNumber,
@@ -56,14 +54,14 @@ public class StorageController : ControllerBase
         return new FileStreamResult(stream, Constants.FileStorage.VideoContentType) {EnableRangeProcessing = true};
     }
     
-    // [HttpGet("media/video/{alias}/episode/info")]
-    // public async Task<IActionResult> DownloadVideo([FromRoute] string alias, CancellationToken cancellationToken)
-    // {
-    //     var stream = await _sender.Send(new DownloadMediaVideoCommand(alias, episodeNumber), cancellationToken);
-    //     return new FileStreamResult(stream, Constants.FileStorage.VideoContentType) {EnableRangeProcessing = true};
-    // }
+    [HttpGet("video/{alias}/episodes/info")]
+    public async Task<IActionResult> DownloadVideo([FromRoute] string alias, CancellationToken cancellationToken)
+    {
+        var episodesInfo = await _sender.Send(new GetMediaEpisodesInfoQuery(alias), cancellationToken);
+        return Ok(episodesInfo);
+    }
     
-    [HttpPost("media/video/{alias}/episode/{episodeNumber}")]
+    [HttpPost("video/{alias}/episode/{episodeNumber}")]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UploadVideo(
         [FromRoute] string alias,
