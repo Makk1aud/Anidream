@@ -25,6 +25,8 @@ builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Host.UseSerilog((context, logConfig) => logConfig
+    .ReadFrom.Configuration(context.Configuration));
 var app = builder.Build();
 
 //Инициализация БД

@@ -13,7 +13,6 @@ using Newtonsoft.Json;
 namespace Anidream.API.Controllers;
 
 //Todo: Добавить на все остальные сущности контроллер, просто с работой через Query от Mediatr без репозиториев
-//Todo: добавить логер
 [Route("api/[controller]")]
 [ApiController]
 public class MediaController : ControllerBase
