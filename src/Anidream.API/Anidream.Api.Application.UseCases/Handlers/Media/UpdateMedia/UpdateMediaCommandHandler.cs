@@ -19,7 +19,7 @@ internal sealed class UpdateMediaCommandHandler : IRequestHandler<UpdateMediaCom
     
     public async Task<MediaDto> Handle(UpdateMediaCommand request, CancellationToken cancellationToken)
     {
-        var media = await _mediaService.GetMediaAsync(request.MediaId, cancellationToken: cancellationToken);
+        var media = await _mediaService.GetMediaAsync(request.MediaId, true, cancellationToken: cancellationToken);
         if (media == null)
             throw new MediaNotFoundException(request.MediaId);
                 

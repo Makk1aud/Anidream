@@ -9,5 +9,6 @@ public interface IDbContext
     public DbSet<Director> Directors { get; set; }
     public DbSet<Studio> Studios { get; set; }
     
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    public DbSet<TEntity> Set<TEntity>() where TEntity : class;
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

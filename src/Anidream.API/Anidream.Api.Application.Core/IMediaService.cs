@@ -1,3 +1,4 @@
+using Anidream.Api.Application.Shared;
 using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Domain.Entities;
 
@@ -9,17 +10,18 @@ public interface IMediaService
         bool tracking = false,
         CancellationToken cancellationToken = default);
     
-    public Task<IEnumerable<Media>> GetMediasAsync(
+    public Task<PaginationList<Media>> GetMediasAsync(
+        MediaFilter? filter,
+        PaginationOptions paginationOptions,
         bool tracking = false,
-        MediaFilter? filter = null,
         CancellationToken cancellationToken = default);
     
-    public Task<Media?> GetMediaAsync(Guid id, bool isDeleted = false, CancellationToken cancellationToken = default);
-    public Task<Media?> GetMediaByAliasAsync(string alias, bool isDeleted = false, CancellationToken cancellationToken = default);
+    public Task<Media?> GetMediaAsync(Guid id, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default);
+    public Task<Media?> GetMediaByAliasAsync(string alias, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default);
     
     public Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default);
     
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     
-    public Task DeleteMediaAsync(Guid mediaId, CancellationToken cancellationToken = default);
+    public Task DeleteMediaAsync(Media media, CancellationToken cancellationToken = default);
 }

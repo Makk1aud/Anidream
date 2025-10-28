@@ -32,4 +32,10 @@ internal sealed class AddMediaCommandHandler : IRequestHandler<AddMediaCommand, 
             throw new MediaBadRequestException("Ошибка добавления media", e);
         }
     }
+
+    //Todo: сделать обертку над DbSet чтобы можно было искать по ID и выкидывать exception на null
+    private async Task Validate(MediaDto mediaDto)
+    {
+        
+    }
 }

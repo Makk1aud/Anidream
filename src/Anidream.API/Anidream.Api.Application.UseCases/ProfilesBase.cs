@@ -21,5 +21,8 @@ public class ProfilesBase : Profile
         
         //Director
         CreateMap<Director, DirectorDto>().ReverseMap();
+        
+        //Genre
+        CreateMap<Genre, GenreDto>().ReverseMap();
     }
 }

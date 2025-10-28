@@ -33,6 +33,11 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
 
         builder.HasMany(x => x.Genres).WithMany(x => x.Medias).UsingEntity<MediaGenre>();
         
+        //AutoInclude
+        builder.Navigation(x => x.Genres).AutoInclude();
+        builder.Navigation(x => x.Studio).AutoInclude();
+        builder.Navigation(x => x.Director).AutoInclude();
+        
         builder.Property(x => x.ReleaseDate).IsRequired();
         builder.Property(x => x.Rating);
         builder.Property(x => x.TotalEpisodes);

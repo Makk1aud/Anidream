@@ -5,10 +5,12 @@ namespace Anidream.API.Extensions.Middleware;
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<ExceptionMiddleware> _logger;
 
-    public ExceptionMiddleware(RequestDelegate next)
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -30,6 +32,7 @@ public class ExceptionMiddleware
 
     private async Task HandleExceptionAsync(HttpContext context, string exceptionMessage, int statusCode, string? innerMessage)
     {
+        _logger.LogError(exceptionMessage, innerMessage);
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = statusCode;
         await context.Response.WriteAsync(new ErrorDetails

@@ -1,4 +1,3 @@
-using Anidream.Api.Application.Core;
 using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.UseCases.Handlers.Media.AddMedia;
 using Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
@@ -37,11 +36,11 @@ public class MediaController : ControllerBase
         [FromQuery] MediaFilter? filter = null,
         CancellationToken cancellationToken = default)
     {
-        var medias = await _sender.Send(
+        var pagedMedias = await _sender.Send(
             new GetListOfMediaQuery { PaginationOptions = paginationOptions, Filter = filter}, cancellationToken);
-        Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(medias.GetMetadata()));
+        Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(pagedMedias.Metadata));
         
-        return Ok(medias);
+        return Ok(pagedMedias.Medias);
     }
 
     [HttpGet("{mediaId}")]

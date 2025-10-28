@@ -1,5 +1,6 @@
 using Anidream.Api.Application.Core;
 using Anidream.Api.Application.Shared;
+using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.Utils.Dtos;
 using AutoMapper;
 using MediatR;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 
-internal sealed class GetListOfMediaQueryHandler : IRequestHandler<GetListOfMediaQuery, PaginationList<MediaDto>>
+internal sealed class GetListOfMediaQueryHandler : IRequestHandler<GetListOfMediaQuery, (IEnumerable<MediaDto> Medias, PaginationMetadata Metadata)>
 {
     private readonly IMediaService _mediaService;
     private readonly IMapper _mapper;
@@ -18,11 +19,10 @@ internal sealed class GetListOfMediaQueryHandler : IRequestHandler<GetListOfMedi
         _mapper = mapper;
     }
 
-    public async Task<PaginationList<MediaDto>> Handle(GetListOfMediaQuery request, CancellationToken cancellationToken)
+    public async Task<(IEnumerable<MediaDto> Medias, PaginationMetadata Metadata)> Handle(GetListOfMediaQuery request, CancellationToken cancellationToken)
     {
-        var medias = await _mediaService.GetMediasAsync(false, request.Filter, cancellationToken);
-        var mediasDto = _mapper.Map<IReadOnlyCollection<MediaDto>>(medias); 
-        
-        return new PaginationList<MediaDto>(mediasDto, request.PaginationOptions.PageNumber, request.PaginationOptions.PageSize);
+        var pagedMedias = await _mediaService.GetMediasAsync(request.Filter, request.PaginationOptions, cancellationToken: cancellationToken);
+        var mediasDto = _mapper.Map<IEnumerable<MediaDto>>(pagedMedias); 
+        return (mediasDto, pagedMedias.GetMetadata());
     }
 }

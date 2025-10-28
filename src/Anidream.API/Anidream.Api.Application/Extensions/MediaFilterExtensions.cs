@@ -4,36 +4,36 @@ namespace Anidream.Api.Application.Extensions;
 
 public static class MediaFilterExtensions
 {
-    public static IEnumerable<Media> FilterByTitle(this IEnumerable<Media> items, string? alias)
+    public static IQueryable<Media> FilterByTitle(this IQueryable<Media> items, string? alias)
     {
         if(string.IsNullOrEmpty(alias))
             return items;
         return items.Where(item => item.Title.Contains(alias, StringComparison.InvariantCultureIgnoreCase));
     }
     
-    public static IEnumerable<Media> FilterByIsDeleted(this IEnumerable<Media> items, bool? isDeleted)
+    public static IQueryable<Media> FilterByIsDeleted(this IQueryable<Media> items, bool? isDeleted)
     {
         return isDeleted is null 
             ? items
             : items.Where(item => item.IsDeleted == isDeleted);
     }
     
-    public static IEnumerable<Media> FilterByAlias(this IEnumerable<Media> items, string? alias)
+    public static IQueryable<Media> FilterByAlias(this IQueryable<Media> items, string? alias)
     {
         if(string.IsNullOrEmpty(alias))
             return items;
         return items.Where(item => item.Alias.Contains(alias, StringComparison.InvariantCultureIgnoreCase));
     }
     
-    public static IEnumerable<Media> FilterByGenreAlias(this IEnumerable<Media> items, IReadOnlyCollection<string> genreAliases)
+    public static IQueryable<Media> FilterByGenreAlias(this IQueryable<Media> items, IReadOnlyCollection<string> genreAliases)
     {
         if(!genreAliases.Any())
             return items;
         return items.Where(item => item.Genres.Select(x => x.Alias).Count(genreAliases.Contains) == genreAliases.Count);
     }
 
-    public static IEnumerable<Media> FilterByReleaseDate(
-        this IEnumerable<Media> items,
+    public static IQueryable<Media> FilterByReleaseDate(
+        this IQueryable<Media> items,
         DateOnly? minReleaseDate,
         DateOnly? maxReleaseDate)
     {
@@ -44,8 +44,8 @@ public static class MediaFilterExtensions
             && item.ReleaseDate <= maxReleaseDate);
     }
 
-    public static IEnumerable<Media> FilterByRating(
-        this IEnumerable<Media> items,
+    public static IQueryable<Media> FilterByRating(
+        this IQueryable<Media> items,
         double? minRating = 0,
         double? maxRating = 10) =>
             items.Where(x => x.Rating >= minRating && x.Rating <= maxRating);

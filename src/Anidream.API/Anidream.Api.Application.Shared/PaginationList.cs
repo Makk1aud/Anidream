@@ -14,12 +14,12 @@ public class PaginationList<TEntity> : IReadOnlyCollection<TEntity>
     
     private readonly IReadOnlyCollection<TEntity> _entities;
     
-    public PaginationList(IReadOnlyCollection<TEntity> items, int page, int pageSize)
+    public PaginationList(IReadOnlyCollection<TEntity> items, int page, int pageSize, int totalCount)
     {
-        Count = items.Count;
+        Count = totalCount;
         Page = page;
         PageSize = pageSize;
-        _entities = items;
+        _entities = ApplyPagination(items);
         TotalPages = (int)Math.Ceiling(Count / (double)pageSize);
     }
 
@@ -38,7 +38,7 @@ public class PaginationList<TEntity> : IReadOnlyCollection<TEntity>
     
     public IEnumerator<TEntity> GetEnumerator()
     {
-        return ApplyPagination(_entities).GetEnumerator();
+        return _entities.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

@@ -1,5 +1,7 @@
 using Anidream.Api.Application.Core;
 using Anidream.Api.Application.Extensions;
+using Anidream.Api.Application.Repositories;
+using Anidream.Api.Application.Shared;
 using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.Shared.Exceptions;
 using Anidream.Api.Domain.Entities;
@@ -10,66 +12,51 @@ namespace Anidream.Api.Application.DatabaseServices;
 //Todo: можно вынести в абстрактный класс метод SaveChanges, если будут добавлены еще репозитории для работы с БД
 //Todo: Для работы с отслеживанием объектов БД, можно выделить базовый класс, который через Set<T> будет обеспечиваться возможность отслеживания 
 //Todo: в базовый класс добавить метод для работы с условиями в запросе, как в первой реализации, которую я делал
-internal class MediaService : IMediaService
-{
-    private readonly IDbContext _dbContext;
 
-    public MediaService(IDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+//Это не сервис а репозиторий уже больше, в нем нет логики чтобы называть его сервисом
+internal class MediaService : BaseRepository<Media>, IMediaService
+{
+    public MediaService(IDbContext dbContext) : base(dbContext)
+    { }
 
     public async Task<IEnumerable<Media>> GetMediasAsync(bool tracking = false, CancellationToken cancellationToken = default) =>
-        tracking
-            ? await GetMedias()
-                .ToListAsync(cancellationToken: cancellationToken)
-            : await GetMedias()
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);
+        await FindAll(tracking)
+            .Include(x => x.Genres)
+            .ToListAsync(cancellationToken: cancellationToken);
 
-    public async Task<IEnumerable<Media>> GetMediasAsync(
+    public async Task<PaginationList<Media>> GetMediasAsync(
+        MediaFilter? filter,
+        PaginationOptions paginationOptions,
         bool tracking = false,
-        MediaFilter? filter = null,
-        CancellationToken cancellationToken = default) =>
-            FilterMedia(await GetMediasAsync(tracking, cancellationToken), filter);
-
-    public async Task<Media?> GetMediaAsync(Guid id, bool isDeleted = false, CancellationToken cancellationToken = default) =>
-        (await GetMediasAsync(true, new MediaFilter {IsDeleted = isDeleted} ,cancellationToken))
-        .FirstOrDefault(x => x.MediaId == id);
-
-    public async Task<Media?> GetMediaByAliasAsync(string alias, bool isDeleted = false, CancellationToken cancellationToken = default) =>
-        (await GetMediasAsync(true, new MediaFilter {IsDeleted = isDeleted} ,cancellationToken))
-        .FirstOrDefault(x => x.Alias == alias);
-
-    public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
-        (await _dbContext.Medias.AddAsync(media, cancellationToken)).Entity;
-
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
-        _dbContext.SaveChangesAsync(cancellationToken);
-
-    public async Task DeleteMediaAsync(Guid mediaId, CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default)
     {
-        var media = await GetMediaAsync(mediaId, false, cancellationToken);
-        if(media == null)
-            throw new MediaNotFoundException(mediaId);
-        
-        media.IsDeleted = true;
-    }
-
-    private static IEnumerable<Media> FilterMedia(IEnumerable<Media> items, MediaFilter? filter) =>
-        filter is null 
-            ? items
-            : items
+        var totalCount = await FindAll(false).CountAsync(cancellationToken: cancellationToken);
+        return filter == null 
+            ? FindAll(tracking).ToPaginationList(paginationOptions.PageNumber, paginationOptions.PageSize, totalCount)
+            : FindAll(tracking)
                 .FilterByIsDeleted(filter.IsDeleted)
                 .FilterByTitle(filter.Title)
                 .FilterByAlias(filter.Alias)
                 .FilterByReleaseDate(filter.MinReleaseDate, filter.MaxReleaseDate)
                 .FilterByRating(filter.MinRating, filter.MaxRating)
-                .FilterByGenreAlias(filter.GenresAliases);
+                .FilterByGenreAlias(filter.GenresAliases)
+                .ToPaginationList(paginationOptions.PageNumber, paginationOptions.PageSize, totalCount);
+    }
 
-    private IQueryable<Media> GetMedias() => _dbContext
-        .Medias
-        .Include(x => x.Studio)
-        .Include(x => x.Director)
-        .Include(x => x.Genres);
+    public Task<Media?> GetMediaAsync(Guid id, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default) =>
+        FindByExpression(x => x.IsDeleted == isDeleted && x.MediaId == id, tracking)
+            .SingleOrDefaultAsync(cancellationToken: cancellationToken);
+
+    public Task<Media?> GetMediaByAliasAsync(string alias, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default) =>
+        FindByExpression(x => x.IsDeleted == isDeleted && x.Alias == alias, tracking)
+            .SingleOrDefaultAsync(cancellationToken: cancellationToken);
+
+    public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
+        (await CreateAsync(media)).Entity;
+
+    public Task DeleteMediaAsync(Media media, CancellationToken cancellationToken = default)
+    {
+        media.IsDeleted = true;
+        return Task.CompletedTask;
+    }
 }

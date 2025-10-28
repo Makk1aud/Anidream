@@ -10,14 +10,5 @@ public class MediaGenreConfiguration : IEntityTypeConfiguration<MediaGenre>
     {
         builder.ToTable(Constants.TableNames.MediaGenres);
         builder.HasKey(nameof(MediaGenre.MediaId), nameof(MediaGenre.GenreId));
-
-        // builder
-        //     .HasOne(x => x.Media)
-        //     .WithMany(x => x.MediaGenres)
-        //     .HasForeignKey(x => x.MediaId);
-        //
-        // builder.HasOne(x => x.Genre)
-        //     .WithMany(x => x.MediaGenres)
-        //     .HasForeignKey(x => x.GenreId);
     }
 }

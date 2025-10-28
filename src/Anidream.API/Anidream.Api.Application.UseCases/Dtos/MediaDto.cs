@@ -2,6 +2,7 @@ using Anidream.Api.Domain.Entities;
 
 namespace Anidream.Api.Application.Utils.Dtos;
 
+//Todo: Добавить список жанров
 public record MediaDto
 {
     public Guid MediaId { get; init; }
@@ -23,6 +24,8 @@ public record MediaDto
     public int IsDeleted { get; init; }
     
     public int HasImage { get; init; }
+    
+    public IReadOnlyCollection<GenreDto> Genres { get; init; }
     
     public StudioDto Studio { get; init; }
     public DirectorDto Director { get; init; }
