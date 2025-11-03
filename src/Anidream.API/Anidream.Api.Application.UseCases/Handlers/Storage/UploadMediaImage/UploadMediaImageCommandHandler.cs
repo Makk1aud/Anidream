@@ -17,7 +17,7 @@ internal sealed class UploadMediaImageCommandHandler : IRequestHandler<UploadMed
     
     public async Task Handle(UploadMediaImageCommand request, CancellationToken cancellationToken)
     {
-        var media = await _mediaService.GetMediaByAliasAsync(request.Alias, cancellationToken: cancellationToken);
+        var media = await _mediaService.GetMediaByAliasAsync(request.Alias, tracking: true, cancellationToken: cancellationToken);
         if (media == null)
             throw new MediaNotFoundException(request.Alias);
         

@@ -1,10 +1,8 @@
 using Anidream.Api.Application.Core;
-using Anidream.Api.Application.Shared;
 using Anidream.Api.Application.Shared.Entities;
 using Anidream.Api.Application.Utils.Dtos;
 using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Anidream.Api.Application.UseCases.Handlers.Media.GetListOfMedia;
 

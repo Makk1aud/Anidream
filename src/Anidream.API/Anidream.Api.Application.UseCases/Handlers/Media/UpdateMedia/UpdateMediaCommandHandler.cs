@@ -22,10 +22,10 @@ internal sealed class UpdateMediaCommandHandler : IRequestHandler<UpdateMediaCom
         var media = await _mediaService.GetMediaAsync(request.MediaId, true, cancellationToken: cancellationToken);
         if (media == null)
             throw new MediaNotFoundException(request.MediaId);
-                
+        
         _mapper.Map(request.Dto, media);
         await _mediaService.SaveChangesAsync(cancellationToken);
-            
+        
         return _mapper.Map<MediaDto>(media);
     }
 }

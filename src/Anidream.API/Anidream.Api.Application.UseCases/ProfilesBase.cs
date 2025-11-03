@@ -11,10 +11,19 @@ public class ProfilesBase : Profile
         //Media
         CreateMap<Media, MediaDto>().ReverseMap();
         CreateMap<Media, MediaForCreationDto>().ReverseMap();
+        
+        CreateMap<int?, int>().ConvertUsing((src, dest) => src ?? dest);
+        CreateMap<double?, double>().ConvertUsing((src, dest) => src ?? dest);
+        CreateMap<DateOnly?, DateOnly>().ConvertUsing((src, dest) => src ?? dest);
+        CreateMap<Guid?, Guid>().ConvertUsing((src, dest) => src ?? dest);
+        
         CreateMap<Media, MediaForUpdateDto>()
             .ReverseMap()
-            .ForAllMembers(opts => 
-                opts.Condition((src, dest, srcMember) => srcMember != null));
+            .ForAllMembers(opts =>
+            {
+                opts.AllowNull();
+                opts.Condition((src, dest, srcMember) => srcMember != null);
+            });
         
         //Studio
         CreateMap<Studio, StudioDto>().ReverseMap();

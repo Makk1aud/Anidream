@@ -4,11 +4,11 @@ namespace Anidream.Api.Application.Extensions;
 
 public static class MediaFilterExtensions
 {
-    public static IQueryable<Media> FilterByTitle(this IQueryable<Media> items, string? alias)
+    public static IQueryable<Media> FilterByTitle(this IQueryable<Media> items, string? title)
     {
-        if(string.IsNullOrEmpty(alias))
+        if(string.IsNullOrEmpty(title))
             return items;
-        return items.Where(item => item.Title.Contains(alias, StringComparison.InvariantCultureIgnoreCase));
+        return items.Where(item => item.Title.ToLower().Contains(title.ToLower()));
     }
     
     public static IQueryable<Media> FilterByIsDeleted(this IQueryable<Media> items, bool? isDeleted)
@@ -22,7 +22,7 @@ public static class MediaFilterExtensions
     {
         if(string.IsNullOrEmpty(alias))
             return items;
-        return items.Where(item => item.Alias.Contains(alias, StringComparison.InvariantCultureIgnoreCase));
+        return items.Where(item => item.Alias.ToLower().Contains(alias.ToLower()));
     }
     
     public static IQueryable<Media> FilterByGenreAlias(this IQueryable<Media> items, IReadOnlyCollection<string> genreAliases)
