@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Anidream.Application\Anidream.Application.csproj" />
+      <ProjectReference Include="..\Anidream.DataAccess\Anidream.DataAccess.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace Anidream.Domain.Entities;
+
+public class Studio
+{
+    [Key]
+    public Guid StudioId { get; set; }
+    
+    [Required]
+    [MaxLength(100)]
+    public string Title { get; set; }
+    
+    public virtual ICollection<Media> Medias { get; set; } = new List<Media>();
+}

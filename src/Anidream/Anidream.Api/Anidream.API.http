@@ -1,0 +1,6 @@
+@Anidream.API_HostAddress = http://localhost:5124
+
+GET {{Anidream.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

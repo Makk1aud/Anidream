@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="Serilog.AspNetCore" />
+        <PackageReference Include="Swashbuckle.AspNetCore"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Anidream.Application.UseCases\Anidream.Application.UseCases.csproj" />
+      <ProjectReference Include="..\Anidream.Application\Anidream.Application.csproj" />
+      <ProjectReference Include="..\Anidream.DataAccess.Implementation\Anidream.DataAccess.Implementation.csproj" />
+      <ProjectReference Include="..\Anidream.Infrastructure\Anidream.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\Anidream.API\docker-compose.yaml">
+        <Link>docker-compose.yaml</Link>
+      </Content>
+      <Content Include="..\Dockerfile">
+        <Link>Dockerfile</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>
