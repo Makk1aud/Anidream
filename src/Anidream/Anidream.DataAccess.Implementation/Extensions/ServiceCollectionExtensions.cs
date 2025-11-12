@@ -9,6 +9,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDataAccess(this IServiceCollection services, string connectionString)
     {
+        services.AddScoped<IRepositoryManager, RepositoryManager>();
         services.AddScoped<IMediaRepository, MediaRepository>();
         
         services.AddDbContext<AnidreamContext>(opt => opt

@@ -22,8 +22,8 @@ internal sealed class DownloadMediaImageCommandHandler : IRequestHandler<Downloa
         if (media == null)
             throw new MediaNotFoundException(request.Alias);
         
-        return !media.HasImage 
-            ? throw new MediaBadRequestException("Media has no image") 
-            : await _mediaStorageService.DownloadImageAsync(request.Alias, cancellationToken);
+        return media.HasImage 
+                ? await _mediaStorageService.DownloadImageAsync(request.Alias, cancellationToken)
+                : throw new MediaBadRequestException("Media has no image");
     }
 }

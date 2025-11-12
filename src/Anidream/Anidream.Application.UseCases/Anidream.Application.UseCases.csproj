@@ -7,10 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Anidream.Application.Interfaces\Anidream.Application.Interfaces.csproj" />
       <ProjectReference Include="..\Anidream.Application\Anidream.Application.csproj" />
     </ItemGroup>
     
     <ItemGroup>
+        <PackageReference Include="FluentValidation" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
         <PackageReference Include="AutoMapper" />
         <PackageReference Include="MediatR" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />

@@ -5,10 +5,8 @@ namespace Anidream.Application.Contracts.Media;
 
 public class MediaForUpdateRequest
 {
-    [MaxLength(250)]
     public string? Title { get; init; }
     
-    [MaxLength(250)]
     public string? Alias { get; init; }
     
     public string? Description { get; init; }
@@ -19,10 +17,10 @@ public class MediaForUpdateRequest
     
     public DateOnly? ReleaseDate { get; init; }
     
-    [Range(0.0, 10.0)] //max 10 min 10 default 0
-    public double? Rating { get; init; }
+    //max 10 min 10 default 0
+    public double? Rating { get; init; } = null;
     
-    public IReadOnlyList<GenreDto>? Genres { get; init; }
+    public IReadOnlyList<Guid>? GenresIds { get; init; }
     
     public int? TotalEpisodes { get; init; }
     

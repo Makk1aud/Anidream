@@ -30,12 +30,12 @@ public class ProfilesBase : Profile
             });
         
         //Studio
-        CreateMap<Studio, StudioDto>().ReverseMap();
+        CreateMap<Studio, StudioResponse>().ReverseMap();
         
         //Director
         CreateMap<Director, DirectorResponse>().ReverseMap();
         
         //Genre
-        CreateMap<Genre, GenreDto>().ReverseMap();
+        CreateMap<Genre, GenreResponse>().ReverseMap();
     }
 }

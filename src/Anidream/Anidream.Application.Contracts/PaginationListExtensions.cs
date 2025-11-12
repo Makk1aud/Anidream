@@ -1,4 +1,4 @@
-namespace Anidream.Application;
+namespace Anidream.Application.Contracts;
 
 public static class PaginationListExtensions
 {

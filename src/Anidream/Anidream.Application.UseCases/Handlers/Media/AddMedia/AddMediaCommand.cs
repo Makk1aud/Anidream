@@ -6,5 +6,5 @@ namespace Anidream.Application.UseCases.Handlers.Media.AddMedia;
 
 public class AddMediaCommand : IRequest<MediaResponse>
 {
-    public MediaForCreationRequest MediaForCreationRequest { get; set; }
+    public MediaForCreationRequest Request { get; set; }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
-using Anidream.Application.Contracts;
 
-namespace Anidream.Application;
+namespace Anidream.Application.Contracts;
 
 public class PaginationList<TEntity> : IReadOnlyCollection<TEntity>
 {

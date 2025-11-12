@@ -29,12 +29,13 @@ public class StorageController : ControllerBase
         IFormFile file,
         CancellationToken cancellationToken)
     {
-        if(!ValidateImage(file) || !ValidateFileExtension(file.FileName, Constants.FileStorage.ImageExtension))
+        if(!ValidateImageFile(file))
             throw new MediaUnsupportedImageType($"The file provided is not a valid file format: {file.ContentType}. Valid format only {Constants.FileStorage.ImageExtension}.");
          
         await _sender.Send(
             new UploadMediaImageCommand(alias, file.OpenReadStream(), Path.GetExtension(file.FileName)),
             cancellationToken);
+        
         return Ok();
     }
     
@@ -71,15 +72,15 @@ public class StorageController : ControllerBase
         CancellationToken cancellationToken)
     {
         //Todo: Валидация на размер файла
-        if(!ValidateFileExtension(file.FileName, Constants.FileStorage.VideoExtension))
-            return BadRequest($"The file provided is not a valid file extension: {Constants.FileStorage.VideoExtension}.");
+        // if(!ValidateFileExtension(file.FileName, Constants.FileStorage.VideoExtension))
+        //     return BadRequest($"The file provided is not a valid file extension: {Constants.FileStorage.VideoExtension}.");
         
-        await _sender.Send(new UploadMediaVideoCommand(alias, episodeNumber.ToString(), file.OpenReadStream()), cancellationToken);
+        await _sender.Send(new UploadMediaVideoCommand(alias, episodeNumber.ToString(), file.OpenReadStream(), file.FileName), cancellationToken);
         return Ok();
     }
     
     //Todo: вынести это
-    private bool ValidateImage(IFormFile file) =>
+    private bool ValidateImageFile(IFormFile file) =>
         file.Length > 0 && file.ContentType.Equals(Constants.FileStorage.ImageContentType, StringComparison.CurrentCultureIgnoreCase);
     
     private bool ValidateFileExtension(string fileName, string fileExtension) =>

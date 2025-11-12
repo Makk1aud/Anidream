@@ -25,12 +25,9 @@ public abstract class BaseRepository<TEntity> where TEntity : class
     protected void Create(TEntity entity) =>
         _dbContext.Set<TEntity>().Add(entity);
     
-    protected ValueTask<EntityEntry<TEntity>> CreateAsync(TEntity entity) =>
-        _dbContext.Set<TEntity>().AddAsync(entity);
+    protected ValueTask<EntityEntry<TEntity>> CreateAsync(TEntity entity, CancellationToken cancellationToken = default) =>
+        _dbContext.Set<TEntity>().AddAsync(entity, cancellationToken);
 
     protected void Delete(TEntity entity) =>
         _dbContext.Set<TEntity>().Remove(entity);
-    
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
-        _dbContext.SaveChangesAsync(cancellationToken);
 }

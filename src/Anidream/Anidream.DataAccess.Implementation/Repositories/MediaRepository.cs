@@ -19,7 +19,6 @@ internal class MediaRepository : BaseRepository<Media>, IMediaRepository
 
     public async Task<IEnumerable<Media>> GetMediasAsync(bool tracking = false, CancellationToken cancellationToken = default) =>
         await FindAll(tracking)
-            .Include(x => x.Genres)
             .ToListAsync(cancellationToken: cancellationToken);
 
     public async Task<PaginationList<Media>> GetMediasAsync(
@@ -52,7 +51,7 @@ internal class MediaRepository : BaseRepository<Media>, IMediaRepository
             .SingleOrDefaultAsync(cancellationToken: cancellationToken);
 
     public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
-        (await CreateAsync(media)).Entity;
+        (await CreateAsync(media, cancellationToken)).Entity;
 
     public Task DeleteMediaAsync(Media media, CancellationToken cancellationToken = default)
     {

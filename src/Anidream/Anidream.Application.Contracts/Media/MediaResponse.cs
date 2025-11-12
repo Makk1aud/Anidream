@@ -26,8 +26,8 @@ public record MediaResponse
     
     public int HasImage { get; init; }
     
-    public IReadOnlyCollection<GenreDto> Genres { get; init; }
+    public IReadOnlyCollection<GenreResponse> Genres { get; init; }
     
-    public StudioDto Studio { get; init; }
+    public StudioResponse Studio { get; init; }
     public DirectorResponse Director { get; init; }
 }

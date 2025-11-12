@@ -4,7 +4,7 @@ namespace Anidream.Application.Exceptions;
 
 public class MediaNotFoundException : BaseException
 {
-    public override int StatusCode => (int)HttpStatusCode.NotFound;
+    public override int StatusCode => 404;
     public MediaNotFoundException(Guid id) 
         : base($"Media с id: {id} не найдено или удалено")
     { }

@@ -22,7 +22,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\..\Anidream.API\docker-compose.yaml">
+      <Content Include="..\Directory.Packages.props">
+        <Link>Directory.Packages.props</Link>
+      </Content>
+      <Content Include="..\docker-compose.yaml">
         <Link>docker-compose.yaml</Link>
       </Content>
       <Content Include="..\Dockerfile">

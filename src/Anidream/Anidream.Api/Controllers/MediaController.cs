@@ -52,7 +52,7 @@ public class MediaController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostMedia([FromBody] MediaForCreationRequest mediaRequest, CancellationToken cancellationToken)
     {
-        return Ok(await _sender.Send(new AddMediaCommand() {MediaForCreationRequest = mediaRequest}, cancellationToken));
+        return Ok(await _sender.Send(new AddMediaCommand() {Request = mediaRequest}, cancellationToken));
     }
     
     [HttpPut("{mediaId}")]
