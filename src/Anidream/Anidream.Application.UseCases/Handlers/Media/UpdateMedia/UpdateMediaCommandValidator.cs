@@ -8,11 +8,11 @@ public sealed class UpdateMediaCommandValidator : AbstractValidator<UpdateMediaC
     {
         RuleFor(x => x.Request.Title)
             .MaximumLength(250)
-            .When(x => x is not null);;
+            .When(x => x is not null);
         
         RuleFor(x => x.Request.Alias)
             .MaximumLength(250)
-            .When(x => x is not null);;
+            .When(x => x is not null);
         
         RuleFor(x => x.Request.Rating)
             .InclusiveBetween(0, 10)

@@ -6,7 +6,7 @@ public sealed class UpdateGenreCommandValidator : AbstractValidator<UpdateGenreC
 {
     public UpdateGenreCommandValidator()
     {
-        RuleFor(x => x.Request.Title).NotEmpty();
-        RuleFor(x => x.Request.Alias).NotEmpty();
+        RuleFor(x => x.Request.Title).NotEmpty().MaximumLength(50);
+        RuleFor(x => x.Request.Alias).NotEmpty().MaximumLength(50);
     }
 }

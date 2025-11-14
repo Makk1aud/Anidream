@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Anidream.Domain.Entities;
 
-//TODO: Добавление жанра надо делать через enum + отдельная таблица id + enum
 public class Media
 {
     [Key]
