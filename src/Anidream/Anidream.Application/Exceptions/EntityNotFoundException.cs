@@ -7,6 +7,10 @@ public class EntityNotFoundException : BaseException
     public EntityNotFoundException(string entityName) : base($"{entityName} не найдено")
     {
     }
+    
+    public EntityNotFoundException(string entityName, Guid id) : base($"{entityName} с id: {id}, не найдено")
+    {
+    }
 
     public EntityNotFoundException(string entityName, string alias) : base($"{entityName} с alias: {alias}, не найдено")
     {

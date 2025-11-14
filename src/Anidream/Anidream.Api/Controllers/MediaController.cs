@@ -65,6 +65,6 @@ public class MediaController : ControllerBase
     public async Task<IActionResult> DeleteMedia([FromRoute]Guid mediaId)
     {
         await _sender.Send(new DeleteMediaCommand() { MediaId = mediaId });
-        return Ok();
+        return NoContent();
     }
 }

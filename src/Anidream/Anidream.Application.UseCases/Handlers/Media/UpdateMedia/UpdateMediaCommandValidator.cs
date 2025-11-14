@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Anidream.Application.UseCases.Handlers.Media.UpdateMedia;
 
-public class UpdateMediaCommandValidator : AbstractValidator<UpdateMediaCommand>
+public sealed class UpdateMediaCommandValidator : AbstractValidator<UpdateMediaCommand>
 {
     public UpdateMediaCommandValidator()
     {

@@ -13,5 +13,7 @@ public interface IGenreRepository
     
     public Task<Genre> AddGenreAsync(Genre genre, CancellationToken cancellationToken = default);
     
+    public Task<Genre> UpdateGenreAsync(Genre genre, CancellationToken cancellationToken = default);
+    
     public Task DeleteGenreAsync(Genre genre, CancellationToken cancellationToken = default);
 }

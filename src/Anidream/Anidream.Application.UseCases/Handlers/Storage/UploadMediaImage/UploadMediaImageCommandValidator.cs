@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Anidream.Application.UseCases.Handlers.Storage.UploadMediaImage;
 
-internal class UploadMediaImageCommandValidator : AbstractValidator<UploadMediaImageCommand>
+public sealed class UploadMediaImageCommandValidator : AbstractValidator<UploadMediaImageCommand>
 {
     public UploadMediaImageCommandValidator()
     {

@@ -25,6 +25,9 @@ public class GenreRepository : BaseRepository<Genre>, IGenreRepository
     public async Task<Genre> AddGenreAsync(Genre genre, CancellationToken cancellationToken = default) =>
         (await CreateAsync(genre, cancellationToken)).Entity;
 
+    public Task<Genre> UpdateGenreAsync(Genre genre, CancellationToken cancellationToken = default) => 
+        Task.FromResult(Update(genre));
+
     public Task DeleteGenreAsync(Genre genre, CancellationToken cancellationToken = default)
     {
         Delete(genre);

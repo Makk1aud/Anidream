@@ -2,11 +2,15 @@ using FluentValidation;
 
 namespace Anidream.Application.UseCases.Handlers.Storage.UploadMediaVideo;
 
-internal class UploadMediaVideoCommandValidator : AbstractValidator<UploadMediaVideoCommand>
+public sealed class UploadMediaVideoCommandValidator : AbstractValidator<UploadMediaVideoCommand>
 {
     public UploadMediaVideoCommandValidator()
     {
-        RuleFor(x => x.FileName).NotEmpty().Must(IsCorrectVideoExtension);
+        RuleFor(x => x.FileName)
+            .NotEmpty()
+            .Must(IsCorrectVideoExtension)
+            .WithMessage($"Invalid video extension must {Constants.FileStorage.VideoExtension}");
+        
         RuleFor(x => x.EpisodeNumber).NotEmpty();
         RuleFor(x => x.Alias).NotEmpty();
     }

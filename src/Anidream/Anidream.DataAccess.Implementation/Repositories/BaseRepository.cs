@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Anidream.DataAccess.Implementation;
 
-//Сделать 
 public abstract class BaseRepository<TEntity> where TEntity : class
 {
     private readonly AnidreamContext _dbContext;
@@ -27,6 +26,9 @@ public abstract class BaseRepository<TEntity> where TEntity : class
     
     protected ValueTask<EntityEntry<TEntity>> CreateAsync(TEntity entity, CancellationToken cancellationToken = default) =>
         _dbContext.Set<TEntity>().AddAsync(entity, cancellationToken);
+    
+    protected TEntity Update(TEntity entity) => 
+        _dbContext.Set<TEntity>().Update(entity).Entity;
 
     protected void Delete(TEntity entity) =>
         _dbContext.Set<TEntity>().Remove(entity);
