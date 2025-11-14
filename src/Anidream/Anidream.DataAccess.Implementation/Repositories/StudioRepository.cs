@@ -18,6 +18,11 @@ public class StudioRepository : BaseRepository<Studio>, IStudioRepository
     public async Task<Studio> AddStudioAsync(Studio studio, CancellationToken cancellationToken = default) =>
        (await CreateAsync(studio, cancellationToken)).Entity;
 
+    public Task<Studio> UpdateStudioAsync(Studio studio, CancellationToken cancellationToken = default)
+    {
+        return Task.FromResult(Update(studio));
+    }
+
     public Task DeleteStudioAsync(Studio studio, CancellationToken cancellationToken = default) 
     {
         Delete(studio);

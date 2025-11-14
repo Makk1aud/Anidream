@@ -31,6 +31,7 @@ public class ProfilesBase : Profile
         
         //Studio
         CreateMap<Studio, StudioResponse>().ReverseMap();
+        CreateMap<Studio, StudioRequest>().ReverseMap();
         
         //Director
         CreateMap<Director, DirectorResponse>().ReverseMap();
