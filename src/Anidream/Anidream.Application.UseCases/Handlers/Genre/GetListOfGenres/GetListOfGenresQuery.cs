@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Anidream.Application.UseCases.Handlers.Genre.GetListOfGenres;
 
-public record GetListOfGenresQuery : IRequest<IReadOnlyList<GenreResponse>>
+public record GetListOfGenresQuery : IRequest<IReadOnlyCollection<GenreResponse>>
 {
     
 }

@@ -3,6 +3,7 @@ using Anidream.Application.UseCases.Handlers.Genre.AddGenre;
 using Anidream.Application.UseCases.Handlers.Genre.DeleteGenre;
 using Anidream.Application.UseCases.Handlers.Genre.GetGenreByAlias;
 using Anidream.Application.UseCases.Handlers.Genre.GetGenreById;
+using Anidream.Application.UseCases.Handlers.Genre.GetListOfGenres;
 using Anidream.Application.UseCases.Handlers.Genre.UpdateGenre;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,12 @@ public class GenreController : ControllerBase
         _sender = sender;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetGenres(CancellationToken cancellationToken)
+    {
+        return Ok(await _sender.Send(new GetListOfGenresQuery(), cancellationToken));
+    }
+    
     [HttpGet("{genreId}")]
     public async Task<IActionResult> GetGenreById([FromRoute] Guid genreId, CancellationToken cancellationToken)
     {
