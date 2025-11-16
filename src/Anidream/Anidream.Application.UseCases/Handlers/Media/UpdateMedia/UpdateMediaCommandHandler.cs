@@ -24,12 +24,20 @@ internal sealed class UpdateMediaCommandHandler : IRequestHandler<UpdateMediaCom
         var media = await _repositoryManager.MediaRepository.GetMediaAsync(request.MediaId, true, cancellationToken: cancellationToken);
         if (media == null)
             throw new MediaNotFoundException(request.MediaId);
-        
-        if(request.Request.DirectorId.HasValue)
-            media.DirectorId = (await _repositoryManager.DirectorRepository.GetDirectorAsync((Guid)request.Request.DirectorId, cancellationToken: cancellationToken))!.DirectorId;
-                
-        if(request.Request.StudioId.HasValue)
-            media.StudioId = (await _repositoryManager.StudioRepository.GetStudioAsync((Guid)request.Request.StudioId, cancellationToken: cancellationToken))!.StudioId;
+
+        if (request.Request.DirectorId.HasValue)
+        {
+            var director = await _repositoryManager.DirectorRepository.GetDirectorAsync((Guid)request.Request.DirectorId, cancellationToken: cancellationToken)
+                ?? throw new EntityNotFoundException(nameof(Director), (Guid)request.Request.DirectorId);
+            media.DirectorId = director.DirectorId;
+        }
+
+        if (request.Request.StudioId.HasValue)
+        {
+            var studio = await _repositoryManager.StudioRepository.GetStudioAsync((Guid)request.Request.StudioId, cancellationToken: cancellationToken)
+                           ?? throw new EntityNotFoundException(nameof(Studio), (Guid)request.Request.StudioId);
+            media.StudioId = studio.StudioId;
+        }
             
         if(request.Request.GenresIds != null && request.Request.GenresIds.Any())
             await UpdateMediaGenres(media, request.Request.GenresIds, cancellationToken);

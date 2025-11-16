@@ -26,11 +26,19 @@ internal sealed class AddMediaCommandHandler : IRequestHandler<AddMediaCommand, 
         {
             var media = _mapper.Map<Domain.Entities.Media>(request.Request);
         
-            if(request.Request.DirectorId.HasValue)
-                media.DirectorId = (await _repositoryManager.DirectorRepository.GetDirectorAsync((Guid)request.Request.DirectorId, cancellationToken: cancellationToken))!.DirectorId;
-                
-            if(request.Request.StudioId.HasValue)
-                media.StudioId = (await _repositoryManager.StudioRepository.GetStudioAsync((Guid)request.Request.StudioId, cancellationToken: cancellationToken))!.StudioId;
+            if (request.Request.DirectorId.HasValue)
+            {
+                var director = await _repositoryManager.DirectorRepository.GetDirectorAsync((Guid)request.Request.DirectorId, cancellationToken: cancellationToken)
+                               ?? throw new EntityNotFoundException(nameof(Director), (Guid)request.Request.DirectorId);
+                media.DirectorId = director.DirectorId;
+            }
+
+            if (request.Request.StudioId.HasValue)
+            {
+                var studio = await _repositoryManager.StudioRepository.GetStudioAsync((Guid)request.Request.StudioId, cancellationToken: cancellationToken)
+                             ?? throw new EntityNotFoundException(nameof(Studio), (Guid)request.Request.StudioId);
+                media.StudioId = studio.StudioId;
+            }
 
             await _repositoryManager.MediaRepository.AddMediaAsync(media, cancellationToken);
             await _repositoryManager.SaveChangesAsync(cancellationToken);

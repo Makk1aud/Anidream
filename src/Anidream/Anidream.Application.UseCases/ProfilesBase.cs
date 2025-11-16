@@ -35,6 +35,7 @@ public class ProfilesBase : Profile
         
         //Director
         CreateMap<Director, DirectorResponse>().ReverseMap();
+        CreateMap<Director, DirectorRequest>().ReverseMap();
         
         //Genre
         CreateMap<Genre, GenreResponse>().ReverseMap();

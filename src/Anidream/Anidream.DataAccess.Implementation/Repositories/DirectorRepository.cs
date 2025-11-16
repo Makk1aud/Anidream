@@ -18,6 +18,11 @@ public class DirectorRepository : BaseRepository<Director>, IDirectorRepository
     public async Task<Director> AddDirectorAsync(Director director, CancellationToken cancellationToken = default) =>
         (await CreateAsync(director, cancellationToken)).Entity;
 
+    public Task<Director> UpdateDirectorAsync(Director director, CancellationToken cancellationToken = default)
+    {
+        return Task.FromResult(Update(director));
+    }
+
     public Task DeleteDirectorAsync(Director director, CancellationToken cancellationToken = default)
     {
         Delete(director);

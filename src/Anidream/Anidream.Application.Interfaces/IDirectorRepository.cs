@@ -11,6 +11,7 @@ public interface IDirectorRepository
     public Task<Director?> GetDirectorAsync(Guid id, bool tracking = false, CancellationToken cancellationToken = default);
     
     public Task<Director> AddDirectorAsync(Director director, CancellationToken cancellationToken = default);
+    public Task<Director> UpdateDirectorAsync(Director director, CancellationToken cancellationToken = default);
     
     public Task DeleteDirectorAsync(Director director, CancellationToken cancellationToken = default);
 }
