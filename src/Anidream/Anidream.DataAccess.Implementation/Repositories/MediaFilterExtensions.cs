@@ -29,7 +29,7 @@ public static class MediaFilterExtensions
     {
         if(!genreAliases.Any())
             return items;
-        return items.Where(item => item.Genres.Select(x => x.Alias).Count(genreAliases.Contains) == genreAliases.Count);
+        return items.Where(item => item.Genres.Select(x => x.Alias).Intersect(genreAliases).Count() == genreAliases.Count);
     }
 
     public static IQueryable<Media> FilterByReleaseDate(
