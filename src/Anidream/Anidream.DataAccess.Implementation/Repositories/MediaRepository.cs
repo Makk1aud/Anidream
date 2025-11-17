@@ -15,7 +15,7 @@ internal class MediaRepository : BaseRepository<Media>, IMediaRepository
         await FindAll(tracking)
             .ToListAsync(cancellationToken: cancellationToken);
 
-    public async Task<PaginationList<Media>> GetMediasAsync(
+    public Task<PaginationList<Media>> GetMediasAsync(
         MediaFilter? filter,
         PaginationOptions paginationOptions,
         bool tracking = false,
@@ -31,7 +31,7 @@ internal class MediaRepository : BaseRepository<Media>, IMediaRepository
                 .FilterByRating(filter.MinRating, filter.MaxRating)
                 .FilterByGenreAlias(filter.GenresAliases);
         
-        return filteredMedia.ToPaginationList(paginationOptions.PageNumber, paginationOptions.PageSize, filteredMedia.Count());
+        return Task.FromResult(filteredMedia.ToPaginationList(paginationOptions.PageNumber, paginationOptions.PageSize, filteredMedia.Count()));
     }
 
     public Task<Media?> GetMediaAsync(Guid id, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default) =>
@@ -45,9 +45,15 @@ internal class MediaRepository : BaseRepository<Media>, IMediaRepository
     public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
         (await CreateAsync(media, cancellationToken)).Entity;
 
-    public Task DeleteMediaAsync(Media media, CancellationToken cancellationToken = default)
+    public Task SetDeleteStatusMediaAsync(Media media, CancellationToken cancellationToken = default)
     {
         media.IsDeleted = true;
+        return Task.CompletedTask;
+    }
+
+    public Task DeleteMediaAsync(Media media, CancellationToken cancellationToken = default)
+    {
+        Delete(media);
         return Task.CompletedTask;
     }
 }

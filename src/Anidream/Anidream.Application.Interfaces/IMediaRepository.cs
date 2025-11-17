@@ -21,5 +21,6 @@ public interface IMediaRepository
     
     public Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default);
     
+    public Task SetDeleteStatusMediaAsync(Media media, CancellationToken cancellationToken = default);
     public Task DeleteMediaAsync(Media media, CancellationToken cancellationToken = default);
 }

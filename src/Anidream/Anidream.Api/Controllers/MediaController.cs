@@ -4,6 +4,7 @@ using Anidream.Application.UseCases.Handlers.Media.AddMedia;
 using Anidream.Application.UseCases.Handlers.Media.DeleteMedia;
 using Anidream.Application.UseCases.Handlers.Media.GetListOfMedia;
 using Anidream.Application.UseCases.Handlers.Media.GetMediaById;
+using Anidream.Application.UseCases.Handlers.Media.SetDeleteMediaStatus;
 using Anidream.Application.UseCases.Handlers.Media.UpdateMedia;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -61,10 +62,17 @@ public class MediaController : ControllerBase
         return Ok(await _sender.Send(new UpdateMediaCommand() {MediaId = mediaId, Request = mediaRequest}));
     }
     
+    [HttpDelete("status/{mediaId}")]
+    public async Task<IActionResult> SetDeleteMediaStatus([FromRoute]Guid mediaId)
+    {
+        await _sender.Send(new SetDeleteMediaStatusCommand(mediaId));
+        return NoContent();
+    }
+    
     [HttpDelete("{mediaId}")]
     public async Task<IActionResult> DeleteMedia([FromRoute]Guid mediaId)
     {
-        await _sender.Send(new DeleteMediaCommand() { MediaId = mediaId });
+        await _sender.Send(new DeleteMediaCommand(mediaId));
         return NoContent();
     }
 }

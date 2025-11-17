@@ -2,7 +2,6 @@ using MediatR;
 
 namespace Anidream.Application.UseCases.Handlers.Media.DeleteMedia;
 
-public class DeleteMediaCommand : IRequest
+public record DeleteMediaCommand(Guid MediaId) : IRequest
 {
-    public Guid MediaId { get; set; }
 }
