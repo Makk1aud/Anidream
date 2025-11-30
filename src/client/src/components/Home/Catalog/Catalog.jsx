@@ -1,47 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SectionTitle from "../../UI/title/SectionTitle";
-import AnimeCard from "./AnimeCard/AnimeCard";
+import AnimeCard from "./AnimeCard/MediaCard";
 import cl from "./Catalog.module.css";
 import FilterBar from "./FilterBar/FilterBar";
+import { fetchAnimeList } from "../../../api/mediaAPI";
 
 export default function Catalog({ ref, id }) {
-  const [cards, setCards] = useState([
-    {
-      id: 1,
-      imagePath: "/anime-previews/magic-fight.webp",
-      grade: "4.8",
-      title: "Jujutsu Kaisen",
-      subtitle: "Магическая битва",
-    },
-    {
-      id: 2,
-      imagePath: "/anime-previews/demon-slayer.jpeg",
-      grade: "4.9",
-      title: "Demon Slayer",
-      subtitle: "Клинок рассекающий демонов",
-    },
-    {
-      id: 3,
-      imagePath: "/anime-previews/one-piece.jpg",
-      grade: "4.7",
-      title: "One piece",
-      subtitle: "Ван-пис",
-    },
-    {
-      id: 4,
-      imagePath: "/anime-previews/naruto.jpg",
-      grade: "4.6",
-      title: "Naruto",
-      subtitle: "Наруто",
-    },
-    {
-      id: 5,
-      imagePath: "/anime-previews/tokyo-ghoul.jpg",
-      grade: "4.9",
-      title: "Tokyo Ghoul",
-      subtitle: "Токийский гуль",
-    },
-  ]);
+  const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadAnimeList = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await fetchAnimeList();
+
+        const animeData = response || [];
+
+        const animeCards = animeData.map(anime => ({
+          id: anime.mediaId,
+          imagePath: "assets/tyler-derden.jpg",
+          grade: anime.rating,
+          title: anime.title,
+          subTitle: anime.alias
+        }))
+
+        setCards(animeCards);
+      } catch (err) {
+        console.log("Fetching anime error: ", err);
+        setError("Fetching anime error");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadAnimeList();
+  }, []);
 
   return (
     <div className={cl.conatainer} ref={ref} id={id}>

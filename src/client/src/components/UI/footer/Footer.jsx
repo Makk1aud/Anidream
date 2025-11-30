@@ -2,6 +2,7 @@ import React from "react";
 import cl from "./Footer.module.css";
 import FooterButton from "../button/FooterButton";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Logo from "../Logo";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -59,9 +60,9 @@ export default function Footer() {
           />
         </div>
         <div className={cl.slogan}>
-          <p className={cl.slogan__text}>Anidream - аниме для мечтающих!</p>
+          <p className={cl.slogan__text}>moviedream - фильмы/сериалы для мечтающих!</p>
           <Link onClick={handleClickScroll} to="/home">
-            <img className={cl.logo} src="/logo/AnidreamLogo(red).svg" />
+            <Logo />
           </Link>
         </div>
       </div>

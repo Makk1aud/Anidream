@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./pages/Home";
-import AnimePage from "./pages/AnimePage";
+import MediaPage from "./pages/MediaPage";
 import AppRouter from "./components/AppRouter";
 
 function App() {
