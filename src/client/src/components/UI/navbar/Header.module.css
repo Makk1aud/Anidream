@@ -20,6 +20,12 @@
   color: white;
 }
 
+.header__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .link {
   display: inline-flex;
   border-radius: 50%;

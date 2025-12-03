@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SectionTitle from "../../UI/title/SectionTitle";
-import AnimeCard from "./AnimeCard/MediaCard";
+import MediaCard from "./MediaCard/MediaCard";
 import cl from "./Catalog.module.css";
 import FilterBar from "./FilterBar/FilterBar";
 import { fetchAnimeList } from "../../../api/mediaAPI";
@@ -20,7 +20,7 @@ export default function Catalog({ ref, id }) {
 
         const animeData = response || [];
 
-        const animeCards = animeData.map(anime => ({
+        const MediaCards = animeData.map(anime => ({
           id: anime.mediaId,
           imagePath: "assets/tyler-derden.jpg",
           grade: anime.rating,
@@ -28,7 +28,7 @@ export default function Catalog({ ref, id }) {
           subTitle: anime.alias
         }))
 
-        setCards(animeCards);
+        setCards(MediaCards);
       } catch (err) {
         console.log("Fetching anime error: ", err);
         setError("Fetching anime error");
@@ -45,7 +45,7 @@ export default function Catalog({ ref, id }) {
       <FilterBar />
       <div className={cl.catalog}>
         {cards.map((card) => {
-          return <AnimeCard card={card} key={card.id} />;
+          return <MediaCard card={card} key={card.id} />;
         })}
       </div>
     </div>
