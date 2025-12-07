@@ -10,6 +10,8 @@ public record MediaResponse
     
     public string Title { get; init; }
     
+    public string? Subtitle { get; init; }
+    
     public string Alias { get; init; }
     
     public string Description { get; init; }

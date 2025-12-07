@@ -10,6 +10,9 @@ public class Media
     [Required]
     [MaxLength(250)]
     public string Title { get; set; }
+
+    [MaxLength(250)]
+    public string? Subtitle { get; set; } 
     
     [Required]
     [MaxLength(250)]

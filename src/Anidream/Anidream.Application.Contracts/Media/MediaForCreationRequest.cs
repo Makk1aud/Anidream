@@ -9,6 +9,8 @@ public record MediaForCreationRequest
     
     public string Alias { get; init; } = string.Empty;
     
+    public string? Subtitle { get; init; }
+    
     public string Description { get; init; } = string.Empty;
     
     public Guid? StudioId { get; init; }

@@ -13,6 +13,8 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
         
         builder.HasIndex(x => x.Title).IsUnique();
         builder.Property(x => x.Title).IsRequired().HasMaxLength(250);
+
+        builder.Property(x => x.Subtitle).HasMaxLength(250);
         
         builder.HasIndex(x => x.Alias).IsUnique();
         builder.Property(x => x.Alias).IsRequired().HasMaxLength(250);

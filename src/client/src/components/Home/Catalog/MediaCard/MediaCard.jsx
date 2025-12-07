@@ -25,6 +25,7 @@ export default function MediaCard(props) {
 
       <div className={cl.titles__container}>
         <MediaCardTitle title={props.card.title} />
+        <MediaCardSubTitle title={props.card.subTitle} />
       </div>
     </div>
   );

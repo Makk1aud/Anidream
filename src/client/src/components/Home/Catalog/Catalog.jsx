@@ -23,12 +23,12 @@ export default function Catalog({ ref, id }) {
         const MediaCards = mediaData.map(media => ({
           id: media.mediaId,
           alias: media.alias,
+          subTitle: media.subtitle,
           imagePath: media.hasImage === 1
             ? fetchMediaImage(media.alias)
             : "assets/no-image.png", 
           grade: media.rating,
           title: media.title,
-          subTitle: media.alias
         }))
         
         console.log("MediaCards: ", MediaCards);

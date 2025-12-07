@@ -6,6 +6,8 @@ namespace Anidream.Application.Contracts.Media;
 public class MediaForUpdateRequest
 {
     public string? Title { get; init; }
+
+    public string? Subtitle { get; init; } 
     
     public string? Alias { get; init; }
     
