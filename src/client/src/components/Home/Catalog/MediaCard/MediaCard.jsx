@@ -14,7 +14,7 @@ export default function MediaCard(props) {
       style={{
         "--bg-image": `url(${props.card.imagePath})`,
       }}
-      onClick={() => router(`/Media/${props.card.mediaId}`)}
+      onClick={() => router(`/Media/${props.card.id}`)}
     >
       <div className={cl.grade}>
         <div className={cl.grade__container}>
@@ -25,7 +25,6 @@ export default function MediaCard(props) {
 
       <div className={cl.titles__container}>
         <MediaCardTitle title={props.card.title} />
-        <MediaCardSubTitle title={props.card.subtitle} />
       </div>
     </div>
   );

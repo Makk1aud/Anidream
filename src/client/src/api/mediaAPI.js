@@ -1,14 +1,20 @@
 import axios from "axios";
 import { resolvePath } from "react-router-dom";
 
-const API_BASE_URL = "http://localhost:5001/api/media";
+const API_BASE_URL = "http://localhost:5001/api";
 
-export const fetchAnimeList = async () => {
-  const response = await axios.get(API_BASE_URL);
+export const fetchMediaList = async () => {
+  const response = await axios.get(`${API_BASE_URL}/media`);
 
   return response.data;
 };
 
-export const fetchAnimeById = async () => {
-  const response = await axios.get(`${API_BASE_URL}/`)
+export const fetchMediaById = async () => {
+  const response = await axios.get(`${API_BASE_URL}/media`)
+};
+
+export const fetchMediaImage = (alias) => {
+  return `${API_BASE_URL}/Storage/media/image/${alias}`;
 }
+
+

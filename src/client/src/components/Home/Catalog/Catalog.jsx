@@ -3,7 +3,7 @@ import SectionTitle from "../../UI/title/SectionTitle";
 import MediaCard from "./MediaCard/MediaCard";
 import cl from "./Catalog.module.css";
 import FilterBar from "./FilterBar/FilterBar";
-import { fetchAnimeList } from "../../../api/mediaAPI";
+import { fetchMediaList, fetchMediaImage } from "../../../api/mediaAPI";
 
 export default function Catalog({ ref, id }) {
   const [cards, setCards] = useState([]);
@@ -11,33 +11,37 @@ export default function Catalog({ ref, id }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const loadAnimeList = async () => {
+    const loadMediaList = async () => {
       try {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetchAnimeList();
+        const response = await fetchMediaList();
 
-        const animeData = response || [];
+        const mediaData = response || [];
 
-        const MediaCards = animeData.map(anime => ({
-          id: anime.mediaId,
-          imagePath: "assets/tyler-derden.jpg",
-          grade: anime.rating,
-          title: anime.title,
-          subTitle: anime.alias
+        const MediaCards = mediaData.map(media => ({
+          id: media.mediaId,
+          alias: media.alias,
+          imagePath: media.hasImage === 1
+            ? fetchMediaImage(media.alias)
+            : "assets/no-image.png", 
+          grade: media.rating,
+          title: media.title,
+          subTitle: media.alias
         }))
-
+        
+        console.log("MediaCards: ", MediaCards);
         setCards(MediaCards);
       } catch (err) {
-        console.log("Fetching anime error: ", err);
-        setError("Fetching anime error");
+        console.log("Fetching meida error: ", err);
+        setError("Fetching media error");
       } finally {
         setIsLoading(false);
       }
     };
 
-    loadAnimeList();
+    loadMediaList();
   }, []);
 
   return (
