@@ -1,9 +1,9 @@
-.anime__page__container {
+.media__page__container {
   display: flex;
   justify-content: center;
 }
 
-.anime__page {
+.media__page {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   overflow: hidden;
 }
 
-.anime__page:before {
+.media__page:before {
   content: "";
 
   position: absolute;
@@ -39,7 +39,7 @@
   z-index: -1;
 }
 
-.anime__page::after {
+.media__page::after {
   content: "";
 
   position: absolute;
@@ -58,11 +58,11 @@
   display: flex;
 }
 
-.anime__info {
+.media__info {
   width: 920px;
 }
 
-.anime__img__container {
+.media__img__container {
   position: relative;
 
   margin-right: 50px;
@@ -74,26 +74,26 @@
   background-color: aqua;
 }
 
-.anime__img__container:hover {
+.media__img__container:hover {
   cursor: pointer;
 }
 
-.anime__img__container:hover .anime__img {
+.media__img__container:hover .media__img {
   filter: brightness(70%);
 }
 
-.anime__img__container:hover .go__to__view {
+.media__img__container:hover .go__to__view {
   filter: brightness(130%);
   background: rgba(177, 177, 177, 0.2);
 
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
-.anime__img__container:hover .go__to__view__img {
+.media__img__container:hover .go__to__view__img {
   filter: brightness(70%);
 }
 
-.anime__img {
+.media__img {
   display: block;
   width: 350px;
 

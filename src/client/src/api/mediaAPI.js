@@ -9,12 +9,12 @@ export const fetchMediaList = async () => {
   return response.data;
 };
 
-export const fetchMediaById = async () => {
-  const response = await axios.get(`${API_BASE_URL}/media`)
+export const fetchMediaById = async (mediaId) => {
+  const response = await axios.get(`${API_BASE_URL}/media/${mediaId}`)
+
+  return response.data;
 };
 
 export const fetchMediaImage = (alias) => {
   return `${API_BASE_URL}/Storage/media/image/${alias}`;
 }
-
-

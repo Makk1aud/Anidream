@@ -32,14 +32,14 @@ export default function MediaDescription() {
   ]);
 
   return (
-    <div className={cl.Media__description}>
+    <div className={cl.media__description}>
       <div className={cl.genres}>
         <p>Жанры:&nbsp;&nbsp;</p>
         {genres.map((genre) => (
           <MediaGenre genre={genre} />
         ))}
       </div>
-      <ul className={cl.Media__details}>
+      <ul className={cl.media__details}>
         <li>Эпизоды:</li>
         <li>Год:</li>
         <li>Дата премьеры:</li>

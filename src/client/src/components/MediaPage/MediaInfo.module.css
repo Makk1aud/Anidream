@@ -1,4 +1,4 @@
-.anime__description {
+.media__description {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@
   padding-left: 20px;
 }
 
-.anime__details {
+.media__details {
   list-style-type: none;
 
   width: 100%;
@@ -43,7 +43,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
-.anime__details li {
+.media__details li {
   padding-left: 20px;
   margin-top: 12px;
 }

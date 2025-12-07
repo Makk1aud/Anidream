@@ -3,8 +3,8 @@ import cl from "./MediaDescription.module.css";
 
 export default function MediaDescription() {
   return (
-    <div className={cl.anime__description__container}>
-      <p className={cl.anime__description}>
+    <div className={cl.media__description__container}>
+      <p className={cl.media__description}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
         perferendis deleniti enim voluptates sint mollitia totam dicta porro
         asperiores voluptate aut doloremque illum ratione dolorum nihil pariatur
