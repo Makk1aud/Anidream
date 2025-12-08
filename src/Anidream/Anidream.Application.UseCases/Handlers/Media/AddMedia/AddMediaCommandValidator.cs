@@ -15,7 +15,8 @@ public sealed class AddMediaCommandValidator : AbstractValidator<AddMediaCommand
             .MaximumLength(250);
         
         RuleFor(x => x.Request.Description)
-            .NotEmpty();
+            .NotEmpty()
+            .MaximumLength(250);
 
         RuleFor(x => x.Request.ReleaseDate)
             .NotEmpty();

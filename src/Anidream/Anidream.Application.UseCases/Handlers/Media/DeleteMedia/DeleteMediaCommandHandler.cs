@@ -15,7 +15,7 @@ internal sealed class DeleteMediaCommandHandler : IRequestHandler<DeleteMediaCom
 
     public async Task Handle(DeleteMediaCommand request, CancellationToken cancellationToken)
     {
-        var media = await _repositoryManager.MediaRepository.GetMediaAnyStatusAsync(request.MediaId, true, cancellationToken)
+        var media = await _repositoryManager.MediaRepository.GetMediaAsync(request.MediaId,  cancellationToken:  cancellationToken)
             ?? throw new EntityNotFoundException(nameof(Media), request.MediaId);
 
         await _repositoryManager.MediaRepository.DeleteMediaAsync(media, cancellationToken: cancellationToken);
