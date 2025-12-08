@@ -71,7 +71,7 @@ export default function MediaPage(props) {
         type: 'video/mp4',
       }
     ]
-  }
+  };
 
   const imagePath = media.hasImage === 1
     ? fetchMediaImage(media.alias)
