@@ -18,6 +18,7 @@ public interface IMediaRepository
     
     public Task<Media?> GetMediaAsync(Guid id, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default);
     public Task<Media?> GetMediaByAliasAsync(string alias, bool tracking = false, bool isDeleted = false, CancellationToken cancellationToken = default);
+    public Task<Media?> GetMediaAnyStatusAsync(Guid id, bool tracking = false, CancellationToken cancellationToken = default);
     
     public Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default);
     

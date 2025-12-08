@@ -42,6 +42,10 @@ internal class MediaRepository : BaseRepository<Media>, IMediaRepository
         FindByExpression(x => x.IsDeleted == isDeleted && x.Alias == alias, tracking)
             .SingleOrDefaultAsync(cancellationToken: cancellationToken);
 
+    public Task<Media?> GetMediaAnyStatusAsync(Guid id, bool tracking = false, CancellationToken cancellationToken = default) =>
+        FindByExpression(x => x.MediaId == id, tracking)
+            .SingleOrDefaultAsync(cancellationToken: cancellationToken);
+
     public async Task<Media> AddMediaAsync(Media media, CancellationToken cancellationToken = default) => 
         (await CreateAsync(media, cancellationToken)).Entity;
 
