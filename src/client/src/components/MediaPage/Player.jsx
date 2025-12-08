@@ -1,34 +1,49 @@
 import React from "react";
-import { useRef, useEffect, useLayoutEffect } from "react";
-import ReactPlayer from "react-player";
+import { useRef, useEffect } from "react";
 import cl from "./Player.module.css";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
 export default function Player(props) {
   const videoRef = useRef(null);
-  const playerRef = useRef();
+  const playerRef = useRef(null);
 
   const { options = {}, onReady } = props;
 
-  useLayoutEffect(() => {
+  // Инициализация плеера (только один раз)
+  useEffect(() => {
+    // Проверяем, что элемент существует
+    if (!videoRef.current) {
+      return;
+    }
 
-    console.log("useEffect запущен, videoRef.current:", videoRef.current);
-    const player = (playerRef.current = videojs(
-      videoRef.current,
-      options,
-      () => {
-        onReady && onReady(player);
-      }
-    ));
+    // Инициализируем новый плеер только если его ещё нет
+    if (!playerRef.current) {
+      const player = videojs(
+        videoRef.current,
+        options,
+        () => {
+          onReady && onReady(player);
+        }
+      );
+
+      playerRef.current = player;
+    }
 
     return () => {
-      if (player) {
-        player.dispose();
+      if (playerRef.current && !playerRef.current.isDisposed()) {
+        playerRef.current.dispose();
         playerRef.current = null;
       }
     };
-  }, [options, onReady]);
+  }, []); // Инициализация только один раз при монтировании
+
+  // Обновление источников при изменении options
+  useEffect(() => {
+    if (playerRef.current && options.sources && options.sources.length > 0) {
+      playerRef.current.src(options.sources);
+    }
+  }, [options.sources?.[0]?.src]); // Обновляем только при изменении URL
 
   // //изменения options после того, как плеер уже инициализирован
   // useEffect(() => {
