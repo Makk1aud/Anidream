@@ -71,7 +71,6 @@
   border: 1px solid rgb(129, 129, 129);
   border-radius: 10px;
   overflow: hidden;
-  background-color: aqua;
 }
 
 .media__img__container:hover {
@@ -79,7 +78,7 @@
 }
 
 .media__img__container:hover .media__img {
-  filter: brightness(70%);
+  filter: brightness(70%) blur(1.3px);
 }
 
 .media__img__container:hover .go__to__view {
@@ -91,6 +90,7 @@
 
 .media__img__container:hover .go__to__view__img {
   filter: brightness(70%);
+  
 }
 
 .media__img {

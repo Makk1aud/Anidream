@@ -1,35 +1,31 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import MediaGenre from "./MediaGenre";
 import cl from "./MediaInfo.module.css";
 
-export default function MediaDescription() {
-  const [genres, setGenres] = useState([
-    {
-      id: "romance",
-      title: "Романтика",
-      imgPath: "/genres/romance.svg",
-    },
-    {
-      id: "drama",
-      title: "Драма",
-      imgPath: "/genres/drama.png",
-    },
-    {
-      id: "adventure",
-      title: "Приключения",
-      imgPath: "/genres/adventure.png",
-    },
-    {
-      id: "fantsy",
-      title: "Фэнтези",
-      imgPath: "/genres/fantasy.png",
-    },
-    {
-      id: "sword",
-      title: "Сражения на мечах",
-      imgPath: "/genres/sword.png",
-    },
-  ]);
+export default function MediaDescription({ media }) {
+  const genres = media?.genres || [];
+
+  const monthNames = [
+    "Января",
+    "Февраля",
+    "Марта",
+    "Апреля",
+    "Мая",
+    "Июня",
+    "Июля",
+    "Августа",
+    "Сентября",
+    "Октября",
+    "Ноября",
+    "Декабря",
+  ];
+
+  function getMonthName(date) {
+    const dateObj = new Date(date);
+    const monthIndex = dateObj.getMonth();
+    return monthNames[monthIndex];
+  }
 
   return (
     <div className={cl.media__description}>
@@ -40,12 +36,23 @@ export default function MediaDescription() {
         ))}
       </div>
       <ul className={cl.media__details}>
-        <li>Эпизоды:</li>
-        <li>Год:</li>
-        <li>Дата премьеры:</li>
-        <li>Статус:</li>
-        <li>Тип:</li>
-        <li>Возрастное ограничение:</li>
+        <li>Год производства: {new Date(media.releaseDate).getFullYear()}</li>
+        <li>
+          Дата премьеры: {new Date(media.releaseDate).getDate()}{" "}
+          {getMonthName(media.releaseDate)}{" "}
+          {new Date(media.releaseDate).getFullYear()}
+        </li>
+        <li>
+          Серии: {media.currentEpisodes} / {media.totalEpisodes}
+        </li>
+        <li>Студия: {media.studio.title}</li>
+        <li>Режисcер: {media.director.fullName}</li>
+        <li>
+          <div className={cl.rating}>
+            Рейтинг: {media.rating}
+            <img src="/assets/grade.svg"/>
+          </div>
+        </li>
       </ul>
     </div>
   );

@@ -5,7 +5,7 @@
 .media__description {
   padding: 20px;
   padding-right: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 50px;
 
   background: rgba(177, 177, 177, 0.3);
   border: 1px solid rgba(222, 222, 222, 0.3);
@@ -19,7 +19,7 @@
 .logo {
   position: absolute;
 
-  width: 60px;
+  width: 30px;
 
   right: 15px;
   bottom: 15px;

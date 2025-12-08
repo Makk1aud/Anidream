@@ -86,10 +86,10 @@ export default function MediaPage(props) {
             </div>
             <div className={cl.media__info}>
               <MediaPageTitle title={media.title} subtitle={media.subtitle} />
-              <MediaInfo />
+              <MediaInfo media={media}/>
             </div>
           </div>
-          <MediaDescription />
+          <MediaDescription media={media}/>
           <div className={cl.player__container} ref={playerRef}>
             <Player url={media.url} title={media.subtitle} />
           </div>
