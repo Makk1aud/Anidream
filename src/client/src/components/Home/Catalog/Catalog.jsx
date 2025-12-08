@@ -14,7 +14,7 @@ export default function Catalog({ ref, id }) {
     const loadMediaList = async () => {
       try {
         setIsLoading(true);
-        setError(null);
+        setError();
 
         const response = await fetchMediaList();
 
