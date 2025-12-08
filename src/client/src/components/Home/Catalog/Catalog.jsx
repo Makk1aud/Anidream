@@ -9,12 +9,13 @@ export default function Catalog({ ref, id }) {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [test, setTest] = useState(null);
 
   useEffect(() => {
     const loadMediaList = async () => {
       try {
         setIsLoading(true);
-        setError();
+        setError(null);
 
         const response = await fetchMediaList();
 
