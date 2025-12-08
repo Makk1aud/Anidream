@@ -9,8 +9,16 @@ public static class RepositoryHelper
     public static async Task<IEnumerable<Genre>> GetGenresByIdsAsync(
         IGenreRepository genreRepository,
         IReadOnlyCollection<Guid> genreIds,
-        CancellationToken cancellationToken) =>
-            await Task.WhenAll(genreIds.Select(async x => 
-                await genreRepository.GetGenreAsync(x, cancellationToken: cancellationToken)
-                ?? throw new EntityNotFoundException(nameof(Genre), x.ToString())));
+        CancellationToken cancellationToken)
+    {
+        var genres = new List<Genre>();
+        foreach (var genreId in genreIds)
+        {
+            var genre = await genreRepository.GetGenreAsync(genreId, cancellationToken: cancellationToken)
+                        ?? throw new EntityNotFoundException(nameof(Genre), genreId.ToString());
+            genres.Add(genre);
+        }
+
+        return genres;
+    }
 }

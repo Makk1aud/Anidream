@@ -50,7 +50,7 @@ internal sealed class AddMediaCommandHandler : IRequestHandler<AddMediaCommand, 
         }
         catch (Exception e)
         {
-            throw new MediaBadRequestException("Ошибка добавления media", e);
+            throw new MediaBadRequestException($"Ошибка добавления media: {e.Message}", e);
         }
     }
 

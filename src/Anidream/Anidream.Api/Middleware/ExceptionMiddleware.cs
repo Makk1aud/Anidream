@@ -29,26 +29,53 @@ public class ExceptionMiddleware
 
     private Task HandleExceptionAsync(HttpContext context, Exception exception) => exception switch
     {
-        BaseException baseException => HandleExceptionAsync(context, CreateProblemDetailsByException(baseException, baseException.StatusCode)),
+        BaseException baseException => HandleExceptionAsync(context, CreateProblemDetailsByException(baseException, baseException.StatusCode, exception)),
         ValidationException validationException => HandleExceptionAsync(context, CreateProblemDetailsByValidationException(validationException)),
-        _ => HandleExceptionAsync(context, CreateProblemDetailsByException(exception, StatusCodes.Status500InternalServerError))
+        _ => HandleExceptionAsync(context, CreateProblemDetailsByException(exception, StatusCodes.Status500InternalServerError, exception))
     };
                 
     private async Task HandleExceptionAsync(HttpContext context, ProblemDetails problemDetails)
     {
+        if (context.Response.HasStarted)
+        {
+            _logger.LogError("Cannot write error response, headers already sent. Problem: {ProblemDetailsTitle}", problemDetails.Title);
+            return;
+        }
+
         context.Response.StatusCode = problemDetails.Status!.Value;
+        context.Response.ContentType = "application/json";
         
         _logger.LogError("{ProblemDetailsTitle}", problemDetails.Title);
         await context.Response.WriteAsJsonAsync(problemDetails).ConfigureAwait(false);
-        
-        context.Response.ContentType = "application/json";
     }
     
-    private ProblemDetails CreateProblemDetailsByException(Exception exception, int statusCode) => new ProblemDetails()
+    private ProblemDetails CreateProblemDetailsByException(Exception exception, int statusCode, Exception? original = null)
+    {
+        var details = new ProblemDetails()
     {
         Title = exception.Message,
         Status = statusCode
     };
+
+        var inner = original?.InnerException;
+        if (inner != null)
+        {
+            details.Extensions["innerException"] = inner.Message;
+            var deepest = GetInnermostException(inner);
+            if (deepest != null && deepest != inner)
+                details.Extensions["innerMostException"] = deepest.Message;
+        }
+
+        return details;
+    }
+    
+    private static Exception? GetInnermostException(Exception exception)
+    {
+        var current = exception;
+        while (current.InnerException != null)
+            current = current.InnerException;
+        return current;
+    }
 
     private ProblemDetails CreateProblemDetailsByValidationException(ValidationException exception)
     {
