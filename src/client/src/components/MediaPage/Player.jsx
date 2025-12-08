@@ -10,24 +10,53 @@ export default function Player(props) {
 
   const { options = {}, onReady } = props;
 
-  // Инициализация плеера (только один раз)
+  // Инициализация плеера
   useEffect(() => {
+    let player;
+
     // Проверяем, что элемент существует
     if (!videoRef.current) {
+      console.warn("Video element ref is not available");
       return;
     }
 
-    // Инициализируем новый плеер только если его ещё нет
-    if (!playerRef.current) {
-      const player = videojs(
+    // Если плеер уже инициализирован, сначала удаляем его
+    if (playerRef.current) {
+      if (!playerRef.current.isDisposed()) {
+        playerRef.current.dispose();
+      }
+      playerRef.current = null;
+    }
+
+    // Инициализируем новый плеер
+    try {
+      player = videojs(
         videoRef.current,
-        options,
-        () => {
-          onReady && onReady(player);
+        {
+          ...options,
+          // Убеждаемся, что базовые опции установлены
+          controls: options.controls !== undefined ? options.controls : true,
+          autoplay: options.autoplay !== undefined ? options.autoplay : false,
+          responsive: options.responsive !== undefined ? options.responsive : true,
+          fluid: options.fluid !== undefined ? options.fluid : true,
+        },
+        function() {
+          // Callback готовности
+          console.log("Video.js player is ready");
+          if (onReady) {
+            onReady(player);
+          }
         }
       );
 
       playerRef.current = player;
+
+      // Если есть источники, устанавливаем их
+      if (options.sources && options.sources.length > 0) {
+        player.src(options.sources);
+      }
+    } catch (error) {
+      console.error("Error initializing Video.js player:", error);
     }
 
     return () => {
@@ -36,14 +65,7 @@ export default function Player(props) {
         playerRef.current = null;
       }
     };
-  }, []); // Инициализация только один раз при монтировании
-
-  // Обновление источников при изменении options
-  useEffect(() => {
-    if (playerRef.current && options.sources && options.sources.length > 0) {
-      playerRef.current.src(options.sources);
-    }
-  }, [options.sources?.[0]?.src]); // Обновляем только при изменении URL
+  }, [options.sources?.[0]?.src]); // Переинициализируем при изменении источника
 
   // //изменения options после того, как плеер уже инициализирован
   // useEffect(() => {
@@ -61,9 +83,19 @@ export default function Player(props) {
       <div className={cl.player__name}>
         <h2>{`Смотреть ${props.title}`}</h2>
       </div>
-      <div data-vjs-player>
-        <video ref={videoRef} className="video-js vjs-big-play-centered"/>
+      <div data-vjs-player style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+        <video
+          ref={videoRef}
+          className="video-js vjs-big-play-centered"
+          playsInline
+          style={{ width: '100%', height: 'auto' }}
+        />
       </div>
+      {process.env.NODE_ENV === 'development' && (
+        <div style={{ marginTop: '10px', fontSize: '12px', color: '#999' }}>
+          Debug: Video source: {options.sources?.[0]?.src || 'No source'}
+        </div>
+      )}
     </div>
   );
 }

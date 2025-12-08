@@ -6,7 +6,7 @@ import Header from "../components/UI/navbar/Header.jsx";
 import MediaInfo from "../components/MediaPage/MediaOverview/MediaInfo.jsx";
 import MediaDescription from "../components/MediaPage/MediaOverview/MediaDescription.jsx";
 import Player from "../components/MediaPage/Player.jsx";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import Footer from "../components/UI/footer/Footer.jsx";
 import { useScroll } from "../hooks/useScroll.js";
 import { fetchMediaById, fetchMediaList, fetchMediaImage, fetchSeriesByNum } from "../api/mediaAPI.js";
@@ -60,7 +60,7 @@ export default function MediaPage(props) {
 
   const videoPath = fetchSeriesByNum(media.alias, 1);
 
-  const playerOptions = useMemo(() => ({
+  const playerOptions = {
     autoplay: false,
     controls: true,
     responsive: true,
@@ -71,7 +71,7 @@ export default function MediaPage(props) {
         type: 'video/mp4',
       }
     ]
-  }), [videoPath]);
+  };
 
   const imagePath = media.hasImage === 1
     ? fetchMediaImage(media.alias)
