@@ -18,3 +18,7 @@ export const fetchMediaById = async (mediaId) => {
 export const fetchMediaImage = (alias) => {
   return `${API_BASE_URL}/Storage/media/image/${alias}`;
 }
+
+export const fetchSeriesByNum = (alias, num) => {
+  return `${API_BASE_URL}/Storage/media/video/${alias}/episode/${num}`
+}

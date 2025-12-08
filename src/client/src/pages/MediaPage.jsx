@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import cl from "./MediaPage.module.css";
-import MediaPageTitle from "../components/MediaPage/MediaPageTitle.jsx";
+import MediaPageTitle from "../components/MediaPage/MediaOverview/MediaPageTitle.jsx";
 import { MediaList } from "../data/MediaList.js";
 import Header from "../components/UI/navbar/Header.jsx";
-import MediaInfo from "../components/MediaPage/MediaInfo.jsx";
-import MediaDescription from "../components/MediaPage/MediaDescription.jsx";
+import MediaInfo from "../components/MediaPage/MediaOverview/MediaInfo.jsx";
+import MediaDescription from "../components/MediaPage/MediaOverview/MediaDescription.jsx";
 import Player from "../components/MediaPage/Player.jsx";
 import { useState, useEffect, useRef } from "react";
 import Footer from "../components/UI/footer/Footer.jsx";
 import { useScroll } from "../hooks/useScroll.js";
-import { fetchMediaById, fetchMediaList, fetchMediaImage } from "../api/mediaAPI.js";
+import { fetchMediaById, fetchMediaList, fetchMediaImage, fetchSeriesByNum } from "../api/mediaAPI.js";
 
 export default function MediaPage(props) {
 
@@ -58,6 +58,21 @@ export default function MediaPage(props) {
     );
   }
 
+  const videoPath = fetchSeriesByNum(media.alias, 1);
+
+  const playerOptions = {
+    autoplay: false,
+    controls: true,
+    responsive: true,
+    fluid: true,
+    sources: [
+      {
+        src: videoPath,
+        type: 'video/mp4',
+      }
+    ]
+  }
+
   const imagePath = media.hasImage === 1
     ? fetchMediaImage(media.alias)
     : "assets/no-image.png"
@@ -91,7 +106,7 @@ export default function MediaPage(props) {
           </div>
           <MediaDescription media={media}/>
           <div className={cl.player__container} ref={playerRef}>
-            <Player url={media.url} title={media.subtitle} />
+            <Player options={playerOptions} title={media.subtitle} />
           </div>
         </div>
       </div>
