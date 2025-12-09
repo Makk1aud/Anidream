@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cl from "./FilterBar.module.css";
-import FilterSelect from "../../../UI/select/FilterSelect";
+import FilterSelect from "../../../UI/select/FilterSelect/FilterSelect";
 import FilterSlider from "../../../UI/slider/FilterSlider";
 
 export default function FilterBar() {
