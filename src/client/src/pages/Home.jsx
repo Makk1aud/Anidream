@@ -5,6 +5,7 @@ import Catalog from "../components/Home/Catalog/Catalog";
 import Footer from "../components/UI/footer/Footer";
 import cl from "./Home.module.css";
 import { useScroll } from "../hooks/useScroll";
+import Loader from "../components/UI/loader/Loader";
 
 export default function Home() {
   const [catalogRef, scrollToCatalog] = useScroll();

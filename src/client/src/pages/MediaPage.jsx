@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from "react";
 import Footer from "../components/UI/footer/Footer.jsx";
 import { useScroll } from "../hooks/useScroll.js";
 import { fetchMediaById, fetchMediaList, fetchMediaImage, fetchSeriesByNum } from "../api/mediaAPI.js";
+import Loader from "../components/UI/loader/Loader.jsx";
 
 export default function MediaPage(props) {
 
@@ -42,7 +43,7 @@ export default function MediaPage(props) {
     return (
       <div>
         <Header />
-        <div>Загрузка...</div>
+        <Loader />
         <Footer />
       </div>
     );
