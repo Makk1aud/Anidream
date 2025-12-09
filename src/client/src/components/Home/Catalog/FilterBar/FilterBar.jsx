@@ -5,24 +5,31 @@ import FilterSlider from "../../../UI/slider/FilterSlider";
 
 export default function FilterBar() {
   const genreOptions = [
-    { value: "adventure", label: "Приключения" },
-    { value: "vampire", label: "Вампиры" },
-    { value: "garem", label: "Гарем" },
-    { value: "djesay", label: "Дзёсэй" },
+    { value: "action", label: "Боевик" },
+    { value: "biography", label: "Биография" },
+    { value: "war", label: "Военный" },
+    { value: "detective", label: "Детекив" },
+    { value: "documentary", label: "Документальный" },
     { value: "drama", label: "Драма" },
-    { value: "game", label: "Игра" },
     { value: "comedy", label: "Комедия" },
+    { value: "crime", label: "Криминал" },
+    { value: "romantic", label: "Мелодрама" },
+    { value: "kids", label: "Мультсериал" },
+    { value: "adventure", label: "Приключения" },
+    { value: "family", label: "Семейный" },
+    { value: "sport", label: "Спорт" },
+    { value: "thriller", label: "Триллер" },
+    { value: "horror", label: "Ужасы" },
+    { value: "fantasy", label: "Фантастика" }
   ];
 
   const typeOptions = [
-    { value: "ova", label: "OVA" },
-    { value: "ona", label: "ONA" },
-    { value: "movie", label: "Фильм" },
-    { value: "special", label: "Спешл" },
+    { value: "tv-series", label: "Сериал" },
+    { value: "movie", label: "Фильм" }
   ];
 
   const statusOptions = [
-    { value: "ongoing", label: "Онгоинг" },
+    { value: "on-going", label: "Продолжается" },
     { value: "finished", label: "Закончено" },
   ];
 
@@ -54,9 +61,14 @@ export default function FilterBar() {
           <div className={cl.status__select__wrapper}>
             <FilterSelect options={statusOptions} placeholder="Статус" />
           </div>
-          <div className="year__slider">
+
+          <button className={cl.search__button}>
+            <img className={cl.search__button__img} src="/assets/search-button.png"/>
+          </button>
+
+          {/* <div className="year__slider">
             <FilterSlider />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -35,6 +35,31 @@
     margin-left: 15px;
 }
 
+.search__button {
+    height:50px;
+    width: 50px;
+
+    margin-left: 550px;
+
+    border-radius: 100%;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgba(177, 177, 177, 0.6);
+}
+
+.search__button:hover {
+    background-color: #971a1a;  
+    border: 2px solid rgba(0, 0, 0, 0.6);  
+}
+
+.search__button__img {
+    filter: invert(1);
+    width: 20px;
+}
+
+.search__button:hover .search__button__img {
+    filter: invert(0); 
+}
+
 .year__slider {
     background-color: antiquewhite;
 }
