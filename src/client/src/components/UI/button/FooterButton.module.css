@@ -15,3 +15,9 @@
 
   background-color: rgb(63, 63, 63);
 }
+
+@media(min-width: 1440px) {
+  .footer__button {
+    margin-left: 80px;
+  }
+}

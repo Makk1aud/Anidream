@@ -28,3 +28,9 @@
   padding-inline: 10px;
   padding-top: 50px;
 }
+
+@media (min-width: 1440px) {
+  .conatainer {
+    max-width: 1250px;
+  }
+}

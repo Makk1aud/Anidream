@@ -46,20 +46,22 @@ export default function FilterBar() {
       <div className={cl.filter__bar}>
         <h3>Фильтры: </h3>
         <div className={cl.filters}>
-          <div className={cl.genre__select__wrapper}>
-            <FilterSelect
-              className={cl.genre__select}
-              value={() => getValue(currentGenre, genreOptions)}
-              options={genreOptions}
-              isMulti={true}
-              placeholder="Жанр"
-            />
-          </div>
-          <div className={cl.type__select__wrapper}>
-            <FilterSelect options={typeOptions} placeholder="Тип" />
-          </div>
-          <div className={cl.status__select__wrapper}>
-            <FilterSelect options={statusOptions} placeholder="Статус" />
+          <div className={cl.selects}>
+            <div className={cl.genre__select__wrapper}>
+              <FilterSelect
+                className={cl.genre__select}
+                value={() => getValue(currentGenre, genreOptions)}
+                options={genreOptions}
+                isMulti={true}
+                placeholder="Жанр"
+              />
+            </div>
+            <div className={cl.type__select__wrapper}>
+              <FilterSelect options={typeOptions} placeholder="Тип" />
+            </div>
+            <div className={cl.status__select__wrapper}>
+              <FilterSelect options={statusOptions} placeholder="Статус" />
+            </div>
           </div>
 
           <button className={cl.search__button}>

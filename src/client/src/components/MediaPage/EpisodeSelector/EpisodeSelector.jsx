@@ -15,7 +15,7 @@ export default function EpisodeSelector({media, onChange, currentEpisode}) {
 
   return (
     <div className={cl.container}>
-      <p className={cl.choice__text}>Выберите серию: </p>
+      <p className={cl.choice__text}>Серия: </p>
       <Select
         className={cl.select}
         classNamePrefix="episode-select"

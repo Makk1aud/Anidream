@@ -36,3 +36,10 @@
 .logo {
   width: 70px;
 }
+
+
+@media (min-width: 1440px) {
+  .header {
+    max-width: 1210px;
+  }
+}

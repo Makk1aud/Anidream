@@ -45,3 +45,9 @@
 
   margin-left: 15px;
 }
+
+@media(min-width: 1440px) {
+  .slogan {
+    margin-right: 80px;
+  }
+}

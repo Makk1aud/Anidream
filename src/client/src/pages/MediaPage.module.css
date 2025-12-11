@@ -139,3 +139,20 @@
   font-size: larger;
 }
 
+
+@media(min-width: 1440px) {
+  .media__page {
+    max-width: 1150px;
+  }
+
+  .media__img {
+    width: 360px;
+    height: 500px;
+  }
+  
+  .media__img__container {
+    max-height: 480px;
+    max-width: 500px;
+  }
+
+}
