@@ -60,7 +60,7 @@ export default function Footer() {
           />
         </div>
         <div className={cl.slogan}>
-          <p className={cl.slogan__text}>moviedream - фильмы/сериалы для мечтающих!</p>
+          <p className={cl.slogan__text}>moviedream - библиотека фильмов/сериалов для мечтающих!</p>
           <Link onClick={handleClickScroll} to="/home">
             <Logo />
           </Link>

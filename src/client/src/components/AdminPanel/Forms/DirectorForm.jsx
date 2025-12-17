@@ -41,7 +41,7 @@ export default function DirectorForm() {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className={cl.adminForm}>
       <h3>Добавить режиссёра</h3>
 
       <input

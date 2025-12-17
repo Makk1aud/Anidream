@@ -36,7 +36,7 @@ export default function StudioForm() {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className={cl.adminForm}>
       <h3>Добавить студию</h3>
 
       <input

@@ -1,5 +1,6 @@
 .media__page__title {
-    padding: 20px;
+    padding: 0px 20px;
+    padding-top: 20px; 
     margin-bottom: 25px;
 
     border: 1px solid rgba(222, 222, 222, 0.3);

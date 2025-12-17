@@ -1,6 +1,7 @@
 // pages/admin/AdminLayout.jsx
 import { Outlet, Link } from "react-router-dom";
 import Header from "../UI/navbar/Header";
+import Footer from "../UI/footer/Footer"
 import cl from "./AdminPanel.module.css"
 
 export default function AdminPanel() {
@@ -20,6 +21,8 @@ export default function AdminPanel() {
           <Outlet />
         </main>
       </div>
+
+      <Footer />
     </div>
   );
 }

@@ -1,11 +1,11 @@
 @media(min-width: 1440px) {
-  form {
+  .adminForm {
     display: flex;
     flex-direction: column;
-    align-items: center; /* центрируем элементы формы */
+    align-items: center; 
     width: 100%;
-    max-width: 600px; /* ограничиваем ширину формы */
-    gap: 15px; /* расстояние между полями */
+    max-width: 600px; 
+    gap: 15px; 
     background-color: rgb(30, 30, 30);
     padding: 30px;
     border-radius: 15px;
@@ -14,14 +14,14 @@
     color: white;
   }
 
-  form h3 {
+  .adminForm h3 {
     margin-bottom: 20px;
     color: #fff;
   }
 
-  form input,
-  form textarea,
-  form select {
+  .adminForm input,
+  .adminForm textarea,
+  .adminForm select {
     width: 100%;
     padding: 12px 15px;
     border-radius: 10px;
@@ -31,19 +31,19 @@
     font-size: 1em;
   }
 
-  form textarea {
+  .adminForm textarea {
     min-height: 100px;
     resize: vertical;
   }
 
-  form label {
+  .adminForm label {
     align-self: flex-start;
     margin-top: 10px;
     margin-bottom: 5px;
     font-weight: 500;
   }
 
-  form button {
+  .adminForm button {
     padding: 15px 30px;
     font-size: 1.1em;
     border: 2px solid rgb(146, 145, 145);
@@ -55,7 +55,7 @@
     margin-top: 10px;
   }
 
-  form button:hover {
+  .adminForm button:hover {
     background-color: rgb(59, 57, 57);
     border: 2px solid rgb(177, 177, 177);
     border-radius: 20px;

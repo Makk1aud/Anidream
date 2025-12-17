@@ -88,7 +88,7 @@ export default function MediaForm() {
 
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className={cl.adminForm}>
       <h3>Добавить медиа</h3>
 
       <input

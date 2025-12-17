@@ -43,7 +43,7 @@ export default function GenreForm() {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className={cl.adminForm}>
       <h3>Добавить жанр</h3>
 
       <input

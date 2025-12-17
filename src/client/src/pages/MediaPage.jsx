@@ -91,14 +91,14 @@ export default function MediaPage(props) {
           <div className={cl.main__info}>
             <div className={cl.media__img__container} onClick={scrollToPlayer}>
               <img className={cl.media__img} src={imagePath} />
-              <div className={cl.go__to__view}>
+              {/* <div className={cl.go__to__view}>
                 <img
                   className={cl.go__to__view__img}
                   src="/assets/play.svg"
                   alt="play"
                 />
                 <h2 className={cl.go__to__view__text}>Смотреть</h2>
-              </div>
+              </div> */}
             </div>
             <div className={cl.media__info}>
               <MediaPageTitle title={media.title} subtitle={media.subtitle} />

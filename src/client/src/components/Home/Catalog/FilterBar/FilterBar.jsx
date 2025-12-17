@@ -3,39 +3,20 @@ import cl from "./FilterBar.module.css";
 import FilterSelect from "../../../UI/select/FilterSelect/FilterSelect";
 import FilterSlider from "../../../UI/slider/FilterSlider";
 
-export default function FilterBar() {
-  const genreOptions = [
-    { value: "action", label: "Боевик" },
-    { value: "biography", label: "Биография" },
-    { value: "war", label: "Военный" },
-    { value: "detective", label: "Детекив" },
-    { value: "documentary", label: "Документальный" },
-    { value: "drama", label: "Драма" },
-    { value: "comedy", label: "Комедия" },
-    { value: "crime", label: "Криминал" },
-    { value: "romantic", label: "Мелодрама" },
-    { value: "kids", label: "Мультсериал" },
-    { value: "adventure", label: "Приключения" },
-    { value: "family", label: "Семейный" },
-    { value: "sport", label: "Спорт" },
-    { value: "thriller", label: "Триллер" },
-    { value: "horror", label: "Ужасы" },
-    { value: "fantasy", label: "Фантастика" }
-  ];
+export default function FilterBar({onSearch}) {
 
-  const typeOptions = [
-    { value: "tv-series", label: "Сериал" },
-    { value: "movie", label: "Фильм" }
-  ];
+  const [searchTitle, setSearchTitle] = useState("");
 
-  const statusOptions = [
-    { value: "on-going", label: "Продолжается" },
-    { value: "finished", label: "Закончено" },
-  ];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onSearch) {
+      onSearch(searchTitle);
+    }
+  }
 
-  const [currentGenre, setCurrentGenre] = useState("");
-  const [currentType, setCurrentType] = useState("");
-  const [currentStatus, setCurrentStatus] = useState("");
+  const handleTitleChange = (e) => {
+    setSearchTitle(e.target.value);
+  }
 
   const getValue = (state, options) => {
     return state ? options.find((v) => v.value === state) : "";
@@ -44,29 +25,20 @@ export default function FilterBar() {
   return (
     <div className={cl.wrapper}>
       <div className={cl.filter__bar}>
-        <h3>Фильтры: </h3>
+        <h3>Поиск: </h3>
         <div className={cl.filters}>
-          <div className={cl.selects}>
-            <div className={cl.genre__select__wrapper}>
-              <FilterSelect
-                className={cl.genre__select}
-                value={() => getValue(currentGenre, genreOptions)}
-                options={genreOptions}
-                isMulti={true}
-                placeholder="Жанр"
-              />
-            </div>
-            <div className={cl.type__select__wrapper}>
-              <FilterSelect options={typeOptions} placeholder="Тип" />
-            </div>
-            <div className={cl.status__select__wrapper}>
-              <FilterSelect options={statusOptions} placeholder="Статус" />
-            </div>
-          </div>
-
+          <form onSubmit={handleSubmit} className={cl.search__form}>
+            <input
+              type="text"
+              placeholder="Введите название"
+              value={searchTitle}
+              onChange={handleTitleChange}
+              className={cl.search__input}
+            />
           <button className={cl.search__button}>
             <img className={cl.search__button__img} src="/assets/search-button.png"/>
           </button>
+          </form>
 
           {/* <div className="year__slider">
             <FilterSlider />
