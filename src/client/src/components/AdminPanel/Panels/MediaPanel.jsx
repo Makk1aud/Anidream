@@ -1,4 +1,5 @@
 import MediaForm from "../Forms/MediaForm"
+import cl from "./Panel.module.css"
 
 export default function MediaPanel() {
   return (

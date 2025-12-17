@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import {api} from "../../../api/axios"
+import cl from "./Form.module.css"
 
 export default function MediaForm() {
   const [genres, setGenres] = useState([]);
   const [studios, setStudios] = useState([]);
   const [directors, setDirectors] = useState([]);
+  const [medias, setMedias] = useState([]);
+  const [image, setImage] = useState("");
+  const [file, setFile] = useState(null);
+  const [deleteId, setDeleteId] = useState(""); 
 
   const [form, setForm] = useState({
     title: "",
@@ -24,6 +29,16 @@ export default function MediaForm() {
     api.get("/genre").then(r => setGenres(r.data));
     api.get("/studio").then(r => setStudios(r.data));
     api.get("/director").then(r => setDirectors(r.data));
+    api.get("/media").then(r => setMedias(r.data));
+  }, []);
+
+  useEffect(() => {
+  api.get("/director")
+     .then(r => {
+       console.log("Directors:", r.data); 
+       setDirectors(r.data);
+     })
+     .catch(err => console.error(err));
   }, []);
 
   const submit = async (e) => {
@@ -31,7 +46,46 @@ export default function MediaForm() {
 
     await api.post("/media", form);
     alert("Медиа добавлено");
+    const r = await api.get("/media");
   };
+
+  const deleteMedia = async () => {
+    if (!deleteId) return alert("Выберите медиа для удаления");
+
+    try {
+      await api.delete(`/media/${deleteId}`);
+      alert("Медиа удалено");
+      const r = await api.get("/media"); 
+      setMedias(r.data);
+      setDeleteId("");
+    } catch (err) {
+      console.error(err);
+      alert("Ошибка при удалении медиа");
+    }
+  };
+
+  const uploadImage = async () => {
+    if (!image || !file) return alert("Выберите медиа и файл для загрузки");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      await api.post(`/storage/media/image/${image}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" }
+      });
+      setFile(null);
+      setImage("");
+      alert("Изображение загружено");
+
+      const r = await api.get("/media");
+      setMedias(r.data);
+    } catch (err) {
+      console.error(err);
+      alert("Ошибка при загрузке изображения");
+    }
+  };
+
 
   return (
     <form onSubmit={submit}>
@@ -84,6 +138,7 @@ export default function MediaForm() {
       <label>Жанры</label>
       <select
         multiple
+        value={form.genresIds}
         onChange={(e) =>
           setForm({
             ...form,
@@ -92,7 +147,7 @@ export default function MediaForm() {
         }
       >
         {genres.map(g => (
-          <option key={g.id} value={g.id}>{g.title}</option>
+          <option key={g.genreId} value={g.genreId}>{g.title}</option>
         ))}
       </select>
 
@@ -100,7 +155,7 @@ export default function MediaForm() {
       <select onChange={e => setForm({ ...form, studioId: e.target.value })}>
         <option value="">Выберите студию</option>
         {studios.map(s => (
-          <option key={s.id} value={s.id}>{s.title}</option>
+          <option key={s.studioId} value={s.studioId}>{s.title}</option>
         ))}
       </select>
 
@@ -108,11 +163,31 @@ export default function MediaForm() {
       <select onChange={e => setForm({ ...form, directorId: e.target.value })}>
         <option value="">Выберите режиссёра</option>
         {directors.map(d => (
-          <option key={d.id} value={d.id}>{d.FullName}</option>
+          <option key={d.directorId} value={d.directorId}>{d.fullName}</option>
         ))}
       </select>
 
       <button type="submit">Добавить</button>
+
+      <div className={cl.delete__block} style={{ marginTop: "40px" }}>
+      <h3>Добавить изображение к медиа</h3>
+      <select value={image} onChange={e => setImage(e.target.value)}>
+      <option value="">Выберите медиа</option>
+      {medias.map(m => <option key={m.mediaId} value={m.alias}>{m.title}</option>)}
+      </select>
+      <input type="file" onChange={e => setFile(e.target.files[0])} />
+      <button type="button" onClick={uploadImage}>Загрузить</button>
+      </div>
+
+
+      <div className={cl.delete__block} style={{ marginTop: "40px" }}>
+        <h3>Удалить медиа</h3>
+        <select value={deleteId} onChange={e => setDeleteId(e.target.value)}>
+          <option value="">Выберите медиа</option>
+          {medias.map(m => <option key={m.mediaId} value={m.mediaId}>{m.title}</option>)}
+        </select>
+        <button type="button" onClick={deleteMedia}>Удалить</button>
+      </div>
     </form>
   );
 }
