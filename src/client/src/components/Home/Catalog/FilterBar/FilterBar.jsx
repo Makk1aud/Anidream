@@ -38,7 +38,7 @@ export default function FilterBar() {
   const [currentStatus, setCurrentStatus] = useState("");
 
   const getValue = (state, options) => {
-    return state ? options.find((c) => c.value === state) : "";
+    return state ? options.find((v) => v.value === state) : "";
   };
 
   return (

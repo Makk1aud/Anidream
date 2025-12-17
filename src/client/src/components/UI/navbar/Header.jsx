@@ -10,8 +10,8 @@ export default function Header({onCatalogClick}) {
       <header className={cl.header}>
         <Link className={cl.link} to='/home'><Logo /></Link>
         <div className={cl.header__buttons  }>
-          <HeaderButton onClick={onCatalogClick} text="Каталог" href='/home'/>
-          <HeaderButton text="Админ. Панель" />
+          <Link to="/home"><HeaderButton onClick={onCatalogClick} text="Каталог" href='/home'/></Link>
+          <Link to="/admin"><HeaderButton text="Админ. Панель" /></Link>
         </div>
       </header>
     </div>

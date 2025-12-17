@@ -1,0 +1,49 @@
+@media(min-width: 1440px) {
+  .container {
+    width: 1250px;
+    margin: 100px auto;
+    padding-top: 50px;
+
+    border: 1px solid rgba(167, 167, 167, 0.25);
+    border-radius: 15px;
+
+    background-color: rgb(19, 19, 19);
+    box-shadow: 0 0 50px rgba(102, 102, 102, 0.2);
+  }
+
+  .links {
+    display: flex; 
+    justify-content: center;
+    gap: 20px;  
+    margin: 0 auto 20px auto;
+
+    color: white;
+  }
+
+  .links a {
+    padding: 15px;
+    padding-inline: 80px;
+    border: 2px solid rgb(130, 130, 130);;
+    border-radius: 15px;
+    font-size: 1.2em;
+
+    text-decoration: none;
+    color: inherit;
+
+    transition: background-color 0.2s, border 0.2s, border-radius 0.2s;
+  }
+
+  .links a:hover {
+    background-color: rgb(50, 49, 49);
+    border: 2px solid rgb(210, 210, 210);
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column; /* если несколько форм или блоков внутри */
+    align-items: center; /* горизонтальное центрирование */
+    width: 100%; /* или можно ограничить максимальную ширину, например max-width: 800px */
+  }
+}

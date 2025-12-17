@@ -13,7 +13,10 @@ builder.Services.AddProblemDetails();
 builder.Services.AddCors(options => 
     options.AddPolicy(
         "AllowAll",
-        p => p.WithOrigins("*").AllowAnyOrigin().AllowAnyMethod()));
+        p => p.WithOrigins("*")
+              .AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader()));
 
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
